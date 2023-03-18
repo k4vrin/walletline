@@ -6,13 +6,15 @@ import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.walletline.android.presentation.navigation.AuthNavGraph
 import com.walletline.android.presentation.screens.destinations.MobileLoginScreenDestination
 import com.walletline.android.presentation.util.Country
+import org.koin.androidx.compose.koinViewModel
 
 
 @AuthNavGraph(start = true)
 @Destination
 @Composable
 fun SocialLoginScreen(
-    navigator: DestinationsNavigator
+    navigator: DestinationsNavigator,
+    viewModel: SocialLoginViewModel = koinViewModel()
 ) {
 
 
