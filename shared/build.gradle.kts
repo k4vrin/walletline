@@ -1,15 +1,19 @@
 plugins {
     kotlin(KotlinPlugins.Multiplatform)
     kotlin(KotlinPlugins.Cocoapods)
-    id(Plugins.AndroidLibrary)
+    id(AndroidPlugins.AndroidLibrary)
     kotlin(KotlinPlugins.Serialization) version Kotlin.Version
-    id(Plugins.SqlDelight) version SqlDelight.Version
+    id(AndroidPlugins.Ksp) version AndroidPlugins.KspVersion
+    id(SqlDelight.Plugin) version SqlDelight.Version
     id(GradleVersions.Plugin) version GradleVersions.Version
+    id(KMPNativeCoroutine.Plugin) version KMPNativeCoroutine.Version
+    id(Moko.KswiftPlugin) version Moko.KswiftVersion
 }
 
 version = "1.0"
 
 kotlin {
+    jvmToolchain(8)
     android()
     iosX64()
     iosArm64()
@@ -27,10 +31,18 @@ kotlin {
     }
 
     sourceSets {
+        all {
+            languageSettings.apply {
+                optIn(KMPNativeCoroutine.OptInObjCName)
+                optIn(MultiplatformSettings.OptInSettings)
+                optIn(MultiplatformSettings.OptInSettingsImpl)
+            }
+        }
         val commonMain by getting {
             dependencies {
                 // SqlDelight
                 implementation(SqlDelight.runtime)
+                implementation(SqlDelight.coroutineExt)
                 // Koin
                 api(Koin.core)
                 // Ktor
@@ -44,20 +56,26 @@ kotlin {
                 // Serialization
                 implementation(Kotlin.serializationCore)
                 implementation(Kotlin.serializationJson)
-
+                // Kotlin datetime
                 implementation(Kotlin.datetime)
+                // Multiplatform Settings
+                implementation(MultiplatformSettings.mps)
+                implementation(MultiplatformSettings.mpsCoroutine)
 
             }
         }
         val commonTest by getting {
             dependencies {
                 implementation(kotlin("test"))
+                implementation(MultiplatformSettings.mpsTest)
             }
         }
         val androidMain by getting {
             dependencies {
                 implementation(SqlDelight.androidDriver)
                 implementation(Ktor.okhttp)
+                implementation(AndroidX.datastorePref)
+                implementation(MultiplatformSettings.mpsDataStore)
             }
         }
 //        val androidUnitTest by getting
@@ -86,10 +104,16 @@ kotlin {
     }
 }
 
+kswift {
+    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature)
+}
+
 sqldelight {
-    database(name = "WalletLineDB") {
-        packageName = "com.walletline.database"
-        sourceFolders = listOf("sqldelight")
+    databases {
+        create("WalletlineDB") {
+            packageName.set("com.walletline.database")
+            sourceFolders.add("sqldelight")
+        }
     }
 }
 

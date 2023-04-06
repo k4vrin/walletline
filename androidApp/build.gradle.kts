@@ -1,13 +1,16 @@
 
 plugins {
-    id(Plugins.AndroidApplication)
-    id(Plugins.Ksp) version Plugins.KspVersion
+    id(AndroidPlugins.AndroidApplication)
+    id(AndroidPlugins.Ksp) version AndroidPlugins.KspVersion
     id(GradleVersions.Plugin) version GradleVersions.Version
 
     kotlin(KotlinPlugins.Android)
-    kotlin(KotlinPlugins.kapt)
     kotlin(KotlinPlugins.Serialization) version Kotlin.Version
 
+}
+
+kotlin.jvmToolchain {
+    languageVersion.set(JavaLanguageVersion.of(8))
 }
 
 android {
@@ -89,7 +92,6 @@ dependencies {
     implementation(Compose.navigation)
 
     implementation(AndroidX.coreKtx)
-    implementation(AndroidX.datastorePref)
     implementation(AndroidX.lifecycleRuntime)
     implementation(AndroidX.lifecycleRuntimeCompose)
     implementation(AndroidX.lifecycleViewModel)
@@ -114,9 +116,6 @@ dependencies {
     implementation(Accpmpanist.permission)
 
     implementation(Kermit.kermitLogger)
-
-
-
 }
 
 tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates")

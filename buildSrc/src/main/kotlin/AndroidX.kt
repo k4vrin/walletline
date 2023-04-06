@@ -1,5 +1,5 @@
 object AndroidX {
-    private const val LifecycleVersion = "2.6.0-alpha02"
+    private const val LifecycleVersion = "2.6.1"
 
     val lifecycleRuntime by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:$LifecycleVersion" }
     val lifecycleRuntimeCompose by lazy { "androidx.lifecycle:lifecycle-runtime-compose:$LifecycleVersion" }
