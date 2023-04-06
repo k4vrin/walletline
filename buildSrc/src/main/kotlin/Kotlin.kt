@@ -1,5 +1,5 @@
 object Kotlin {
-    const val Version = "1.8.0"
+    const val Version = "1.8.10"
 
     private const val DatetimeVersion = "0.4.0"
     val datetime by lazy { "org.jetbrains.kotlinx:kotlinx-datetime:${DatetimeVersion}" }

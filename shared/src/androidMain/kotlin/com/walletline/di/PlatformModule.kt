@@ -1,25 +1,44 @@
 package com.walletline.di
 
 import android.content.Context
-import com.squareup.sqldelight.android.AndroidSqliteDriver
-import com.squareup.sqldelight.db.SqlDriver
-import com.walletline.database.WalletLineDB
+import androidx.datastore.core.DataStore
+import androidx.datastore.preferences.core.Preferences
+import androidx.datastore.preferences.preferencesDataStore
+import app.cash.sqldelight.db.SqlDriver
+import app.cash.sqldelight.driver.android.AndroidSqliteDriver
+import com.russhwolf.settings.coroutines.SuspendSettings
+import com.russhwolf.settings.datastore.DataStoreSettings
+import com.walletline.database.WalletlineDB
+import com.walletline.di.util.CoroutineDispatchers
 import io.ktor.client.engine.*
 import io.ktor.client.engine.okhttp.*
+import kotlinx.coroutines.Dispatchers
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
 actual fun platformModule(): Module = module {
+    single { provideDispatchers() }
     single { provideSqlDriver(context = get()) }
     single { provideHttpClientEngine() }
+    single { provideMpSettings(context = get()) }
 }
 
 private fun provideSqlDriver(
     context: Context
 ): SqlDriver = AndroidSqliteDriver(
-    schema = WalletLineDB.Schema,
+    schema = WalletlineDB.Schema,
     context = context,
     name = "walletline.db"
 )
-
 private fun provideHttpClientEngine(): HttpClientEngine = OkHttp.create()
+
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = "WalletlineDS")
+
+private fun provideMpSettings(context: Context): SuspendSettings = DataStoreSettings(context.dataStore)
+
+private fun provideDispatchers(): CoroutineDispatchers = CoroutineDispatchers(
+    database = Dispatchers.IO,
+    network = Dispatchers.IO,
+    disk = Dispatchers.Default,
+    ui = Dispatchers.Main
+)

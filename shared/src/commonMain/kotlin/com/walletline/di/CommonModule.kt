@@ -1,7 +1,11 @@
 package com.walletline.di
 
-import com.squareup.sqldelight.db.SqlDriver
-import com.walletline.database.WalletLineDB
+import app.cash.sqldelight.db.SqlDriver
+import com.russhwolf.settings.coroutines.SuspendSettings
+import com.walletline.data.local.settings.AppSettings
+import com.walletline.data.local.settings.MPAppSettings
+import com.walletline.database.WalletlineDB
+import com.walletline.di.util.CoroutineDispatchers
 import com.walletline.domain.use_case.DummyUseCase
 import io.ktor.client.*
 import io.ktor.client.engine.*
@@ -17,16 +21,19 @@ val commonModule = module {
 
     single { provideSqlDatabase(sqlDriver = get()) }
     single { provideHttpClient(engine = get()) }
+    single { provideAppSetting(settings = get()) }
 
-    factory { provideDummyUseCase() }
+    factory { provideDummyUseCase(appSettings = get(), dispatchers = get()) }
 
 }
 
-private fun provideDummyUseCase() = DummyUseCase()
+private fun provideDummyUseCase(appSettings: AppSettings, dispatchers: CoroutineDispatchers): DummyUseCase = DummyUseCase(appSettings, dispatchers)
+
+private fun provideAppSetting(settings: SuspendSettings): AppSettings = MPAppSettings(settings = settings)
 
 private fun provideSqlDatabase(
     sqlDriver: SqlDriver
-): WalletLineDB = WalletLineDB(driver = sqlDriver)
+): WalletlineDB = WalletlineDB(driver = sqlDriver)
 
 private fun provideHttpClient(
     engine: HttpClientEngine
