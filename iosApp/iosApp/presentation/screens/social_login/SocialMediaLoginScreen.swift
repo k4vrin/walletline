@@ -87,7 +87,7 @@ struct SocialMediaLoginScreen: View {
                         str: NSLocalizedString("Submit phone number", comment: ""),
                         textColor: Color.primaryColor
                     )
-                    .boldBodyMediumStyle()
+                    .bodyMediumStyle()
                     .padding(.top, Padding.medium)
                 })
                 
