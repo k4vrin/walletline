@@ -1,33 +1,25 @@
 package com.walletline.android.presentation.screens.auth.social_login
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.runtime.*
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.walletline.android.R
 import com.walletline.android.presentation.components.WalletLineBackground
-import com.walletline.android.presentation.screens.auth.components.AuthBodyText
-import com.walletline.android.presentation.screens.auth.components.AuthTwoPartHeader
-import com.walletline.android.presentation.screens.auth.components.OrDivider
-import com.walletline.android.presentation.screens.auth.components.PhoneTextField
+import com.walletline.android.presentation.screens.auth.components.*
 import com.walletline.android.presentation.screens.auth.social_login.component.SocialSignInButton
-import com.walletline.android.presentation.screens.auth.social_login.component.SubmitPhoneNumberButton
+import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.padding
-import com.walletline.android.presentation.util.Country
-import com.walletline.android.presentation.util.sdp
+import com.walletline.android.presentation.util.ThemePreviews
 
 @Composable
 fun SocialLoginContent(
-    countries: List<Country>,
-    selectedCountry: Country,
-    phoneText: String,
-    onPhoneTextChange: (String) -> Unit,
-    onCountryChange: (id: Int) -> Unit,
-    onSubmitPhoneClick: () -> Unit,
+    isClickEnable: Boolean = true,
+    onEmailClicked: () -> Unit,
     onGoogleClicked: () -> Unit,
     onFacebookClicked: () -> Unit,
     onAppleClicked: () -> Unit,
@@ -41,108 +33,88 @@ fun SocialLoginContent(
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
 
-            Spacer(modifier = Modifier.height(70.sdp))
+            Spacer(modifier = Modifier.height(Dimen.WalletlineLogoTopMargin))
 
-            AuthTwoPartHeader(
-                subHeaderText = stringResource(id = R.string.accessByYour),
-                mainHeaderFirstText = stringResource(id = R.string.social),
-                mainHeaderSecondText = stringResource(id = R.string.media)
-            )
+            WalletlineHeader()
 
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.extraMedium))
+            Spacer(modifier = Modifier.height(Dimen.WalletlineLogoBottomMargin))
 
-            AuthBodyText(text = stringResource(id = R.string.toAccessEasily))
-
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))
-
-            SocialSignInButton(
+            AuthCard(
                 modifier = Modifier
-                    .padding(horizontal = MaterialTheme.padding.smallLarge),
-                icon = R.drawable.ic_google,
-                text = stringResource(R.string.signWithGoogle),
-                onClick = onGoogleClicked
-            )
+                    .fillMaxWidth()
+                    .padding(horizontal = MaterialTheme.padding.medium)
+            ) {
+                AuthCardTitle(
+                    modifier = Modifier
+                        .padding(top = MaterialTheme.padding.smallLarge),
+                    text = stringResource(R.string.enter_by_socials)
+                )
 
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))
+                Spacer(modifier = Modifier.height(MaterialTheme.padding.extraMedium))
 
-            SocialSignInButton(
-                modifier = Modifier
-                    .padding(horizontal = MaterialTheme.padding.smallLarge),
-                icon = R.drawable.ic_facebook,
-                text = stringResource(R.string.signWithFacebook),
-                onClick = onFacebookClicked
-            )
+                SocialSignInButton(
+                    modifier = Modifier
+                        .padding(horizontal = MaterialTheme.padding.extraMedium),
+                    enabled = isClickEnable,
+                    icon = R.drawable.ic_google,
+                    text = stringResource(R.string.google),
+                    onClick = onGoogleClicked
+                )
 
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))
+                Spacer(modifier = Modifier.height(MaterialTheme.padding.smallMedium))
 
-            SocialSignInButton(
-                modifier = Modifier
-                    .padding(horizontal = MaterialTheme.padding.smallLarge),
-                icon = R.drawable.ic_apple,
-                text = stringResource(R.string.signWithApple),
-                onClick = onAppleClicked
-            )
+                SocialSignInButton(
+                    modifier = Modifier
+                        .padding(horizontal = MaterialTheme.padding.extraMedium),
+                    enabled = isClickEnable,
+                    icon = R.drawable.ic_facebook,
+                    text = stringResource(R.string.facebook),
+                    onClick = onFacebookClicked
+                )
 
-            Spacer(modifier = Modifier.height(157.sdp))
+                Spacer(modifier = Modifier.height(MaterialTheme.padding.smallMedium))
 
+                SocialSignInButton(
+                    modifier = Modifier
+                        .padding(horizontal = MaterialTheme.padding.extraMedium),
+                    icon = R.drawable.ic_apple,
+                    enabled = isClickEnable,
+                    text = stringResource(R.string.apple),
+                    iconTint = MaterialTheme.colorScheme.surface,
+                    backgroundColor = MaterialTheme.colorScheme.onSurface,
+                    textColor = MaterialTheme.colorScheme.surface,
+                    onClick = onAppleClicked
+                )
 
-            OrDivider(
-                modifier = Modifier
-                    .padding(horizontal = MaterialTheme.padding.smallLarge),
-            )
+                Spacer(modifier = Modifier.height(MaterialTheme.padding.extraMedium))
 
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))
+                OrDivider()
 
-            AuthBodyText(text = stringResource(id = R.string.usePhoneToLogin))
+                Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))
 
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.smallMedium))
+                AuthCardArrowText(
+                    modifier = Modifier
+                        .padding(bottom = MaterialTheme.padding.smallLarge)
+                        .clickable(enabled = isClickEnable, onClick = onEmailClicked),
+                    text = stringResource(R.string.enter_by_email)
+                )
 
-            PhoneTextField(
-                modifier = Modifier
-                    .padding(horizontal = MaterialTheme.padding.medium),
-                countries = countries,
-                text = phoneText,
-                onTextChange = onPhoneTextChange,
-                onCountryChange = onCountryChange,
-                selectedCountry = selectedCountry
-            )
-
-            SubmitPhoneNumberButton(
-                onClick = onSubmitPhoneClick
-            )
-            Spacer(modifier = Modifier.height(MaterialTheme.padding.smallMedium))
+            }
         }
+        DatariversTeamText(
+            modifier = Modifier
+                .align(Alignment.BottomCenter)
+                .padding(vertical = MaterialTheme.padding.extraLarge)
+        )
     }
 }
 
-@Preview
+@ThemePreviews
 @Composable
-fun SocialContentPreview() {
-    val countries by remember {
-        mutableStateOf(
-            listOf(
-                Country(1, "NL +31"),
-                Country(2, "IR +98"),
-                Country(3, "US +1"),
-            )
-        )
-    }
-    var selected by remember { mutableStateOf(Country(1, "NL +31")) }
-    var text by remember { mutableStateOf("") }
+private fun SocialContentPreview() {
     WalletLineTheme {
         SocialLoginContent(
-            countries = countries,
-            selectedCountry = selected,
-            phoneText = text,
-            onPhoneTextChange = { text = it },
-            onCountryChange = { id ->
-                countries.find {
-                    it.id == id
-                }?.let {
-                    selected = it
-                }
-            },
-            onSubmitPhoneClick = {},
+            onEmailClicked = {},
             onGoogleClicked = {},
             onFacebookClicked = {},
             onAppleClicked = {},

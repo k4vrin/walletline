@@ -14,7 +14,7 @@ import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.screens.auth.components.AuthBodyText
 import com.walletline.android.presentation.screens.auth.components.AuthButton
 import com.walletline.android.presentation.screens.auth.components.AuthHeader
-import com.walletline.android.presentation.screens.auth.social_login.component.AccountRecoverySection
+import com.walletline.android.presentation.screens.auth.components.AccountRecoverySection
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.padding

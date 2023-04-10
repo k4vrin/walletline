@@ -30,76 +30,65 @@ fun typography(): Typography =
          ),
          headlineLarge = TextStyle(
              fontFamily = plusJakarta,
-             fontWeight = FontWeight.Bold,
+             fontWeight = FontWeight.SemiBold,
              fontSize = 20.ssp,
              lineHeight = 26.ssp,
          ),
          headlineMedium = TextStyle(
              fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
+             fontWeight = FontWeight.Medium,
              fontSize = 18.ssp,
              lineHeight = 21.ssp,
          ),
          headlineSmall = TextStyle(
              fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
+             fontWeight = FontWeight.Medium,
              fontSize = 16.ssp,
              lineHeight = 17.ssp,
          ),
         titleLarge = TextStyle(
             fontFamily = plusJakarta,
-            fontWeight = FontWeight.Medium,
-            fontSize = 20.ssp,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 16.ssp,
             lineHeight = 21.ssp,
         ),
-        titleMedium = TextStyle(
-            fontFamily = plusJakarta,
-            fontWeight = FontWeight.Medium,
-            fontSize = 16.ssp,
-            lineHeight = 19.ssp,
-        ),
+         titleMedium = TextStyle(
+             fontFamily = plusJakarta,
+             fontWeight = FontWeight.Normal,
+             fontSize = 16.ssp,
+             lineHeight = 21.ssp,
+         ),
         titleSmall = TextStyle(
             fontFamily = plusJakarta,
-            fontWeight = FontWeight.SemiBold,
-            fontSize = 14.ssp,
+            fontWeight = FontWeight.Medium,
+            fontSize = 12.ssp,
             lineHeight = 17.ssp,
+            fontStyle = FontStyle.Italic
         ),
          bodyLarge = TextStyle(
              fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
-             fontSize = 16.ssp,
+             fontWeight = FontWeight.Medium,
+             fontSize = 14.ssp,
              lineHeight = 17.ssp,
          ),
          bodyMedium = TextStyle(
              fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
+             fontWeight = FontWeight.Normal,
              fontSize = 14.ssp,
              lineHeight = 17.ssp,
          ),
         bodySmall = TextStyle(
             fontFamily = plusJakarta,
-            fontWeight = FontWeight.Normal,
-            fontSize = 14.ssp,
+            fontWeight = FontWeight.SemiBold,
+            fontSize = 12.ssp,
             lineHeight = 25.ssp,
         ),
          labelLarge = TextStyle(
              fontFamily = plusJakarta,
              fontWeight = FontWeight.SemiBold,
-             fontSize = 20.ssp,
+             fontSize = 14.ssp,
              lineHeight = 26.ssp,
          ),
-         labelMedium = TextStyle(
-             fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
-             fontSize = 14.ssp,
-             lineHeight = 16.ssp,
-         ),
-        labelSmall = TextStyle(
-            fontFamily = plusJakarta,
-            fontWeight = FontWeight.SemiBold,
-            fontSize = 12.ssp,
-            lineHeight = 16.ssp,
-        )
     )
 
 
