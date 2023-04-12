@@ -14,7 +14,7 @@ public class LockScreen: UIView {
     private let kAlter2 = 4321
     private let kTagId = 222333
     
-    private var selectedCircle: Circle?
+    private var selectedCircle: PatternCircle?
     private var patternView: PatternView!
     private var oldCellIndex: Int = -1
     private var currentCellIndex: Int = -1
@@ -85,7 +85,7 @@ public class LockScreen: UIView {
         let radius = 48.0/2
 
         for index in 0..<numberOfCircles {
-            let circle = Circle(radius: CGFloat(radius))
+            let circle = PatternCircle(radius: CGFloat(radius))
             circle.outerColor = config.circleOuterRingColor
             circle.innercolor = config.circleInnerRingColor
             circle.highlightColor = config.circleHighlightColor
@@ -149,12 +149,12 @@ public class LockScreen: UIView {
         patternHandler?(uniqueIdOfCurrentPattern, cellsInOrder)
     }
     
-    func cell(at index: Int) -> Circle? {
+    func cell(at index: Int) -> PatternCircle? {
         guard index >= 0 && index < numberOfCircles else { return nil }
-        return viewWithTag((index/size + kSeed)*kTagId + index % size + kSeed) as? Circle
+        return viewWithTag((index/size + kSeed)*kTagId + index % size + kSeed) as? PatternCircle
     }
     
-    func index(of circle: Circle) -> Int {
+    func index(of circle: PatternCircle) -> Int {
         return (circle.tag/kTagId - kSeed)*size + (circle.tag % kTagId - kSeed)
     }
     
@@ -167,7 +167,7 @@ public class LockScreen: UIView {
             middlePoint.y = (beginPoint!.y + point.y) / 2
         }
         for view in subviews {
-            if let circle = view as? Circle, circle.frame.contains(point) {
+            if let circle = view as? PatternCircle, circle.frame.contains(point) {
                 
                 if !circle.isSelected {
                     circle.isSelected = true
@@ -186,7 +186,7 @@ public class LockScreen: UIView {
         }
         
         for view in subviews {
-            if let circle = view as? Circle, circle.frame.contains(middlePoint)  {
+            if let circle = view as? PatternCircle, circle.frame.contains(middlePoint)  {
                 
                 if !circle.isSelected {
                     circle.isSelected = true
@@ -262,7 +262,7 @@ public class LockScreen: UIView {
     
     func resetScreen() {
         for view in subviews {
-            if let circle = view as? Circle { circle.isSelected = false }
+            if let circle = view as? PatternCircle { circle.isSelected = false }
         }
         finalLines = []
         drawnLines = []

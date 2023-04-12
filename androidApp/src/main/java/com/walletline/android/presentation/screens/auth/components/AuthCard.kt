@@ -21,7 +21,8 @@ fun AuthCard(
 ) {
 
     Surface(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth(),
         shape = RoundedCornerShape(Dimen.DefaultCardCornerRadius),
         shadowElevation = Dimen.DefaultCardElevation,
         color = MaterialTheme.colorScheme.surface
@@ -42,7 +43,6 @@ private fun AuthCardPreview() {
             AuthCard(
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .fillMaxWidth()
                     .height(200.dp)
                     .padding(Padding.medium)
             ) {

@@ -17,12 +17,13 @@ struct DimenGuide: View {
 struct Dimen {
     public static let splashTopMargin: CGFloat = 217
     public static let heartIconSize: CGFloat = 24
-    public static let walletlineLogoWidth: CGFloat = 64
-    public static let walletlineLogoHeight: CGFloat = 59
+    public static let walletlineLogoSize: CGFloat = 90
+    public static let walletlineLogoTopMargin: CGFloat = 100
+    public static let walletlineLogoBottomMargin: CGFloat = 70
     public static let phoneIconSize: CGFloat = 130
     public static let mobileVerifyTopMargin: CGFloat = 109
     public static let socialMediaMiddleMargin: CGFloat = 120
-    public static let orDividerHeight: CGFloat = 5
+    public static let orDividerHeight: CGFloat = 1
     public static let orDividerRadius: CGFloat = 50
     public static let orDividerOffset: CGFloat = 2
     public static let registerBgWidth: CGFloat = 408

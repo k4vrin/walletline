@@ -13,13 +13,13 @@ struct ButtonStylesGuide: View {
         VStack(spacing: 30) {
             Text("Button Styles")
                 .titleLargeStyle()
-            
+
             Button {} label: {
                 Text("small primary")
                     .primaryButtonStyle()
             }
             .disabled(true)
-            
+
             Button {} label: {
                 Text("small primary")
                     .startButtonStyle()
@@ -32,7 +32,7 @@ struct ButtonStylesGuide: View {
                     }
                     Text("small primary")
                 }
-                .socialMediaButtonStyle()
+                .socialMediaButtonStyle(bgColor: Color.backgroundColor, fgColor: Color.surfaceColor)
             }
         }
     }
@@ -40,11 +40,11 @@ struct ButtonStylesGuide: View {
 
 struct PrimaryButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
-    
+
     var backgroundColor: Color {
         isEnabled ? Color.primaryColor : Color.primaryColor.opacity(0.6)
     }
-    
+
     var contentColor: Color {
         isEnabled ? Color.onPrimaryColor : Color.onPrimaryColor.opacity(0.6)
     }
@@ -64,11 +64,11 @@ struct PrimaryButtonStyle: ViewModifier {
 
 struct StartButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
-    
+
     var backgroundColor: Color {
         isEnabled ? Color.tertiaryColor : Color.primaryColor.opacity(0.6)
     }
-    
+
     var contentColor: Color {
         isEnabled ? Color.onPrimaryColor : Color.onPrimaryColor.opacity(0.6)
     }
@@ -76,7 +76,7 @@ struct StartButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .frame(height:56)
+            .frame(height: 56)
             .bodyLargeStyle()
             .foregroundColor(contentColor)
             .background(
@@ -85,41 +85,49 @@ struct StartButtonStyle: ViewModifier {
             )
     }
 }
+
 struct SocialMediaButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
-    var radius: CGFloat = 50
-    
+    var bgColor: Color
+    var fgColor: Color
+    var radius: CGFloat = 12
+
     var backgroundColor: Color {
-        isEnabled ? Color.white : Color.white.opacity(0.6)
+        isEnabled ? bgColor : bgColor.opacity(0.6)
     }
-    
+
     var contentColor: Color {
-        isEnabled ? Color.onBackgroundColor : Color.onBackgroundColor.opacity(0.6)
+        isEnabled ? fgColor : fgColor.opacity(0.6)
     }
 
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
             .frame(height: 48)
-            .bodyLargeStyle()
+            .labelLargeStyle()
             .foregroundColor(contentColor)
-            .padding(.horizontal, 14)
             .background(
-                RoundedCorner(radius: radius)
-                    .stroke(Color.onBackgroundColor)
+                RoundedRectangle(cornerRadius: radius, style: .continuous)
+                    .fill(bgColor)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: radius, style: .continuous)
+                    .stroke(Color.outlineColor.opacity(0.1))
             )
     }
 }
 
-extension View {
-    public func primaryButtonStyle() -> some View {
+public extension View {
+    func primaryButtonStyle() -> some View {
         modifier(PrimaryButtonStyle())
     }
-    public func startButtonStyle() -> some View {
+
+    func startButtonStyle() -> some View {
         modifier(StartButtonStyle())
     }
-    public func socialMediaButtonStyle(radius: CGFloat = 50) -> some View {
-        modifier(SocialMediaButtonStyle(radius: radius))
+
+    func socialMediaButtonStyle(radius: CGFloat = 12, bgColor: Color, fgColor: Color) -> some View {
+        modifier(SocialMediaButtonStyle(bgColor: bgColor, fgColor: fgColor, radius: radius))
     }
 }
 

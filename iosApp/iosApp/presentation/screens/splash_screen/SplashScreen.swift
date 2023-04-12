@@ -23,7 +23,7 @@ struct SplashScreen: View {
     var body: some View {
         ZStack {
             NavigationLink(
-                destination: SocialMediaLoginScreen(),
+                destination: SocialLoginScreen(),
                 isActive: $isNavActive
             ) {
                 EmptyView()
@@ -44,7 +44,7 @@ struct SplashScreen: View {
                     ).titleLargeStyle()
 
                     Image("wallet_icon")
-                        .frame(width: Dimen.walletlineLogoWidth, height: Dimen.walletlineLogoHeight)
+                        .frame(width: Dimen.walletlineLogoSize, height: Dimen.walletlineLogoSize)
                         .padding(EdgeInsets(top: 0, leading: Padding.small, bottom: Padding.extraMedium, trailing: Padding.small))
 
                     Text(

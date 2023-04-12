@@ -2,7 +2,7 @@ import CoreGraphics
 import UIKit
 
 /// A customizable circle that aligned together form the input for pattern lock
-class Circle: UIView {
+class PatternCircle: UIView {
     // *** Customizable attributes ***
     var outerColor = UIColor.magenta {
         didSet { setNeedsDisplay() }
