@@ -76,7 +76,21 @@
     <string name="desc_cloud">layered colorful clouds</string>
     <string name="desc_whale_icon">whale icon</string>
     <string name="desc_finger">finger recognition</string>
-    <string name="desc_walletline_logo">WalletLine Logo</string>
 
+
+<!--__________________________________________________-->
+
+    <string name="designed_by">Designed by</string>
+    <string name="dev_teams">developers team</string>
+    <string name="dr_org">datarivers.org</string>
+    <string name="enter_by_socials">Enter by socials</string>
+    <string name="google">Google Account</string>
+    <string name="facebook">Facebook</string>
+    <string name="apple">Apple ID</string>
+    <string name="enter_by_email">Enter by email address</string>
+
+
+    <string name="desc_walletline_logo">WalletLine Logo</string>
+    <string name="desc_arrow_icon">Arrow icon</string>
 
 </resources>

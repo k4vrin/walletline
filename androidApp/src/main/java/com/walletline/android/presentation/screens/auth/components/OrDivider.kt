@@ -35,7 +35,7 @@ fun OrDivider(
                 .weight(1.5f)
                 .height(Dimen.OrDividerLineHeight)
                 .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
                     shape = RoundedCornerShape(topStartPercent = 100, bottomStartPercent = 100)
                 )
         )
@@ -49,8 +49,8 @@ fun OrDivider(
         {
             Text(
                 text = stringResource(id = R.string.or),
-                style = MaterialTheme.typography.titleMedium,
-                color = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.75f),
+                style = MaterialTheme.typography.bodySmall,
+                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
                 textAlign = TextAlign.Center,
             )
         }
@@ -60,7 +60,7 @@ fun OrDivider(
                 .weight(1.5f)
                 .height(Dimen.OrDividerLineHeight)
                 .background(
-                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
                     shape = RoundedCornerShape(topEndPercent = 100, bottomEndPercent = 100)
                 )
         )

@@ -54,7 +54,7 @@ struct MobileVerifyScreen: View {
                         textColor: Color.primaryColor
                     )
                     .multilineTextAlignment(.center)
-                    .boldBodyMediumStyle()
+                    .bodyMediumStyle()
                     .padding(.top, Padding.small)
                 })
                 
@@ -72,7 +72,7 @@ struct MobileVerifyScreen: View {
                             str: NSLocalizedString("Change It", comment: ""),
                             textColor: Color.primaryColor
                         )
-                        .boldBodyMediumStyle()
+                        .bodyMediumStyle()
                     })
                 }
                 .opacity(isChangeNumberVisible ? 1 : 0)
@@ -91,7 +91,7 @@ struct MobileVerifyScreen: View {
                             str: NSLocalizedString("Resend Code", comment: ""),
                             textColor: Color.primaryColor
                         )
-                        .boldBodyMediumStyle()
+                        .bodyMediumStyle()
                         .padding(.horizontal, Padding.smallLarge)
                     })
                 }
