@@ -6,20 +6,61 @@ import com.walletline.android.presentation.util.sdp
 object Dimen {
     /* General */
 
+    val WalletlineLogo @Composable get() = 90.sdp
+    val DefaultCardElevation @Composable get() = 10.sdp
+    val DefaultCardCornerRadius @Composable get() = 16.sdp
+    val WalletlineLogoTopMargin @Composable get() = 100.sdp
+    val WalletlineLogoBottomMargin @Composable get() = 70.sdp
+    val DefaultButtonStrokeWidth @Composable get() = 1.sdp
+    val DefaultButtonCornerRadius @Composable get() = 12.sdp
+    val ArrowIconSize @Composable get() = 18.sdp
+
+
     val PhoneTextFieldHeight @Composable get() = 50.sdp
     val PhoneTextFieldBorderWidth @Composable get() = 1.sdp
     val PhoneTextFieldBorderRadius @Composable get() = 15.sdp
     val PhoneTextFieldDividerMarginStart @Composable get() = 84.sdp
     val DefaultButtonHeight @Composable get() = 60.sdp
 
-    val ButtonsCornerRadius @Composable get() = 10.sdp
+    val ButtonsCornerRadius @Composable get() = 12.sdp
+    val RoundedButtonsCornerRadius @Composable get() = 24.sdp
 
-    val OrDividerLineHeight @Composable get() = 5.sdp
+    val OrDividerLineHeight @Composable get() = 1.sdp
     val SocialMediaIconSize @Composable get() = 30.sdp
+    val SocialMediaButtonHeight @Composable get() = 48.sdp
 
     val DropDownIconSize @Composable get() = 24.sdp
     val DropDownItemWidth @Composable get() = 80.sdp
     val DropDownItemHeight @Composable get() = 50.sdp
+
+
+    /* OnBoarding */
+
+    val SkipButtonWidth @Composable get() = 58.sdp
+    val SkipButtonHeight @Composable get() = 33.sdp
+    val SkipButtonTopMargin @Composable get() = 60.sdp
+    val ButtonHMargin @Composable get() = 16.sdp
+    val CardTopMargin @Composable get() = 17.sdp
+    val CardBottomMargin @Composable get() = 64.sdp
+    val SliderImageHeight @Composable get() = 324.sdp
+    val CardCornerRadius @Composable get() = 20.sdp
+    val SlideTitleTopMargin @Composable get() = 32.sdp
+    val SlideContentTopMargin @Composable get() = 24.sdp
+    val SlideContentHPadding @Composable get() = 42.sdp
+    val SlideTitleHPadding @Composable get() = 44.sdp
+    val DotsIndicatorTopMargin @Composable get() = 27.sdp
+    val NextButtonTopMargin @Composable get() = 26.sdp
+    val NextButtonHMargin @Composable get() = 24.sdp
+    val NextButtonBottomMargin @Composable get() = 27.sdp
+    val NextButtonHeight @Composable get() = 48.sdp
+    val SelectedDotsSize @Composable get() = 8.sdp
+    val UnSelectedDotsHeight @Composable get() = 13.sdp
+    val SelectedDotsTopMargin @Composable get() = -3.sdp
+    val DotsPadding @Composable get() = 4.sdp
+
+
+
+
 
     /* Splash */
 

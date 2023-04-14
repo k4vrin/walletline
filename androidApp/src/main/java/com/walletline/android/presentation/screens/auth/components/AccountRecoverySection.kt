@@ -1,4 +1,4 @@
-package com.walletline.android.presentation.screens.auth.social_login.component
+package com.walletline.android.presentation.screens.auth.components
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -11,7 +11,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import com.walletline.android.R
-import com.walletline.android.presentation.screens.auth.components.AuthBodyText
 import com.walletline.android.presentation.util.underlineText
 
 @Composable
