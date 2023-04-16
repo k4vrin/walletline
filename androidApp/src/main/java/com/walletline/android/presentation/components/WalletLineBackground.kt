@@ -11,8 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.RectangleShape
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.util.DevicesPreviews
 import com.walletline.android.presentation.util.ThemePreviews
@@ -30,6 +33,7 @@ fun WalletLineBackground(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
+            .clip(RectangleShape)
             .drawBehind {
                 val length = max(size.height, size.width)
                 val bigCircleRadius = length / 2.2f

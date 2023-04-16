@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import com.ramcosta.composedestinations.annotation.Destination
 import com.ramcosta.composedestinations.navigation.DestinationsNavigator
 import com.walletline.android.presentation.navigation.AuthNavGraph
-import com.walletline.android.presentation.screens.destinations.MobileLoginScreenDestination
+import com.walletline.android.presentation.screens.destinations.EmailLoginScreenDestination
 import org.koin.androidx.compose.koinViewModel
 
 
@@ -18,7 +18,7 @@ fun SocialLoginScreen(
 
     SocialLoginContent(
         onEmailClicked = {
-            navigator.navigate(MobileLoginScreenDestination)
+            navigator.navigate(EmailLoginScreenDestination)
         },
         onGoogleClicked = {},
         onFacebookClicked = {},

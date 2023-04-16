@@ -23,9 +23,9 @@ import com.walletline.android.presentation.util.sdp
 
 @Composable
 fun AuthButton(
-    height: Dp,
     text: String,
     modifier: Modifier = Modifier,
+    height: Dp = Dimen.DefaultButtonHeight,
     enabled: Boolean = true,
     containerColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = MaterialTheme.colorScheme.onPrimary,
@@ -37,7 +37,7 @@ fun AuthButton(
             .height(height),
         onClick = onClick,
         enabled = enabled,
-        shape = RoundedCornerShape(Dimen.ButtonsCornerRadius),
+        shape = RoundedCornerShape(Dimen.DefaultBorderRadius),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor,
@@ -48,7 +48,7 @@ fun AuthButton(
     {
         Text(
             text = text,
-            style = MaterialTheme.typography.bodyLarge,
+            style = MaterialTheme.typography.labelSmall,
             textAlign = TextAlign.Center,
         )
     }
