@@ -65,14 +65,12 @@ fun typography(): Typography =
             lineHeight = 17.ssp,
             fontStyle = FontStyle.Italic
         ),
-
          bodyLarge = TextStyle(
              fontFamily = plusJakarta,
              fontWeight = FontWeight.Medium,
              fontSize = 14.ssp,
              lineHeight = 17.ssp,
          ),
-
          bodyMedium = TextStyle(
              fontFamily = plusJakarta,
              fontWeight = FontWeight.Normal,
@@ -90,18 +88,6 @@ fun typography(): Typography =
              fontWeight = FontWeight.SemiBold,
              fontSize = 14.ssp,
              lineHeight = 26.ssp,
-         ),
-         labelMedium = TextStyle(
-             fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
-             fontSize = 12.ssp,
-             lineHeight = 17.ssp,
-         ),
-         labelSmall = TextStyle(
-             fontFamily = plusJakarta,
-             fontWeight = FontWeight.SemiBold,
-             fontSize = 14.ssp,
-             lineHeight = 17.ssp,
          ),
     )
 

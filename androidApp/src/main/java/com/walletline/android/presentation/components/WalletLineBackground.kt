@@ -13,10 +13,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.graphics.Color
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.util.DevicesPreviews
 import com.walletline.android.presentation.util.ThemePreviews
+import kotlin.math.max
 
 @Composable
 fun WalletLineBackground(
@@ -25,25 +25,27 @@ fun WalletLineBackground(
     content: @Composable BoxScope.() -> Unit,
 ) {
     val scrollState = rememberScrollState()
+    val color = MaterialTheme.colorScheme.surface
     Box(
         modifier = modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
             .drawBehind {
-                val bigCircleRadius = size.height / 2
-                val smallCircleRadius = size.height / 3
+                val length = max(size.height, size.width)
+                val bigCircleRadius = length / 2.2f
+                val smallCircleRadius = length / 3.5f
                 drawCircle(
-                    color = Color.White,
+                    color = color,
                     radius = bigCircleRadius,
                     alpha = 0.04f,
-                    center = Offset(x = 0f, y = bigCircleRadius + (bigCircleRadius / 3))
+                    center = Offset(x = bigCircleRadius / 10 ,y = bigCircleRadius + (bigCircleRadius / 2f))
                 )
 
                 drawCircle(
-                    color = Color.White,
+                    color = color,
                     radius = smallCircleRadius,
                     alpha = 0.04f,
-                    center = Offset(x = 0f, y = smallCircleRadius / 1.5f)
+                    center = Offset(x = smallCircleRadius / 6, y = smallCircleRadius / 2f)
                 )
             }
             .verticalScroll(state = scrollState, enabled = isScrollEnabled)

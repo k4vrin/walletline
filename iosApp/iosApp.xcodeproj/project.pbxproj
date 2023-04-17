@@ -19,7 +19,7 @@
 		4C4E166729AB531400017A39 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166629AB531400017A39 /* Components.swift */; };
 		4C4E166929AB534600017A39 /* LockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166829AB534600017A39 /* LockScreen.swift */; };
 		4C4E166B29AB536E00017A39 /* LockScreenPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166A29AB536E00017A39 /* LockScreenPattern.swift */; };
-		4C56487929A7F979005C0B44 /* SocialMediaLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C56487829A7F979005C0B44 /* SocialMediaLoginScreen.swift */; };
+		4C56487929A7F979005C0B44 /* SocialLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */; };
 		4C6785E629E2FF66001E423D /* PlusJakartaSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6785E129E2FF66001E423D /* PlusJakartaSans-Bold.ttf */; };
 		4C6785E729E2FF66001E423D /* PlusJakartaSans-MediumItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6785E229E2FF66001E423D /* PlusJakartaSans-MediumItalic.ttf */; };
 		4C6785E829E2FF66001E423D /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6785E329E2FF66001E423D /* PlusJakartaSans-SemiBold.ttf */; };
@@ -34,11 +34,17 @@
 		4C9E1C2D29BF958F00F1938D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E1C2F29BF958F00F1938D /* Localizable.strings */; };
 		4CBA1F0A29A3E37300649304 /* ColorizedFirstCharText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA1F0929A3E37300649304 /* ColorizedFirstCharText.swift */; };
 		4CBA1F0C29A3F77E00649304 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA1F0B29A3F77E00649304 /* PhoneTextField.swift */; };
+		4CC112FA29E5C3170069962A /* WalletLineBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC112F929E5C3170069962A /* WalletLineBackground.swift */; };
+		4CC112FC29E5CE5F0069962A /* WalletLineLogoHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC112FB29E5CE5F0069962A /* WalletLineLogoHeader.swift */; };
+		4CC112FE29E5D2380069962A /* AuthCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC112FD29E5D2380069962A /* AuthCard.swift */; };
 		4CC1612C29A5234D00AED7A3 /* ButtonStylesGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC1612B29A5234D00AED7A3 /* ButtonStylesGuide.swift */; };
+		4CC7E74D29E6FAA900E307D2 /* AuthCardTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7E74C29E6FAA900E307D2 /* AuthCardTitle.swift */; };
+		4CC7E74F29E7074600E307D2 /* AuthCardArrowText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7E74E29E7074600E307D2 /* AuthCardArrowText.swift */; };
+		4CC7E75129E7096900E307D2 /* DatariversTeamText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC7E75029E7096900E307D2 /* DatariversTeamText.swift */; };
 		4CD1BFA029A93C5500A71A39 /* PatternScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1BF9F29A93C5500A71A39 /* PatternScreen.swift */; };
 		4CD874EE29A2A4A2004D9B6A /* MobileLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD874ED29A2A4A2004D9B6A /* MobileLoginScreen.swift */; };
 		4CEAECB329A236A500449F92 /* ColorGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAECB229A236A500449F92 /* ColorGuide.swift */; };
-		4CF0E65B29A8DFC600173976 /* LeadingIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0E65A29A8DFC600173976 /* LeadingIconButton.swift */; };
+		4CF0E65B29A8DFC600173976 /* SocialSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */; };
 		4CFBF60429A659E000D0F806 /* MobileVerifyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60329A659E000D0F806 /* MobileVerifyScreen.swift */; };
 		4CFBF60629A65A3D00D0F806 /* ColorizedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60529A65A3D00D0F806 /* ColorizedText.swift */; };
 		4CFBF60829A6620300D0F806 /* UnderlineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60729A6620300D0F806 /* UnderlineText.swift */; };
@@ -61,7 +67,7 @@
 		4C4E166629AB531400017A39 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		4C4E166829AB534600017A39 /* LockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreen.swift; sourceTree = "<group>"; };
 		4C4E166A29AB536E00017A39 /* LockScreenPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenPattern.swift; sourceTree = "<group>"; };
-		4C56487829A7F979005C0B44 /* SocialMediaLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLoginScreen.swift; sourceTree = "<group>"; };
+		4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginScreen.swift; sourceTree = "<group>"; };
 		4C6785E129E2FF66001E423D /* PlusJakartaSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Bold.ttf"; sourceTree = "<group>"; };
 		4C6785E229E2FF66001E423D /* PlusJakartaSans-MediumItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-MediumItalic.ttf"; sourceTree = "<group>"; };
 		4C6785E329E2FF66001E423D /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
@@ -77,11 +83,17 @@
 		4C9E1C3029BF967000F1938D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
 		4CBA1F0929A3E37300649304 /* ColorizedFirstCharText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizedFirstCharText.swift; sourceTree = "<group>"; };
 		4CBA1F0B29A3F77E00649304 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
+		4CC112F929E5C3170069962A /* WalletLineBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLineBackground.swift; sourceTree = "<group>"; };
+		4CC112FB29E5CE5F0069962A /* WalletLineLogoHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLineLogoHeader.swift; sourceTree = "<group>"; };
+		4CC112FD29E5D2380069962A /* AuthCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCard.swift; sourceTree = "<group>"; };
 		4CC1612B29A5234D00AED7A3 /* ButtonStylesGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonStylesGuide.swift; sourceTree = "<group>"; };
+		4CC7E74C29E6FAA900E307D2 /* AuthCardTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCardTitle.swift; sourceTree = "<group>"; };
+		4CC7E74E29E7074600E307D2 /* AuthCardArrowText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCardArrowText.swift; sourceTree = "<group>"; };
+		4CC7E75029E7096900E307D2 /* DatariversTeamText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatariversTeamText.swift; sourceTree = "<group>"; };
 		4CD1BF9F29A93C5500A71A39 /* PatternScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternScreen.swift; sourceTree = "<group>"; };
 		4CD874ED29A2A4A2004D9B6A /* MobileLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileLoginScreen.swift; sourceTree = "<group>"; };
 		4CEAECB229A236A500449F92 /* ColorGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGuide.swift; sourceTree = "<group>"; };
-		4CF0E65A29A8DFC600173976 /* LeadingIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeadingIconButton.swift; sourceTree = "<group>"; };
+		4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignInButton.swift; sourceTree = "<group>"; };
 		4CFBF60329A659E000D0F806 /* MobileVerifyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileVerifyScreen.swift; sourceTree = "<group>"; };
 		4CFBF60529A65A3D00D0F806 /* ColorizedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizedText.swift; sourceTree = "<group>"; };
 		4CFBF60729A6620300D0F806 /* UnderlineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineText.swift; sourceTree = "<group>"; };
@@ -124,7 +136,13 @@
 				4C8C742E29A77C05005F6E2D /* EmbeddedUnderlineText.swift */,
 				4C20103B29A7D1AB007BDF7D /* LoginSubHeader.swift */,
 				4C20103E29A7D263007BDF7D /* AuthBodyText.swift */,
-				4CF0E65A29A8DFC600173976 /* LeadingIconButton.swift */,
+				4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */,
+				4CC112F929E5C3170069962A /* WalletLineBackground.swift */,
+				4CC112FB29E5CE5F0069962A /* WalletLineLogoHeader.swift */,
+				4CC112FD29E5D2380069962A /* AuthCard.swift */,
+				4CC7E74C29E6FAA900E307D2 /* AuthCardTitle.swift */,
+				4CC7E74E29E7074600E307D2 /* AuthCardArrowText.swift */,
+				4CC7E75029E7096900E307D2 /* DatariversTeamText.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -153,7 +171,7 @@
 		4C20103D29A7D222007BDF7D /* social_login */ = {
 			isa = PBXGroup;
 			children = (
-				4C56487829A7F979005C0B44 /* SocialMediaLoginScreen.swift */,
+				4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */,
 			);
 			path = social_login;
 			sourceTree = "<group>";
@@ -429,7 +447,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CC1612C29A5234D00AED7A3 /* ButtonStylesGuide.swift in Sources */,
-				4CF0E65B29A8DFC600173976 /* LeadingIconButton.swift in Sources */,
+				4CC7E75129E7096900E307D2 /* DatariversTeamText.swift in Sources */,
+				4CC7E74D29E6FAA900E307D2 /* AuthCardTitle.swift in Sources */,
+				4CF0E65B29A8DFC600173976 /* SocialSignInButton.swift in Sources */,
+				4CC112FA29E5C3170069962A /* WalletLineBackground.swift in Sources */,
 				4CFBF60829A6620300D0F806 /* UnderlineText.swift in Sources */,
 				4CEAECB329A236A500449F92 /* ColorGuide.swift in Sources */,
 				4C1977B429BFAE6A00808A98 /* SocialMediaIconButton.swift in Sources */,
@@ -439,11 +460,14 @@
 				4C4E166929AB534600017A39 /* LockScreen.swift in Sources */,
 				4C6CA78029C07F28008B8038 /* RegisterFinishedScreen.swift in Sources */,
 				4CFBF60429A659E000D0F806 /* MobileVerifyScreen.swift in Sources */,
+				4CC112FC29E5CE5F0069962A /* WalletLineLogoHeader.swift in Sources */,
+				4CC7E74F29E7074600E307D2 /* AuthCardArrowText.swift in Sources */,
 				4C1977B229BF9A5200808A98 /* PaddingGuide.swift in Sources */,
 				4C98AD7129A1595800B6D814 /* TextStylesGuide.swift in Sources */,
 				4CD1BFA029A93C5500A71A39 /* PatternScreen.swift in Sources */,
 				4CFBF60629A65A3D00D0F806 /* ColorizedText.swift in Sources */,
-				4C56487929A7F979005C0B44 /* SocialMediaLoginScreen.swift in Sources */,
+				4CC112FE29E5D2380069962A /* AuthCard.swift in Sources */,
+				4C56487929A7F979005C0B44 /* SocialLoginScreen.swift in Sources */,
 				4C20103C29A7D1AB007BDF7D /* LoginSubHeader.swift in Sources */,
 				4C1977B029BF99E100808A98 /* DimenGuide.swift in Sources */,
 				4C20103F29A7D263007BDF7D /* AuthBodyText.swift in Sources */,

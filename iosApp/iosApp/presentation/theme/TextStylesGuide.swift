@@ -14,6 +14,9 @@ struct TextStylesGuide: View {
             Text("System")
                 .font(.largeTitle)
             
+            Text("Display italic")
+                .displaySmallStyle()
+            
             Text("Title large")
                 .titleLargeStyle()
             
@@ -31,7 +34,7 @@ struct TextStylesGuide: View {
             
             
             Text("Label")
-                .labelSmallStyle()
+                .labelLargeStyle()
         }
     }
 }
@@ -43,7 +46,7 @@ struct DMSans {
 struct PlusJakartaSans {
     static let regular = "PlusJakartaSans-Regular"
     static let medium = "PlusJakartaSans-Medium"
-    static let mediumItalic = "MediumItalic"
+    static let mediumItalic = "PlusJakartaSans-MediumItalic"
     static let semiBold = "PlusJakartaSans-SemiBold"
     static let bold = "PlusJakartaSans-Bold"
 }
@@ -67,7 +70,7 @@ struct HeadlineLargeStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.bold,
+                    PlusJakartaSans.semiBold,
                     size: 20,
                     relativeTo: .headline
                 )
@@ -81,7 +84,7 @@ struct HeadlineMediumStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.semiBold,
+                    PlusJakartaSans.medium,
                     size: 18,
                     relativeTo: .headline
                 )
@@ -95,7 +98,7 @@ struct HeadlineSmallStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.semiBold,
+                    PlusJakartaSans.medium,
                     size: 16,
                     relativeTo: .headline
                 )
@@ -109,8 +112,8 @@ struct TitleLargeStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.medium,
-                    size: 20,
+                    PlusJakartaSans.semiBold,
+                    size: 16,
                     relativeTo: .title
                 )
             )
@@ -123,7 +126,7 @@ struct TitleMediumStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.medium,
+                    PlusJakartaSans.regular,
                     size: 16,
                     relativeTo: .title2
                 )
@@ -137,8 +140,8 @@ struct TitleSmallStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.semiBold,
-                    size: 14,
+                    PlusJakartaSans.medium,
+                    size: 12,
                     relativeTo: .title3
                 )
             )
@@ -151,8 +154,8 @@ struct BodyLargeStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.semiBold,
-                    size: 16,
+                    PlusJakartaSans.medium,
+                    size: 14,
                     relativeTo: .subheadline
                 )
             )
@@ -161,20 +164,6 @@ struct BodyLargeStyle: ViewModifier {
 }
 
 struct BodyMediumStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(
-                .custom(
-                    PlusJakartaSans.semiBold,
-                    size: 14,
-                    relativeTo: .body
-                )
-            )
-            .lineSpacing(Padding.small)
-    }
-}
-
-struct BodySmallStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(
@@ -188,21 +177,21 @@ struct BodySmallStyle: ViewModifier {
     }
 }
 
-struct LabelLargeStyle: ViewModifier {
+struct BodySmallStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(
                 .custom(
                     PlusJakartaSans.semiBold,
-                    size: 20,
-                    relativeTo: .footnote
+                    size: 12,
+                    relativeTo: .body
                 )
             )
             .lineSpacing(Padding.small)
     }
 }
 
-struct LabelMediumStyle: ViewModifier {
+struct LabelLargeStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(
@@ -216,21 +205,10 @@ struct LabelMediumStyle: ViewModifier {
     }
 }
 
-struct LabelSmallStyle: ViewModifier {
-    func body(content: Content) -> some View {
-        content
-            .font(
-                .custom(
-                    PlusJakartaSans.semiBold,
-                    size: 12,
-                    relativeTo: .footnote
-                )
-            )
-            .lineSpacing(Padding.small)
-    }
-}
-
 extension View {
+    public func displaySmallStyle() -> some View {
+        modifier(DisplaySmallStyle())
+    }
     public func titleLargeStyle() -> some View {
         modifier(TitleLargeStyle())
     }
@@ -249,8 +227,8 @@ extension View {
     public func bodySmallStyle() -> some View {
         modifier(BodySmallStyle())
     }
-    public func labelSmallStyle() -> some View {
-        modifier(LabelSmallStyle())
+    public func labelLargeStyle() -> some View {
+        modifier(LabelLargeStyle())
     }
 }
 
