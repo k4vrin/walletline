@@ -18,6 +18,7 @@ struct AuthCardArrowText: View {
     }
     var body: some View {
         Button {
+            action()
             
         } label: {
             HStack(spacing: 0) {

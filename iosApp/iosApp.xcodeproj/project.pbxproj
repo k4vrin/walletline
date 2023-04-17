@@ -32,6 +32,8 @@
 		4C98AD7529A1606900B6D814 /* dm_sans_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C98AD7429A1606900B6D814 /* dm_sans_regular.ttf */; };
 		4C98AD7729A1607B00B6D814 /* dm_sans_bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C98AD7629A1607B00B6D814 /* dm_sans_bold.ttf */; };
 		4C9E1C2D29BF958F00F1938D /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 4C9E1C2F29BF958F00F1938D /* Localizable.strings */; };
+		4CB79F0F29EC732E00BAE308 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79F0E29EC732E00BAE308 /* EmailTextField.swift */; };
+		4CB79F1129EC77F500BAE308 /* AnimatableCustomFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79F1029EC77F500BAE308 /* AnimatableCustomFontModifier.swift */; };
 		4CBA1F0A29A3E37300649304 /* ColorizedFirstCharText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA1F0929A3E37300649304 /* ColorizedFirstCharText.swift */; };
 		4CBA1F0C29A3F77E00649304 /* PhoneTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA1F0B29A3F77E00649304 /* PhoneTextField.swift */; };
 		4CC112FA29E5C3170069962A /* WalletLineBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CC112F929E5C3170069962A /* WalletLineBackground.swift */; };
@@ -81,6 +83,8 @@
 		4C98AD7629A1607B00B6D814 /* dm_sans_bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = dm_sans_bold.ttf; sourceTree = "<group>"; };
 		4C9E1C2E29BF958F00F1938D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; wrapsLines = 1; };
 		4C9E1C3029BF967000F1938D /* nl */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = nl; path = nl.lproj/Localizable.strings; sourceTree = "<group>"; };
+		4CB79F0E29EC732E00BAE308 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
+		4CB79F1029EC77F500BAE308 /* AnimatableCustomFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableCustomFontModifier.swift; sourceTree = "<group>"; };
 		4CBA1F0929A3E37300649304 /* ColorizedFirstCharText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizedFirstCharText.swift; sourceTree = "<group>"; };
 		4CBA1F0B29A3F77E00649304 /* PhoneTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneTextField.swift; sourceTree = "<group>"; };
 		4CC112F929E5C3170069962A /* WalletLineBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLineBackground.swift; sourceTree = "<group>"; };
@@ -143,6 +147,8 @@
 				4CC7E74C29E6FAA900E307D2 /* AuthCardTitle.swift */,
 				4CC7E74E29E7074600E307D2 /* AuthCardArrowText.swift */,
 				4CC7E75029E7096900E307D2 /* DatariversTeamText.swift */,
+				4CB79F0E29EC732E00BAE308 /* EmailTextField.swift */,
+				4CB79F1029EC77F500BAE308 /* AnimatableCustomFontModifier.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB79F0F29EC732E00BAE308 /* EmailTextField.swift in Sources */,
 				4CC1612C29A5234D00AED7A3 /* ButtonStylesGuide.swift in Sources */,
 				4CC7E75129E7096900E307D2 /* DatariversTeamText.swift in Sources */,
 				4CC7E74D29E6FAA900E307D2 /* AuthCardTitle.swift in Sources */,
@@ -459,6 +466,7 @@
 				4C8C742F29A77C05005F6E2D /* EmbeddedUnderlineText.swift in Sources */,
 				4C4E166929AB534600017A39 /* LockScreen.swift in Sources */,
 				4C6CA78029C07F28008B8038 /* RegisterFinishedScreen.swift in Sources */,
+				4CB79F1129EC77F500BAE308 /* AnimatableCustomFontModifier.swift in Sources */,
 				4CFBF60429A659E000D0F806 /* MobileVerifyScreen.swift in Sources */,
 				4CC112FC29E5CE5F0069962A /* WalletLineLogoHeader.swift in Sources */,
 				4CC7E74F29E7074600E307D2 /* AuthCardArrowText.swift in Sources */,

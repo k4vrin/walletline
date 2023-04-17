@@ -16,6 +16,7 @@ struct DimenGuide: View {
 
 struct Dimen {
     public static let splashTopMargin: CGFloat = 217
+    public static let defaultCornerRadius: CGFloat = 12
     public static let heartIconSize: CGFloat = 24
     public static let walletlineLogoSize: CGFloat = 90
     public static let walletlineLogoTopMargin: CGFloat = 100
