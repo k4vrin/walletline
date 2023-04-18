@@ -1,3 +1,4 @@
+@file:Suppress("UnstableApiUsage")
 
 plugins {
     id(AndroidPlugins.AndroidApplication)
@@ -22,6 +23,7 @@ android {
         targetSdk = AndroidApplication.TargetSdkVersion
         versionCode = AndroidApplication.VersionCode
         versionName = AndroidApplication.VersionName
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
 
@@ -115,7 +117,9 @@ dependencies {
     implementation(Accpmpanist.systemUiController)
     implementation(Accpmpanist.permission)
 
-    implementation(Kermit.kermitLogger)
+    implementation(Kermit.logger)
+
+    testImplementation(Test.junit)
 }
 
 tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates")

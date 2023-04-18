@@ -20,13 +20,14 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
+        summary = "Walletline Shared Module"
+        homepage = "https://datarivers.org/"
 //        version = "1.0"
-        ios.deploymentTarget = "14.1"
+        ios.deploymentTarget = "15"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = false // SwiftUI preview requires dynamic framework
         }
     }
 
@@ -50,7 +51,7 @@ kotlin {
                 implementation(Ktor.logging)
                 implementation(Ktor.contentNegotiation)
                 implementation(Ktor.serialization)
-                implementation(Kermit.kermitLogger)
+                implementation(Kermit.logger)
                 // Coroutine
                 implementation(Kotlin.coroutineCore)
                 // Serialization
@@ -66,8 +67,12 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(Kotlin.test)
                 implementation(MultiplatformSettings.mpsTest)
+                implementation(Koin.test)
+                implementation(Test.turbine)
+                implementation(Kotlin.coroutineTest)
+                implementation(Ktor.clientMock)
             }
         }
         val androidMain by getting {
@@ -78,7 +83,14 @@ kotlin {
                 implementation(MultiplatformSettings.mpsDataStore)
             }
         }
-//        val androidUnitTest by getting
+        val androidUnitTest by getting {
+            dependencies {
+                implementation(AndroidX.junit)
+                implementation(Kotlin.coroutineTest)
+                implementation(Test.robolectric)
+                implementation(SqlDelight.jvmDriver)
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -123,6 +135,12 @@ android {
     defaultConfig {
         minSdk = AndroidApplication.MinSdkVersion
         targetSdk = AndroidApplication.TargetSdkVersion
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
     }
 }
 
