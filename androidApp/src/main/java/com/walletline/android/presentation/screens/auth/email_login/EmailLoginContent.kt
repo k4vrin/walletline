@@ -17,15 +17,12 @@ import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.padding
 import com.walletline.android.presentation.util.ThemePreviews
+import com.walletline.domain.model.EmailValidationMessage
 
 @Composable
 fun EmailLoginContent(
-    emailText: String,
-    emailErrorMessage: String? = null,
-    isClickEnable: Boolean = true,
-    onEmailChange: (String) -> Unit,
-    onSocialClicked: () -> Unit,
-    onContinueClicked: () -> Unit,
+    state: EmailLoginContract.State,
+    onEvent: (EmailLoginContract.Event) -> Unit,
 ) {
 
     val focusManager = LocalFocusManager.current
@@ -66,9 +63,14 @@ fun EmailLoginContent(
                 EmailTextField(
                     modifier = Modifier
                         .padding(horizontal = MaterialTheme.padding.extraMedium),
-                    text = emailText,
-                    onTextChange = onEmailChange,
-                    errorMessage = emailErrorMessage
+                    text = state.email,
+                    onTextChange = { onEvent(EmailLoginContract.Event.EmailChange(it)) },
+                    errorMessage = when (state.emailError) {
+                        is EmailValidationMessage.Dynamic -> state.emailError.message
+                        EmailValidationMessage.NotEmpty -> stringResource(id = R.string.err_email_not_empty)
+                        EmailValidationMessage.NotValid -> stringResource(id = R.string.err_email_not_valid)
+                        null -> null
+                    }
                 )
 
                 Spacer(modifier = Modifier.height(MaterialTheme.padding.extraMedium))
@@ -76,9 +78,10 @@ fun EmailLoginContent(
                 AuthButton(
                     modifier = Modifier
                         .padding(horizontal = MaterialTheme.padding.extraMedium),
-                    enabled = isClickEnable,
+                    enabled = state.isActionsEnabled,
                     text = "Continue",
-                    onClick = onContinueClicked
+                    isLoading = state.isLoading,
+                    onClick = { onEvent(EmailLoginContract.Event.OnContinueClicked) }
                 )
 
                 Spacer(modifier = Modifier.height(MaterialTheme.padding.extraMedium))
@@ -90,7 +93,7 @@ fun EmailLoginContent(
                 AuthCardArrowText(
                     modifier = Modifier
                         .padding(bottom = MaterialTheme.padding.smallLarge)
-                        .clickable(enabled = isClickEnable, onClick = onSocialClicked),
+                        .clickable(enabled = state.isActionsEnabled, onClick = { onEvent(EmailLoginContract.Event.OnEnterBySocialClicked) }),
                     text = stringResource(id = R.string.enter_by_socials)
                 )
             }
@@ -112,10 +115,9 @@ fun MobileNumberPreviewTheme() {
     var text by remember { mutableStateOf("") }
     WalletLineTheme {
         EmailLoginContent(
-            emailText = text,
-            onEmailChange = { text = it },
-            onContinueClicked = {},
-            onSocialClicked = {}
-        )
+            EmailLoginContract.State()
+        ) {
+
+        }
     }
 }

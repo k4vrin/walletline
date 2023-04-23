@@ -37,6 +37,7 @@ kotlin {
                 optIn(KMPNativeCoroutine.OptInObjCName)
                 optIn(MultiplatformSettings.OptInSettings)
                 optIn(MultiplatformSettings.OptInSettingsImpl)
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
             }
         }
         val commonMain by getting {
@@ -73,22 +74,29 @@ kotlin {
                 implementation(Test.turbine)
                 implementation(Kotlin.coroutineTest)
                 implementation(Ktor.clientMock)
+                implementation(Kotest.assertion)
+                implementation(Mockative.core)
             }
         }
         val androidMain by getting {
             dependencies {
+                implementation(Kotlin.test)
                 implementation(SqlDelight.androidDriver)
                 implementation(Ktor.okhttp)
                 implementation(AndroidX.datastorePref)
                 implementation(MultiplatformSettings.mpsDataStore)
             }
         }
-        val androidUnitTest by getting {
+        val androidInstrumentedTest by getting {
             dependencies {
                 implementation(AndroidX.junit)
                 implementation(Kotlin.coroutineTest)
                 implementation(Test.robolectric)
                 implementation(SqlDelight.jvmDriver)
+                implementation("androidx.test:runner:1.5.2")
+                implementation("androidx.test:core:1.5.0")
+                implementation("androidx.test.ext:junit:1.1.5")
+                implementation("androidx.test:rules:1.5.0")
             }
         }
         val iosX64Main by getting
@@ -151,3 +159,11 @@ tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("
         outputDir = "build/dependencyUpdates"
         reportfileName = "report"
     }
+
+dependencies {
+    configurations
+        .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
+        .forEach {
+            add(it.name, Mockative.processor)
+        }
+}

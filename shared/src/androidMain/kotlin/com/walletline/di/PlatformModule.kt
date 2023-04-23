@@ -8,8 +8,12 @@ import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.russhwolf.settings.coroutines.SuspendSettings
 import com.russhwolf.settings.datastore.DataStoreSettings
+import com.walletline.data.local.device.Device
+import com.walletline.data.local.device.DeviceImpl
 import com.walletline.database.WalletlineDB
 import com.walletline.di.util.CoroutineDispatchers
+import com.walletline.domain.util.PatternChecker
+import com.walletline.domain.util.PatternCheckerImpl
 import io.ktor.client.engine.*
 import io.ktor.client.engine.okhttp.*
 import kotlinx.coroutines.Dispatchers
@@ -18,9 +22,11 @@ import org.koin.dsl.module
 
 actual fun platformModule(): Module = module {
     single { provideDispatchers() }
-    single { provideSqlDriver(context = get()) }
     single { provideHttpClientEngine() }
+    single { provideSqlDriver(context = get()) }
     single { provideMpSettings(context = get()) }
+    single { provideDevice() }
+    single { providePatternChecker() }
 }
 
 private fun provideSqlDriver(
@@ -42,3 +48,7 @@ private fun provideDispatchers(): CoroutineDispatchers = CoroutineDispatchers(
     disk = Dispatchers.Default,
     ui = Dispatchers.Main
 )
+
+private fun provideDevice(): Device = DeviceImpl()
+
+private fun providePatternChecker(): PatternChecker = PatternCheckerImpl()

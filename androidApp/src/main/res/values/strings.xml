@@ -82,6 +82,10 @@
     <string name="desc_email_icon">Email icon</string>
 
 
+    <string name="err_email_not_valid">This is not a valid email address.</string>
+    <string name="err_email_not_empty">Email address can\'t be empty.</string>
+
+
 <!--__________________________________________________-->
 
     <string name="designed_by">Designed by</string>
