@@ -8,7 +8,7 @@ Pod::Spec.new do |spec|
     spec.summary                  = 'Walletline Shared Module'
     spec.vendored_frameworks      = 'build/cocoapods/framework/shared.framework'
     spec.libraries                = 'c++'
-    spec.ios.deployment_target = '15'
+    spec.ios.deployment_target = '14.1'
                 
                 
     spec.pod_target_xcconfig = {

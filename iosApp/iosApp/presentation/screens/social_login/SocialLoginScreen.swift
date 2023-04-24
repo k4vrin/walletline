@@ -13,7 +13,7 @@ struct SocialLoginScreen: View {
     var body: some View {
         WalletLineBackground {
             NavigationLink(
-                destination: MobileLoginScreen(),
+                destination: EmailLoginScreen(),
                 isActive: $isNavActive
             ) {
                 EmptyView()

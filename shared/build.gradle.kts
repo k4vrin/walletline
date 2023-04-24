@@ -7,7 +7,7 @@ plugins {
     id(SqlDelight.Plugin) version SqlDelight.Version
     id(GradleVersions.Plugin) version GradleVersions.Version
     id(KMPNativeCoroutine.Plugin) version KMPNativeCoroutine.Version
-    id(Moko.KswiftPlugin) version Moko.KswiftVersion
+//    id(Moko.KswiftPlugin) version Moko.KswiftVersion
 }
 
 version = "1.0"
@@ -23,7 +23,7 @@ kotlin {
         summary = "Walletline Shared Module"
         homepage = "https://datarivers.org/"
 //        version = "1.0"
-        ios.deploymentTarget = "15"
+        ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
@@ -124,9 +124,7 @@ kotlin {
     }
 }
 
-kswift {
-    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature)
-}
+
 
 sqldelight {
     databases {
@@ -167,3 +165,9 @@ dependencies {
             add(it.name, Mockative.processor)
         }
 }
+
+//kswift {
+//    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature) {
+//        filter = excludeFilter("selector: ClassContext/app.cash.sqldelight:native-driver/app/cash/sqldelight/driver/native/ConnectionWrapper")
+//    }
+//}

@@ -6,7 +6,6 @@ import com.walletline.data.local.device.Device
 import com.walletline.data.local.settings.AppSettings
 import com.walletline.data.local.settings.MPAppSettings
 import com.walletline.data.remote.AuthService
-import com.walletline.data.remote.HttpRoutes
 import com.walletline.data.remote.KtorAuthService
 import com.walletline.data.repository.AuthRepositoryImpl
 import com.walletline.data.repository.DeviceRepositoryImpl
@@ -30,7 +29,6 @@ import io.ktor.client.plugins.logging.Logger
 import io.ktor.client.plugins.logging.Logging
 import io.ktor.client.request.accept
 import io.ktor.http.ContentType
-import io.ktor.http.URLProtocol
 import io.ktor.http.contentType
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
@@ -107,10 +105,10 @@ private fun provideHttpClient(
     defaultRequest {
         contentType(ContentType.Application.Json)
         accept(ContentType.Application.Json)
-        url {
-            protocol = URLProtocol.HTTPS
-            host = HttpRoutes.Host
-        }
+//        url {
+//            protocol = URLProtocol.HTTPS
+//            host = HttpRoutes.Host
+//        }
     }
 
     /**

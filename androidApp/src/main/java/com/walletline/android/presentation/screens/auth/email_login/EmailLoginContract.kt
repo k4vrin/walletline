@@ -1,18 +1,10 @@
 package com.walletline.android.presentation.screens.auth.email_login
 
 import com.walletline.android.presentation.util.UnidirectionalViewModel
-import com.walletline.domain.model.EmailValidationMessage
+import com.walletline.presentation.screens.auth.email_login.EmailLoginState
 
 interface EmailLoginContract :
-    UnidirectionalViewModel<EmailLoginContract.State, EmailLoginContract.Effect, EmailLoginContract.Event> {
-
-    data class State(
-        val email: String = "",
-        val emailError: EmailValidationMessage? = null,
-        val isLoading: Boolean = false,
-        val isActionsEnabled: Boolean = true,
-    )
-
+    UnidirectionalViewModel<EmailLoginState, EmailLoginContract.Effect, EmailLoginContract.Event> {
     sealed interface Event {
         data class EmailChange(val text: String) : Event
         object OnContinueClicked : Event
@@ -24,6 +16,4 @@ interface EmailLoginContract :
         object EnterBySocial : Effect
         data class Error(val message: String) : Effect
     }
-
-
-}
+    }

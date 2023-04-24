@@ -8,6 +8,7 @@ import com.walletline.domain.model.RegisteredError
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.use_case.validator.ValidateUseCase
 import com.walletline.domain.util.Resource
+import com.walletline.presentation.screens.auth.email_login.EmailLoginState
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,12 +21,12 @@ import kotlinx.coroutines.launch
 
 class EmailLoginViewModel(
     private val authUseCase: AuthUseCase,
-    private val validateUseCase: ValidateUseCase
+    private val validateUseCase: ValidateUseCase,
 ) : ViewModel(), EmailLoginContract {
 
 
-    private val _state = MutableStateFlow(EmailLoginContract.State())
-    override val state: StateFlow<EmailLoginContract.State> = _state.asStateFlow()
+    private val _state = MutableStateFlow(EmailLoginState())
+    override val state: StateFlow<EmailLoginState> = _state.asStateFlow()
 
     private val effectChannel = Channel<EmailLoginContract.Effect>()
     override val effect: Flow<EmailLoginContract.Effect> = effectChannel.receiveAsFlow()
@@ -34,7 +35,11 @@ class EmailLoginViewModel(
         when (event) {
             is EmailLoginContract.Event.EmailChange -> _state.update { state -> state.copy(email = event.text) }
             EmailLoginContract.Event.OnContinueClicked -> handleAction { registerEmail() }
-            EmailLoginContract.Event.OnEnterBySocialClicked -> handleAction { effectChannel.trySend(EmailLoginContract.Effect.EnterBySocial) }
+            EmailLoginContract.Event.OnEnterBySocialClicked -> handleAction {
+                effectChannel.trySend(
+                    EmailLoginContract.Effect.EnterBySocial
+                )
+            }
         }
     }
 
@@ -73,6 +78,7 @@ class EmailLoginViewModel(
                     )
                 }
             }
+
             else -> effectChannel.trySend(EmailLoginContract.Effect.Error(it.message ?: "Unknown error"))
         }
     }

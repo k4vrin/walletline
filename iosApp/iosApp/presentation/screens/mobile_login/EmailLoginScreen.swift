@@ -7,10 +7,20 @@
 //
 
 import SwiftUI
+import shared
+import Combine
 
-struct MobileLoginScreen: View {
-    @State var emailText: String = ""
+struct EmailLoginScreen: View {
     @State private var isNavActive = false
+    @State private var cancellables = Set<AnyCancellable>()
+    
+    @ObservedObject var viewModel: EmailLoginViewModel
+    
+    init(isNavActive: Bool = false) {
+        self.isNavActive = isNavActive
+        self.viewModel = EmailLoginViewModel()
+    }
+    
     var body: some View {
         WalletLineBackground {
             NavigationLink(
@@ -31,12 +41,20 @@ struct MobileLoginScreen: View {
                     )
                     .padding(.top, Padding.smallLarge)
                     
-                    EmailTextField(text: $emailText)
+                    EmailTextField(
+                        text: Binding(
+                            get: { viewModel.state.email },
+                            set: { email, _ in
+                                viewModel.onEvent(.emailChange(email: email))
+                            }
+                        ),
+                        error: getErrorMessage(from: viewModel.state.emailError)
+                    )
                         .padding(.top, Padding.extraMedium)
                         .padding(.horizontal, Padding.extraMedium)
                     
                     Button {
-                        
+                        viewModel.onEvent(.continueClicked)
                     } label: {
                         Text("Continue")
                             .primaryButtonStyle()
@@ -48,25 +66,48 @@ struct MobileLoginScreen: View {
                         .padding(.top, Padding.extraMedium)
                     
                     AuthCardArrowText("Enter by socials") {
-                        
+                        viewModel.onEvent(.enterBySocials)
                     }
-                    .padding(.vertical, Padding.extraMedium)
-                    
-                    
+                        .padding(.vertical, Padding.extraMedium)
                 }
                 .padding(.horizontal, Padding.medium)
-                
             }
             
             DatariversTeamText()
                 .padding(.top, Padding.extraLarge)
         }
         .navigationBarBackButtonHidden(true)
+        .onAppear {
+            viewModel.effect().sink(
+                receiveValue: { effect in
+                    print(effect)
+                }
+            )
+            .store(in: &cancellables)
+        }
+        .onDisappear {
+            cancellables.forEach { pub in
+                pub.cancel()
+            }
+            viewModel.onEvent(.cancelAsyncTasks)
+        }
+    }
+    
+    private func getErrorMessage(from: EmailValidationMessage?) -> String? {
+        switch from {
+        case is EmailValidationMessageDynamic:
+            return (from as! EmailValidationMessageDynamic).message
+        case is EmailValidationMessageNotEmpty:
+            return "Can't be empty"
+        case is EmailValidationMessageNotValid:
+            return "Not a valid email"
+        default: return nil
+        }
     }
 }
 
 struct MobileLoginScreen_Previews: PreviewProvider {
     static var previews: some View {
-        MobileLoginScreen()
+        EmailLoginScreen()
     }
 }
