@@ -30,7 +30,7 @@ fun SocialLoginContent(
         Column(
             modifier = Modifier
                 .fillMaxSize(),
-            horizontalAlignment = Alignment.CenterHorizontally
+            horizontalAlignment = Alignment.CenterHorizontally,
         ) {
 
             Spacer(modifier = Modifier.height(Dimen.WalletlineLogoTopMargin))
@@ -100,12 +100,16 @@ fun SocialLoginContent(
                 )
 
             }
+
+            DatariversTeamText(
+                modifier = Modifier
+                    .padding(
+                        top = MaterialTheme.padding.extraLarge,
+                        bottom = MaterialTheme.padding.small
+                    )
+            )
         }
-        DatariversTeamText(
-            modifier = Modifier
-                .align(Alignment.BottomCenter)
-                .padding(vertical = MaterialTheme.padding.extraLarge)
-        )
+
     }
 }
 

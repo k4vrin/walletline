@@ -15,10 +15,6 @@ struct SplashScreen: View {
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State private var timeRemain = 2
     @State private var isNavActive = false
-    @State private var cancellables = Set<AnyCancellable>()
-    /// **Temp**
-    let useCase = KoinHelper()
-    /// **Temp**
     ///
     var body: some View {
         ZStack {
@@ -78,14 +74,6 @@ struct SplashScreen: View {
                 }.frame(alignment: .bottom)
             }
         }
-        .onAppear {
-            getToken()
-        }
-        .onDisappear {
-            cancellables.map {
-                $0.cancel()
-            }
-        }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(
             LinearGradient(
@@ -96,17 +84,7 @@ struct SplashScreen: View {
         )
     }
 
-    /// **Temp**
-    func getToken() {
-        let future = createFuture(for: useCase.getDummyUseCase())
-        future.sink(receiveCompletion: { err in
-            print("Received completion: \(err)")
-        }, receiveValue: { str in
-            print("Received value: \(str)")
-        })
-        .store(in: &cancellables)
-    }
-    /// **Temp**
+
 }
 
 struct SplashScreen_Previews: PreviewProvider {

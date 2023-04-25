@@ -76,6 +76,14 @@
     <string name="desc_cloud">layered colorful clouds</string>
     <string name="desc_whale_icon">whale icon</string>
     <string name="desc_finger">finger recognition</string>
+    <string name="desc_delete_icon">Delete icon</string>
+    <string name="desc_walletline_logo">WalletLine Logo</string>
+    <string name="desc_arrow_icon">Arrow icon</string>
+    <string name="desc_email_icon">Email icon</string>
+
+
+    <string name="err_email_not_valid">This is not a valid email address.</string>
+    <string name="err_email_not_empty">Email address can\'t be empty.</string>
 
 
 <!--__________________________________________________-->
@@ -90,7 +98,6 @@
     <string name="enter_by_email">Enter by email address</string>
 
 
-    <string name="desc_walletline_logo">WalletLine Logo</string>
-    <string name="desc_arrow_icon">Arrow icon</string>
+
 
 </resources>

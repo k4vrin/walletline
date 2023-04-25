@@ -6,4 +6,5 @@ object Ktor {
     val contentNegotiation by lazy { "io.ktor:ktor-client-content-negotiation:${Version}" }
     val serialization by lazy { "io.ktor:ktor-serialization-kotlinx-json:${Version}" }
     val logging by lazy { "io.ktor:ktor-client-logging:${Version}" }
+    val clientMock by lazy { "io.ktor:ktor-client-mock:${Version}" }
 }

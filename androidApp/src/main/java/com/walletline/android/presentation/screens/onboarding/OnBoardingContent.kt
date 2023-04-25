@@ -1,11 +1,14 @@
 package com.walletline.android.presentation.screens.onboarding
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.screens.onboarding.components.OnBoardingButton
 import com.walletline.android.presentation.screens.onboarding.components.OnBoardingSlider
@@ -13,7 +16,9 @@ import com.walletline.android.presentation.theme.Dimen
 
 
 @Composable
-fun OnBoardingContent() {
+fun OnBoardingContent(
+    onNextScreenClick: () -> Unit
+) {
     WalletLineBackground {
         Column(
             modifier = Modifier
@@ -29,6 +34,7 @@ fun OnBoardingContent() {
                     .padding(Dimen.ButtonHMargin),
                 onClick = {
                     // navigate to next page
+                    onNextScreenClick()
                 })
 
             OnBoardingSlider()
@@ -39,5 +45,5 @@ fun OnBoardingContent() {
 @Preview(showBackground = true)
 @Composable
 fun DefaultPreview() {
-    OnBoardingContent()
+    OnBoardingContent {}
 }

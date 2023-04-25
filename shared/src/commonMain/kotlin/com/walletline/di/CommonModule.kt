@@ -2,18 +2,35 @@ package com.walletline.di
 
 import app.cash.sqldelight.db.SqlDriver
 import com.russhwolf.settings.coroutines.SuspendSettings
+import com.walletline.data.local.device.Device
 import com.walletline.data.local.settings.AppSettings
 import com.walletline.data.local.settings.MPAppSettings
+import com.walletline.data.remote.AuthService
+import com.walletline.data.remote.KtorAuthService
+import com.walletline.data.repository.AuthRepositoryImpl
+import com.walletline.data.repository.DeviceRepositoryImpl
 import com.walletline.database.WalletlineDB
 import com.walletline.di.util.CoroutineDispatchers
+import com.walletline.domain.repository.AuthRepository
+import com.walletline.domain.repository.DeviceRepository
 import com.walletline.domain.use_case.DummyUseCase
-import io.ktor.client.*
-import io.ktor.client.engine.*
-import io.ktor.client.plugins.*
-import io.ktor.client.plugins.contentnegotiation.*
-import io.ktor.client.plugins.logging.*
-import io.ktor.http.*
-import io.ktor.serialization.kotlinx.json.*
+import com.walletline.domain.use_case.auth.AuthUseCase
+import com.walletline.domain.use_case.auth.Register
+import com.walletline.domain.use_case.validator.ValidateEmail
+import com.walletline.domain.use_case.validator.ValidateUseCase
+import com.walletline.domain.util.PatternChecker
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.HttpClientEngine
+import io.ktor.client.plugins.HttpTimeout
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.client.plugins.defaultRequest
+import io.ktor.client.plugins.logging.LogLevel
+import io.ktor.client.plugins.logging.Logger
+import io.ktor.client.plugins.logging.Logging
+import io.ktor.client.request.accept
+import io.ktor.http.ContentType
+import io.ktor.http.contentType
+import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
@@ -23,11 +40,30 @@ val commonModule = module {
     single { provideHttpClient(engine = get()) }
     single { provideAppSetting(settings = get()) }
 
+    single { provideAuthService(client = get()) }
+    single { provideAuthRepo(authService = get()) }
+    single { provideDeviceRepo(device = get()) }
+
+
+    factory { provideAuthUseCase(authRepository = get(), deviceRepository = get(), dispatchers = get()) }
+    factory { provideValidateUseCase(patternChecker = get()) }
     factory { provideDummyUseCase(appSettings = get(), dispatchers = get()) }
 
 }
 
 private fun provideDummyUseCase(appSettings: AppSettings, dispatchers: CoroutineDispatchers): DummyUseCase = DummyUseCase(appSettings, dispatchers)
+
+private fun provideAuthService(client: HttpClient): AuthService = KtorAuthService(client = client)
+
+private fun provideAuthRepo(authService: AuthService): AuthRepository = AuthRepositoryImpl(authService)
+
+private fun provideDeviceRepo(device: Device): DeviceRepository = DeviceRepositoryImpl(device)
+
+private fun provideAuthUseCase(authRepository: AuthRepository, deviceRepository: DeviceRepository, dispatchers: CoroutineDispatchers): AuthUseCase = AuthUseCase(
+    register = Register(dispatchers, authRepository, deviceRepository)
+)
+
+private fun provideValidateUseCase(patternChecker: PatternChecker): ValidateUseCase = ValidateUseCase(validateEmail = ValidateEmail(patternChecker))
 
 private fun provideAppSetting(settings: SuspendSettings): AppSettings = MPAppSettings(settings = settings)
 
@@ -52,9 +88,10 @@ private fun provideHttpClient(
         json(
             json = Json {
                 prettyPrint = true
+                isLenient = true
                 ignoreUnknownKeys = true
             },
-            contentType = ContentType.Application.Json
+            contentType = ContentType.Application.Any
         )
     }
 
@@ -66,6 +103,18 @@ private fun provideHttpClient(
     }
 
     defaultRequest {
-        // Add base url and default headers in here
+        contentType(ContentType.Application.Json)
+        accept(ContentType.Application.Json)
+//        url {
+//            protocol = URLProtocol.HTTPS
+//            host = HttpRoutes.Host
+//        }
     }
+
+    /**
+     * Throws error for non-2xx responses
+     *
+     * **See Also** [Response validation](https://ktor.io/docs/response-validation.html)
+     */
+    expectSuccess = true
 }

@@ -7,7 +7,7 @@ plugins {
     id(SqlDelight.Plugin) version SqlDelight.Version
     id(GradleVersions.Plugin) version GradleVersions.Version
     id(KMPNativeCoroutine.Plugin) version KMPNativeCoroutine.Version
-    id(Moko.KswiftPlugin) version Moko.KswiftVersion
+//    id(Moko.KswiftPlugin) version Moko.KswiftVersion
 }
 
 version = "1.0"
@@ -20,13 +20,14 @@ kotlin {
     iosSimulatorArm64()
 
     cocoapods {
-        summary = "Some description for the Shared Module"
-        homepage = "Link to the Shared Module homepage"
+        summary = "Walletline Shared Module"
+        homepage = "https://datarivers.org/"
 //        version = "1.0"
         ios.deploymentTarget = "14.1"
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
+            isStatic = false // SwiftUI preview requires dynamic framework
         }
     }
 
@@ -36,6 +37,7 @@ kotlin {
                 optIn(KMPNativeCoroutine.OptInObjCName)
                 optIn(MultiplatformSettings.OptInSettings)
                 optIn(MultiplatformSettings.OptInSettingsImpl)
+                optIn("kotlinx.coroutines.ExperimentalCoroutinesApi")
             }
         }
         val commonMain by getting {
@@ -50,7 +52,7 @@ kotlin {
                 implementation(Ktor.logging)
                 implementation(Ktor.contentNegotiation)
                 implementation(Ktor.serialization)
-                implementation(Kermit.kermitLogger)
+                implementation(Kermit.logger)
                 // Coroutine
                 implementation(Kotlin.coroutineCore)
                 // Serialization
@@ -66,19 +68,37 @@ kotlin {
         }
         val commonTest by getting {
             dependencies {
-                implementation(kotlin("test"))
+                implementation(Kotlin.test)
                 implementation(MultiplatformSettings.mpsTest)
+                implementation(Koin.test)
+                implementation(Test.turbine)
+                implementation(Kotlin.coroutineTest)
+                implementation(Ktor.clientMock)
+                implementation(Kotest.assertion)
+                implementation(Mockative.core)
             }
         }
         val androidMain by getting {
             dependencies {
+                implementation(Kotlin.test)
                 implementation(SqlDelight.androidDriver)
                 implementation(Ktor.okhttp)
                 implementation(AndroidX.datastorePref)
                 implementation(MultiplatformSettings.mpsDataStore)
             }
         }
-//        val androidUnitTest by getting
+        val androidInstrumentedTest by getting {
+            dependencies {
+                implementation(AndroidX.junit)
+                implementation(Kotlin.coroutineTest)
+                implementation(Test.robolectric)
+                implementation(SqlDelight.jvmDriver)
+                implementation("androidx.test:runner:1.5.2")
+                implementation("androidx.test:core:1.5.0")
+                implementation("androidx.test.ext:junit:1.1.5")
+                implementation("androidx.test:rules:1.5.0")
+            }
+        }
         val iosX64Main by getting
         val iosArm64Main by getting
         val iosSimulatorArm64Main by getting
@@ -104,9 +124,7 @@ kotlin {
     }
 }
 
-kswift {
-    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature)
-}
+
 
 sqldelight {
     databases {
@@ -123,6 +141,12 @@ android {
     defaultConfig {
         minSdk = AndroidApplication.MinSdkVersion
         targetSdk = AndroidApplication.TargetSdkVersion
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
     }
 }
 
@@ -133,3 +157,17 @@ tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("
         outputDir = "build/dependencyUpdates"
         reportfileName = "report"
     }
+
+dependencies {
+    configurations
+        .filter { it.name.startsWith("ksp") && it.name.contains("Test") }
+        .forEach {
+            add(it.name, Mockative.processor)
+        }
+}
+
+//kswift {
+//    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature) {
+//        filter = excludeFilter("selector: ClassContext/app.cash.sqldelight:native-driver/app/cash/sqldelight/driver/native/ConnectionWrapper")
+//    }
+//}

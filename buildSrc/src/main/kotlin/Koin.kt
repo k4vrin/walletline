@@ -6,4 +6,5 @@ object Koin {
     val core by lazy { "io.insert-koin:koin-core:${CoreVersion}" }
     val android by lazy { "io.insert-koin:koin-android:${AndroidVersion}" }
     val compose by lazy { "io.insert-koin:koin-androidx-compose:${ComposeVersion}" }
+    val test by lazy { "io.insert-koin:koin-test:$CoreVersion" }
 }

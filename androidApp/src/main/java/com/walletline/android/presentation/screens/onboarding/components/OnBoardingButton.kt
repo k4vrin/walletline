@@ -14,7 +14,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.walletline.android.presentation.components.WalletLineBackground
-import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.util.Constants
 import com.walletline.android.presentation.util.DevicesPreviews
@@ -36,7 +35,7 @@ fun OnBoardingButton(
             .widthIn(min = width)
             .height(height),
         onClick = onClick,
-        shape = RoundedCornerShape(Dimen.RoundedButtonsCornerRadius),
+        shape = RoundedCornerShape(50),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor.copy(alpha = Constants.DisabledButtonAlpha),
             contentColor = contentColor,

@@ -13,14 +13,15 @@ object Dimen {
     val WalletlineLogoBottomMargin @Composable get() = 70.sdp
     val DefaultButtonStrokeWidth @Composable get() = 1.sdp
     val DefaultButtonCornerRadius @Composable get() = 12.sdp
+    val DefaultButtonHeight @Composable get() = 48.sdp
+    val DefaultBorderRadius @Composable get() = 15.sdp
     val ArrowIconSize @Composable get() = 18.sdp
 
 
-    val PhoneTextFieldHeight @Composable get() = 50.sdp
+    val PhoneTextFieldHeight @Composable get() = 56.sdp
     val PhoneTextFieldBorderWidth @Composable get() = 1.sdp
-    val PhoneTextFieldBorderRadius @Composable get() = 15.sdp
-    val PhoneTextFieldDividerMarginStart @Composable get() = 84.sdp
-    val DefaultButtonHeight @Composable get() = 60.sdp
+    val PhoneTextFieldDividerMarginStart @Composable get() = 52.sdp
+
 
     val ButtonsCornerRadius @Composable get() = 12.sdp
     val RoundedButtonsCornerRadius @Composable get() = 24.sdp
@@ -28,11 +29,6 @@ object Dimen {
     val OrDividerLineHeight @Composable get() = 1.sdp
     val SocialMediaIconSize @Composable get() = 30.sdp
     val SocialMediaButtonHeight @Composable get() = 48.sdp
-
-    val DropDownIconSize @Composable get() = 24.sdp
-    val DropDownItemWidth @Composable get() = 80.sdp
-    val DropDownItemHeight @Composable get() = 50.sdp
-
 
     /* OnBoarding */
 

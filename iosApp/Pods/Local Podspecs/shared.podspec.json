@@ -1,13 +1,13 @@
 {
   "name": "shared",
   "version": "1.0",
-  "homepage": "Link to the Shared Module homepage",
+  "homepage": "https://datarivers.org/",
   "source": {
     "http": ""
   },
   "authors": "",
   "license": "",
-  "summary": "Some description for the Shared Module",
+  "summary": "Walletline Shared Module",
   "vendored_frameworks": "build/cocoapods/framework/shared.framework",
   "libraries": "c++",
   "platforms": {

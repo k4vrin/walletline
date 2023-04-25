@@ -1,5 +1,9 @@
 package com.walletline.android.presentation.screens.auth.components
 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -23,10 +27,11 @@ import com.walletline.android.presentation.util.sdp
 
 @Composable
 fun AuthButton(
-    height: Dp,
     text: String,
     modifier: Modifier = Modifier,
+    height: Dp = Dimen.DefaultButtonHeight,
     enabled: Boolean = true,
+    isLoading: Boolean = false,
     containerColor: Color = MaterialTheme.colorScheme.primary,
     contentColor: Color = MaterialTheme.colorScheme.onPrimary,
     onClick: () -> Unit,
@@ -37,7 +42,7 @@ fun AuthButton(
             .height(height),
         onClick = onClick,
         enabled = enabled,
-        shape = RoundedCornerShape(Dimen.ButtonsCornerRadius),
+        shape = RoundedCornerShape(Dimen.DefaultBorderRadius),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor,
@@ -46,11 +51,35 @@ fun AuthButton(
         )
     )
     {
-        Text(
-            text = text,
-            style = MaterialTheme.typography.bodyLarge,
-            textAlign = TextAlign.Center,
-        )
+
+        Box(
+            modifier = Modifier
+                .fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+
+            androidx.compose.animation.AnimatedVisibility(
+                visible = isLoading,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                FadingDotLoading()
+            }
+
+            androidx.compose.animation.AnimatedVisibility(
+                visible = !isLoading,
+                enter = fadeIn(),
+                exit = fadeOut()
+            ) {
+                Text(
+                    text = text,
+                    style = MaterialTheme.typography.labelSmall,
+                    textAlign = TextAlign.Center,
+                )
+            }
+        }
+
+
     }
 
 

@@ -5,8 +5,12 @@ import app.cash.sqldelight.driver.native.NativeSqliteDriver
 import com.russhwolf.settings.NSUserDefaultsSettings
 import com.russhwolf.settings.coroutines.SuspendSettings
 import com.russhwolf.settings.coroutines.toSuspendSettings
+import com.walletline.data.local.device.Device
+import com.walletline.data.local.device.DeviceImpl
 import com.walletline.database.WalletlineDB
 import com.walletline.di.util.CoroutineDispatchers
+import com.walletline.domain.util.PatternChecker
+import com.walletline.domain.util.PatternCheckerImpl
 import io.ktor.client.engine.*
 import io.ktor.client.engine.darwin.*
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +23,8 @@ actual fun platformModule(): Module = module {
     single { provideHttpClientEngine() }
     single { provideSqlDriver() }
     single { provideMpSettings(dispatchers = get()) }
+    single { provideDevice() }
+    single { providePatternChecker() }
 }
 
 private fun provideDispatchers(): CoroutineDispatchers = CoroutineDispatchers(
@@ -43,4 +49,8 @@ private fun provideMpSettings(dispatchers: CoroutineDispatchers): SuspendSetting
     val userDefaults: NSUserDefaults = NSUserDefaults.standardUserDefaults
     return NSUserDefaultsSettings(userDefaults).toSuspendSettings(dispatcher = dispatchers.database)
 }
+
+private fun provideDevice(): Device = DeviceImpl()
+
+private fun providePatternChecker(): PatternChecker = PatternCheckerImpl()
 
