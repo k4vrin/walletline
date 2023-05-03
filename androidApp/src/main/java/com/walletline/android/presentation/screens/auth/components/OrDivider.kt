@@ -15,6 +15,7 @@ import com.walletline.android.R
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.theme.padding
 import com.walletline.android.presentation.util.sdp
 
@@ -35,7 +36,7 @@ fun OrDivider(
                 .weight(1.5f)
                 .height(Dimen.OrDividerLineHeight)
                 .background(
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+                    color = MaterialTheme.customColor.neutrals.two,
                     shape = RoundedCornerShape(topStartPercent = 100, bottomStartPercent = 100)
                 )
         )
@@ -44,13 +45,13 @@ fun OrDivider(
         Box(
             modifier = Modifier
                 .padding(horizontal = MaterialTheme.padding.smallMedium)
-                .offset(y = -2.sdp)
+                .offset(y = -(2.sdp))
         )
         {
             Text(
                 text = stringResource(id = R.string.or),
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f),
+                color = MaterialTheme.customColor.neutrals.three,
                 textAlign = TextAlign.Center,
             )
         }
@@ -60,7 +61,7 @@ fun OrDivider(
                 .weight(1.5f)
                 .height(Dimen.OrDividerLineHeight)
                 .background(
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.1f),
+                    color = MaterialTheme.customColor.neutrals.two,
                     shape = RoundedCornerShape(topEndPercent = 100, bottomEndPercent = 100)
                 )
         )

@@ -16,6 +16,7 @@
 		4C1977B429BFAE6A00808A98 /* SocialMediaIconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C1977B329BFAE6A00808A98 /* SocialMediaIconButton.swift */; };
 		4C20103C29A7D1AB007BDF7D /* LoginSubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20103B29A7D1AB007BDF7D /* LoginSubHeader.swift */; };
 		4C20103F29A7D263007BDF7D /* AuthBodyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20103E29A7D263007BDF7D /* AuthBodyText.swift */; };
+		4C46BF472A018ED9000A7E01 /* SkipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C46BF462A018ED9000A7E01 /* SkipButton.swift */; };
 		4C4E166729AB531400017A39 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166629AB531400017A39 /* Components.swift */; };
 		4C4E166929AB534600017A39 /* LockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166829AB534600017A39 /* LockScreen.swift */; };
 		4C4E166B29AB536E00017A39 /* LockScreenPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166A29AB536E00017A39 /* LockScreenPattern.swift */; };
@@ -47,6 +48,9 @@
 		4CD1BFA029A93C5500A71A39 /* PatternScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD1BF9F29A93C5500A71A39 /* PatternScreen.swift */; };
 		4CD874EE29A2A4A2004D9B6A /* EmailLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CD874ED29A2A4A2004D9B6A /* EmailLoginScreen.swift */; };
 		4CDAC1C229F70927000597B9 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CDAC1C129F70927000597B9 /* Extensions.swift */; };
+		4CE907592A001335000B4146 /* OnBoardingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE907582A001335000B4146 /* OnBoardingScreen.swift */; };
+		4CE9075B2A001463000B4146 /* OnBoardingPage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9075A2A001463000B4146 /* OnBoardingPage.swift */; };
+		4CE9075D2A002EDB000B4146 /* DotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9075C2A002EDB000B4146 /* DotIndicator.swift */; };
 		4CEAECB329A236A500449F92 /* ColorGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAECB229A236A500449F92 /* ColorGuide.swift */; };
 		4CF0E65B29A8DFC600173976 /* SocialSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */; };
 		4CFBF60429A659E000D0F806 /* MobileVerifyScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60329A659E000D0F806 /* MobileVerifyScreen.swift */; };
@@ -68,6 +72,7 @@
 		4C1977B329BFAE6A00808A98 /* SocialMediaIconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaIconButton.swift; sourceTree = "<group>"; };
 		4C20103B29A7D1AB007BDF7D /* LoginSubHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSubHeader.swift; sourceTree = "<group>"; };
 		4C20103E29A7D263007BDF7D /* AuthBodyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBodyText.swift; sourceTree = "<group>"; };
+		4C46BF462A018ED9000A7E01 /* SkipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipButton.swift; sourceTree = "<group>"; };
 		4C4E166629AB531400017A39 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		4C4E166829AB534600017A39 /* LockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreen.swift; sourceTree = "<group>"; };
 		4C4E166A29AB536E00017A39 /* LockScreenPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenPattern.swift; sourceTree = "<group>"; };
@@ -101,6 +106,9 @@
 		4CD1BF9F29A93C5500A71A39 /* PatternScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternScreen.swift; sourceTree = "<group>"; };
 		4CD874ED29A2A4A2004D9B6A /* EmailLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailLoginScreen.swift; sourceTree = "<group>"; };
 		4CDAC1C129F70927000597B9 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4CE907582A001335000B4146 /* OnBoardingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingScreen.swift; sourceTree = "<group>"; };
+		4CE9075A2A001463000B4146 /* OnBoardingPage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardingPage.swift; sourceTree = "<group>"; };
+		4CE9075C2A002EDB000B4146 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
 		4CEAECB229A236A500449F92 /* ColorGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGuide.swift; sourceTree = "<group>"; };
 		4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignInButton.swift; sourceTree = "<group>"; };
 		4CFBF60329A659E000D0F806 /* MobileVerifyScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileVerifyScreen.swift; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 		4C1AA0A9299EC212005B9B09 /* presentation */ = {
 			isa = PBXGroup;
 			children = (
+				4C46BF492A019463000A7E01 /* model */,
 				4CDAC1C029F70913000597B9 /* util */,
 				4CB8D0DD29C0790200D675B3 /* screens */,
 				4C1AA0AA299EC238005B9B09 /* theme */,
@@ -186,6 +195,23 @@
 				4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */,
 			);
 			path = social_login;
+			sourceTree = "<group>";
+		};
+		4C46BF482A019442000A7E01 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				4CE9075C2A002EDB000B4146 /* DotIndicator.swift */,
+				4C46BF462A018ED9000A7E01 /* SkipButton.swift */,
+			);
+			path = components;
+			sourceTree = "<group>";
+		};
+		4C46BF492A019463000A7E01 /* model */ = {
+			isa = PBXGroup;
+			children = (
+				4CE9075A2A001463000B4146 /* OnBoardingPage.swift */,
+			);
+			path = model;
 			sourceTree = "<group>";
 		};
 		4C4E166529AB52F500017A39 /* lock_pattern */ = {
@@ -239,8 +265,9 @@
 		4CB8D0DD29C0790200D675B3 /* screens */ = {
 			isa = PBXGroup;
 			children = (
+				4CE907572A001318000B4146 /* boarding */,
 				4C6CA77C29C07D9B008B8038 /* register_finished */,
-				4CD874EC29A2A436004D9B6A /* mobile_login */,
+				4CD874EC29A2A436004D9B6A /* email_login */,
 				4C09932829A52E2D004772A3 /* components */,
 				4CFBF60229A659C300D0F806 /* mobile_verify */,
 				4C20103D29A7D222007BDF7D /* social_login */,
@@ -259,14 +286,14 @@
 			path = pattern_screen;
 			sourceTree = "<group>";
 		};
-		4CD874EC29A2A436004D9B6A /* mobile_login */ = {
+		4CD874EC29A2A436004D9B6A /* email_login */ = {
 			isa = PBXGroup;
 			children = (
 				4CB8D0DC29C078EC00D675B3 /* components */,
 				4CD874ED29A2A4A2004D9B6A /* EmailLoginScreen.swift */,
 				4CC12F7829F5AC44008161FE /* EmailLoginViewModel.swift */,
 			);
-			path = mobile_login;
+			path = email_login;
 			sourceTree = "<group>";
 		};
 		4CDAC1C029F70913000597B9 /* util */ = {
@@ -275,6 +302,15 @@
 				4CDAC1C129F70927000597B9 /* Extensions.swift */,
 			);
 			path = util;
+			sourceTree = "<group>";
+		};
+		4CE907572A001318000B4146 /* boarding */ = {
+			isa = PBXGroup;
+			children = (
+				4C46BF482A019442000A7E01 /* components */,
+				4CE907582A001335000B4146 /* OnBoardingScreen.swift */,
+			);
+			path = boarding;
 			sourceTree = "<group>";
 		};
 		4CFBF60229A659C300D0F806 /* mobile_verify */ = {
@@ -469,6 +505,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4CB79F0F29EC732E00BAE308 /* EmailTextField.swift in Sources */,
+				4CE9075D2A002EDB000B4146 /* DotIndicator.swift in Sources */,
 				4CC1612C29A5234D00AED7A3 /* ButtonStylesGuide.swift in Sources */,
 				4CC7E75129E7096900E307D2 /* DatariversTeamText.swift in Sources */,
 				4CC7E74D29E6FAA900E307D2 /* AuthCardTitle.swift in Sources */,
@@ -481,11 +518,13 @@
 				4CBA1F0C29A3F77E00649304 /* PhoneTextField.swift in Sources */,
 				4C8C742F29A77C05005F6E2D /* EmbeddedUnderlineText.swift in Sources */,
 				4C4E166929AB534600017A39 /* LockScreen.swift in Sources */,
+				4CE9075B2A001463000B4146 /* OnBoardingPage.swift in Sources */,
 				4C6CA78029C07F28008B8038 /* RegisterFinishedScreen.swift in Sources */,
 				4CDAC1C229F70927000597B9 /* Extensions.swift in Sources */,
 				4CB79F1129EC77F500BAE308 /* AnimatableCustomFontModifier.swift in Sources */,
 				4CFBF60429A659E000D0F806 /* MobileVerifyScreen.swift in Sources */,
 				4CC112FC29E5CE5F0069962A /* WalletLineLogoHeader.swift in Sources */,
+				4CE907592A001335000B4146 /* OnBoardingScreen.swift in Sources */,
 				4CC12F7929F5AC44008161FE /* EmailLoginViewModel.swift in Sources */,
 				4CC7E74F29E7074600E307D2 /* AuthCardArrowText.swift in Sources */,
 				4C1977B229BF9A5200808A98 /* PaddingGuide.swift in Sources */,
@@ -498,6 +537,7 @@
 				4C1977B029BF99E100808A98 /* DimenGuide.swift in Sources */,
 				4C20103F29A7D263007BDF7D /* AuthBodyText.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
+				4C46BF472A018ED9000A7E01 /* SkipButton.swift in Sources */,
 				4C4E166B29AB536E00017A39 /* LockScreenPattern.swift in Sources */,
 				4FC1362329B8BF6E008718A7 /* SplashScreen.swift in Sources */,
 				4CD874EE29A2A4A2004D9B6A /* EmailLoginScreen.swift in Sources */,

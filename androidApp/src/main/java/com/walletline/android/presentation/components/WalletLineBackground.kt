@@ -17,6 +17,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.util.DevicesPreviews
 import com.walletline.android.presentation.util.ThemePreviews
 import kotlin.math.max
@@ -28,11 +29,11 @@ fun WalletLineBackground(
     content: @Composable BoxScope.() -> Unit,
 ) {
     val scrollState = rememberScrollState()
-    val color = MaterialTheme.colorScheme.surface
+    val color = MaterialTheme.customColor.neutrals.main
     Box(
         modifier = modifier
             .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
+            .background(MaterialTheme.customColor.main.main)
             .clip(RectangleShape)
             .drawBehind {
                 val length = max(size.height, size.width)

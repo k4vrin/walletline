@@ -16,7 +16,7 @@ struct PaddingGuide: View {
 
 struct Padding {
     /// 0
-    public static let defaultPadd: CGFloat = 0
+    public static let defaultPadding: CGFloat = 0
     /// 4
     public static let extraSmall: CGFloat = 4
     /// 8

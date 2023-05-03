@@ -15,13 +15,19 @@ struct ButtonStylesGuide: View {
                 .titleLargeStyle()
 
             Button {} label: {
-                Text("small primary")
+                Text("primaryButtonStyle disable")
                     .primaryButtonStyle()
             }
             .disabled(true)
+            
+            Button {} label: {
+                Text("primaryButtonStyle enable")
+                    .primaryButtonStyle()
+            }
+            .disabled(false)
 
             Button {} label: {
-                Text("small primary")
+                Text("startButtonStyle")
                     .startButtonStyle()
             }
             Button {} label: {
@@ -30,11 +36,12 @@ struct ButtonStylesGuide: View {
                         Image("apple_icon")
                         Spacer()
                     }
-                    Text("small primary")
+                    Text("socialMediaButtonStyle")
                 }
                 .socialMediaButtonStyle(bgColor: Color.backgroundColor, fgColor: Color.surfaceColor)
             }
         }
+        .padding()
     }
 }
 
@@ -42,22 +49,26 @@ struct PrimaryButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
 
     var backgroundColor: Color {
-        isEnabled ? Color.primaryColor : Color.primaryColor.opacity(0.6)
+        isEnabled ? Color.mainColorShade4 : Color.mainColorShade4.opacity(Dimen.DisabledAlpha)
     }
 
     var contentColor: Color {
-        isEnabled ? Color.onPrimaryColor : Color.onPrimaryColor.opacity(0.6)
+        isEnabled ? Color.neutralColor : Color.neutralColor.opacity(Dimen.DisabledAlpha)
     }
 
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .bodyLargeStyle()
+            .buttonStyle()
             .foregroundColor(contentColor)
-            .padding(16)
+            .padding(Padding.medium)
             .background(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius, style: .continuous)
                     .fill(backgroundColor)
+            )
+            .overlay(
+                RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius, style: .continuous)
+                    .stroke(Color.neutralColorShade2)
             )
     }
 }
@@ -66,11 +77,11 @@ struct StartButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
 
     var backgroundColor: Color {
-        isEnabled ? Color.tertiaryColor : Color.primaryColor.opacity(0.6)
+        isEnabled ? Color.tertiaryColor : Color.primaryColor.opacity(Dimen.DisabledAlpha)
     }
 
     var contentColor: Color {
-        isEnabled ? Color.onPrimaryColor : Color.onPrimaryColor.opacity(0.6)
+        isEnabled ? Color.onPrimaryColor : Color.onPrimaryColor.opacity(Dimen.DisabledAlpha)
     }
 
     func body(content: Content) -> some View {
@@ -80,7 +91,7 @@ struct StartButtonStyle: ViewModifier {
             .bodyLargeStyle()
             .foregroundColor(contentColor)
             .background(
-                RoundedRectangle(cornerRadius: 10, style: .continuous)
+                RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius, style: .continuous)
                     .fill(backgroundColor)
             )
     }
@@ -90,21 +101,21 @@ struct SocialMediaButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
     var bgColor: Color
     var fgColor: Color
-    var radius: CGFloat = 12
+    var radius: CGFloat = Dimen.DefaultButtonCornerRadius
 
     var backgroundColor: Color {
-        isEnabled ? bgColor : bgColor.opacity(0.6)
+        isEnabled ? bgColor : bgColor.opacity(Dimen.DisabledAlpha)
     }
 
     var contentColor: Color {
-        isEnabled ? fgColor : fgColor.opacity(0.6)
+        isEnabled ? fgColor : fgColor.opacity(Dimen.DisabledAlpha)
     }
 
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
-            .frame(height: 48)
-            .labelLargeStyle()
+            .frame(height: Dimen.SocialMediaButtonHeight)
+            .buttonStyle()
             .foregroundColor(contentColor)
             .background(
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
@@ -112,7 +123,7 @@ struct SocialMediaButtonStyle: ViewModifier {
             )
             .overlay(
                 RoundedRectangle(cornerRadius: radius, style: .continuous)
-                    .stroke(Color.outlineColor.opacity(0.1))
+                    .stroke(Color.neutralColorShade2)
             )
     }
 }

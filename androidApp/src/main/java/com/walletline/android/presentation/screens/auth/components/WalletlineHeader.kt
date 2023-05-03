@@ -17,6 +17,7 @@ import com.walletline.android.R
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 
 @Composable
 fun WalletlineHeader(
@@ -39,7 +40,7 @@ fun WalletlineHeader(
         Text(
             text = "Walletline+",
             style = MaterialTheme.typography.displaySmall,
-            color = MaterialTheme.colorScheme.onBackground
+            color = MaterialTheme.customColor.neutrals.main
         )
 
     }

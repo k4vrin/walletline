@@ -10,11 +10,11 @@ import SwiftUI
 
 struct WalletLineLogoHeader: View {
     var body: some View {
-        VStack(spacing: 0) {
+        VStack(spacing: Padding.defaultPadding) {
             Image("wallet_icon")
                 .frame(
-                    minWidth: Dimen.walletlineLogoSize,
-                    minHeight: Dimen.walletlineLogoSize
+                    minWidth: Dimen.WalletlineLogoSize,
+                    minHeight: Dimen.WalletlineLogoSize
                 )
             Text(
                 NSLocalizedString(
@@ -23,7 +23,7 @@ struct WalletLineLogoHeader: View {
                 )
             )
             .displaySmallStyle()
-            .foregroundColor(.surfaceColor)
+            .foregroundColor(.neutralColor)
         }
     }
 }

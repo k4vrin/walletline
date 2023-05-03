@@ -2,6 +2,8 @@ package com.walletline.android.presentation.screens.auth.components
 
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -20,6 +22,7 @@ import androidx.compose.ui.unit.Dp
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.util.Constants
 import com.walletline.android.presentation.util.DevicesPreviews
 import com.walletline.android.presentation.util.ThemePreviews
@@ -32,8 +35,8 @@ fun AuthButton(
     height: Dp = Dimen.DefaultButtonHeight,
     enabled: Boolean = true,
     isLoading: Boolean = false,
-    containerColor: Color = MaterialTheme.colorScheme.primary,
-    contentColor: Color = MaterialTheme.colorScheme.onPrimary,
+    containerColor: Color = MaterialTheme.customColor.main.four,
+    contentColor: Color = MaterialTheme.customColor.neutrals.main,
     onClick: () -> Unit,
 ) {
     Button(
@@ -42,7 +45,11 @@ fun AuthButton(
             .height(height),
         onClick = onClick,
         enabled = enabled,
-        shape = RoundedCornerShape(Dimen.DefaultBorderRadius),
+        shape = RoundedCornerShape(Dimen.DefaultButtonCornerRadius),
+        border = BorderStroke(
+            width = Dimen.DefaultButtonStrokeWidth,
+            color = MaterialTheme.customColor.neutrals.two
+        ),
         colors = ButtonDefaults.buttonColors(
             containerColor = containerColor,
             contentColor = contentColor,
@@ -73,7 +80,7 @@ fun AuthButton(
             ) {
                 Text(
                     text = text,
-                    style = MaterialTheme.typography.labelSmall,
+                    style = MaterialTheme.typography.labelLarge,
                     textAlign = TextAlign.Center,
                 )
             }

@@ -75,7 +75,7 @@ class EmailLoginViewModel: ObservableObject {
         isLoading: Bool? = nil,
         isActionEnabled: Bool? = nil
     ) {
-        let currentState = state.copy() as! EmailLoginState
+        guard let currentState = state.copy() as? EmailLoginState else {return}
         state = state.doCopy(
             email: email ?? currentState.email,
             emailError: emailError ?? currentState.emailError,

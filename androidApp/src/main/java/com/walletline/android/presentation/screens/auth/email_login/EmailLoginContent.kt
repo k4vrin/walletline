@@ -95,7 +95,7 @@ fun EmailLoginContent(
                     modifier = Modifier
                         .padding(horizontal = MaterialTheme.padding.extraMedium),
                     enabled = state.isActionsEnabled,
-                    text = "Continue",
+                    text = stringResource(R.string.button_continue),
                     isLoading = state.isLoading,
                     onClick = { onEvent(EmailLoginContract.Event.OnContinueClicked) }
                 )

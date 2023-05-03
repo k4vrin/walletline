@@ -16,4 +16,4 @@ interface EmailLoginContract :
         object EnterBySocial : Effect
         data class Error(val message: String) : Effect
     }
-    }
+}

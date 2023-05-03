@@ -33,6 +33,7 @@ import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.screens.auth.components.AuthCard
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.theme.padding
 import com.walletline.android.presentation.util.Constants
 import com.walletline.android.presentation.util.sdp
@@ -54,8 +55,8 @@ fun EmailTextField(
         value = text,
         textStyle = MaterialTheme.typography.bodyLarge,
         onValueChange = onTextChange,
-        cursorBrush = if (!errorMessage.isNullOrBlank()) SolidColor(MaterialTheme.colorScheme.error)
-        else SolidColor(MaterialTheme.colorScheme.primary),
+        cursorBrush = if (!errorMessage.isNullOrBlank()) SolidColor(MaterialTheme.customColor.error.main)
+        else SolidColor(MaterialTheme.customColor.main.main),
         keyboardOptions = KeyboardOptions(
             keyboardType = KeyboardType.Email,
             imeAction = ImeAction.Done
@@ -73,18 +74,19 @@ fun EmailTextField(
                 contentPadding = TextFieldDefaults.textFieldWithLabelPadding(start = MaterialTheme.padding.extraMedium),
                 label = {
                     Text(
-                        text = "Email Address",
+                        text = stringResource(R.string.email_address),
                     )
                 },
                 colors = TextFieldDefaults.textFieldColors(
-                    textColor = MaterialTheme.colorScheme.onSurface,
-                    disabledTextColor = MaterialTheme.colorScheme.onSurface.copy(alpha = Constants.DisabledAlpha),
-                    containerColor = MaterialTheme.colorScheme.surface,
-                    placeholderColor = MaterialTheme.colorScheme.onSurface.copy(alpha = Constants.DisabledAlpha),
-                    focusedLabelColor = MaterialTheme.colorScheme.onSurface.copy(alpha = Constants.DisabledAlpha),
-                    focusedLeadingIconColor = MaterialTheme.colorScheme.onSurface,
-                    unfocusedLeadingIconColor = MaterialTheme.colorScheme.onSurface,
-                    errorLeadingIconColor = MaterialTheme.colorScheme.error
+                    textColor = MaterialTheme.customColor.neutrals.six,
+                    disabledTextColor = MaterialTheme.customColor.neutrals.six.copy(alpha = Constants.DisabledAlpha),
+                    containerColor = Color.Transparent,
+                    focusedLabelColor = MaterialTheme.customColor.neutrals.three,
+                    unfocusedLabelColor = MaterialTheme.customColor.neutrals.four,
+                    errorLabelColor = MaterialTheme.customColor.error.main,
+                    focusedLeadingIconColor = MaterialTheme.customColor.neutrals.five,
+                    unfocusedLeadingIconColor = MaterialTheme.customColor.neutrals.five,
+                    errorLeadingIconColor = MaterialTheme.customColor.error.main
                 ),
                 supportingText = {
                     AnimatedVisibility(
@@ -105,7 +107,7 @@ fun EmailTextField(
                             .border(
                                 width = Dimen.PhoneTextFieldBorderWidth,
                                 color = if (!errorMessage.isNullOrBlank()) MaterialTheme.colorScheme.error
-                                else MaterialTheme.colorScheme.outline.copy(alpha = 0.2f),
+                                else MaterialTheme.customColor.neutrals.two,
                                 shape = RoundedCornerShape(Dimen.DefaultBorderRadius)
                             ),
                         contentAlignment = Alignment.CenterStart

@@ -19,7 +19,7 @@ struct SplashScreen: View {
     var body: some View {
         ZStack {
             NavigationLink(
-                destination: SocialLoginScreen(),
+                destination: OnBoardingScreen(),
                 isActive: $isNavActive
             ) {
                 EmptyView()
@@ -40,7 +40,7 @@ struct SplashScreen: View {
                     ).titleLargeStyle()
 
                     Image("wallet_icon")
-                        .frame(width: Dimen.walletlineLogoSize, height: Dimen.walletlineLogoSize)
+                        .frame(width: Dimen.WalletlineLogoSize, height: Dimen.WalletlineLogoSize)
                         .padding(EdgeInsets(top: 0, leading: Padding.small, bottom: Padding.extraMedium, trailing: Padding.small))
 
                     Text(
@@ -70,7 +70,7 @@ struct SplashScreen: View {
                     .titleSmallStyle()
 
                     Image("heart_icon")
-                        .frame(width: Dimen.heartIconSize, height: Dimen.heartIconSize)
+                        .frame(width: Dimen.HeartIconSize, height: Dimen.HeartIconSize)
                 }.frame(alignment: .bottom)
             }
         }

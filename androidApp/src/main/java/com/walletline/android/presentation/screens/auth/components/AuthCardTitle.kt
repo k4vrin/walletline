@@ -8,6 +8,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 
 @Composable
 fun AuthCardTitle(
@@ -18,7 +19,8 @@ fun AuthCardTitle(
         modifier = modifier,
         text = text,
         style = MaterialTheme.typography.titleLarge,
-        textAlign = TextAlign.Center
+        textAlign = TextAlign.Center,
+        color = MaterialTheme.customColor.neutrals.six
     )
 }
 

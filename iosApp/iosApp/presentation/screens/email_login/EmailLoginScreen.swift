@@ -30,10 +30,10 @@ struct EmailLoginScreen: View {
                 EmptyView()
             }
             .hidden()
-            VStack(alignment: .center, spacing: Padding.defaultPadd) {
+            VStack(alignment: .center, spacing: Padding.defaultPadding) {
                 WalletLineLogoHeader()
-                    .padding(.top, Dimen.walletlineLogoTopMargin)
-                    .padding(.bottom, Dimen.walletlineLogoBottomMargin)
+                    .padding(.top, Dimen.WalletlineLogoTopMargin)
+                    .padding(.bottom, Dimen.WalletlineLogoBottomMargin)
                 
                 AuthCard {
                     AuthCardTitle(
@@ -56,7 +56,9 @@ struct EmailLoginScreen: View {
                     Button {
                         viewModel.onEvent(.continueClicked)
                     } label: {
-                        Text("Continue")
+                        Text(
+                            NSLocalizedString("Continue", comment: "")
+                        )
                             .primaryButtonStyle()
                     }
                     .padding(.top, Padding.extraMedium)
@@ -65,7 +67,9 @@ struct EmailLoginScreen: View {
                     OrDivider()
                         .padding(.top, Padding.extraMedium)
                     
-                    AuthCardArrowText("Enter by socials") {
+                    AuthCardArrowText(
+                        NSLocalizedString("Enter by socials", comment: "")
+                    ) {
                         viewModel.onEvent(.enterBySocials)
                     }
                         .padding(.vertical, Padding.extraMedium)
@@ -106,7 +110,7 @@ struct EmailLoginScreen: View {
     }
 }
 
-struct MobileLoginScreen_Previews: PreviewProvider {
+struct EmailLoginScreen_Previews: PreviewProvider {
     static var previews: some View {
         EmailLoginScreen()
     }

@@ -20,10 +20,10 @@ struct SocialLoginScreen: View {
             }
             .hidden()
             
-            VStack(alignment: .center, spacing: 0) {
+            VStack(alignment: .center, spacing: Padding.defaultPadding) {
                 WalletLineLogoHeader()
-                    .padding(.top, Dimen.walletlineLogoTopMargin)
-                    .padding(.bottom, Dimen.walletlineLogoBottomMargin)
+                    .padding(.top, Dimen.WalletlineLogoTopMargin)
+                    .padding(.bottom, Dimen.WalletlineLogoBottomMargin)
                 
                 AuthCard {
                     AuthCardTitle(
@@ -36,7 +36,9 @@ struct SocialLoginScreen: View {
                             Image("google_icon")
                         },
                         text: NSLocalizedString("Google Account", comment: "")
-                    ) {}
+                    ) {
+                        // onGoogleClick
+                    }
                         .padding(.horizontal, Padding.extraMedium)
                         .padding(.top, Padding.smallMedium)
                     
@@ -45,7 +47,9 @@ struct SocialLoginScreen: View {
                             Image("facebook_icon")
                         },
                         text: NSLocalizedString("Facebook", comment: "")
-                    ) {}
+                    ) {
+                        // onFacebookClick
+                    }
                         .padding(.horizontal, Padding.extraMedium)
                         .padding(.top, Padding.smallMedium)
                     
@@ -53,12 +57,14 @@ struct SocialLoginScreen: View {
                         icon: {
                             Image("apple_icon")
                                 .renderingMode(.template)
-                                .foregroundColor(Color.surfaceColor)
+                                .foregroundColor(Color.neutralColor)
                         },
                         text: NSLocalizedString("Apple ID", comment: ""),
-                        bgColor: Color.onSurfaceColor,
-                        fgColor: Color.surfaceColor
-                    ) {}
+                        bgColor: Color.neutralColorShade6,
+                        fgColor: Color.neutralColor
+                    ) {
+                        // onAppleClick
+                    }
                         .padding(.horizontal, Padding.extraMedium)
                         .padding(.top, Padding.smallMedium)
                     

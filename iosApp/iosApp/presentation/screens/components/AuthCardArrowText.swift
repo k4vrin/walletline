@@ -21,15 +21,15 @@ struct AuthCardArrowText: View {
             action()
             
         } label: {
-            HStack(spacing: 0) {
+            HStack(spacing: Padding.defaultPadding) {
                 Text(text)
                     .bodySmallStyle()
-                    .foregroundColor(.onSurfaceColor.opacity(0.4))
+                    .foregroundColor(.neutralColorShade3)
                     .padding(.trailing, Padding.small)
                 
                 Image("arrow-right")
                     .renderingMode(.template)
-                    .foregroundColor(.onSurfaceColor.opacity(0.4))
+                    .foregroundColor(.neutralColorShade3)
             }
         }
     }

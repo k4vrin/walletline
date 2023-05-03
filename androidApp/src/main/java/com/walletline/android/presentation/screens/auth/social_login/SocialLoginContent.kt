@@ -13,6 +13,7 @@ import com.walletline.android.presentation.screens.auth.components.*
 import com.walletline.android.presentation.screens.auth.social_login.component.SocialSignInButton
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.theme.padding
 import com.walletline.android.presentation.util.ThemePreviews
 
@@ -80,9 +81,9 @@ fun SocialLoginContent(
                     icon = R.drawable.ic_apple,
                     enabled = isClickEnable,
                     text = stringResource(R.string.apple),
-                    iconTint = MaterialTheme.colorScheme.surface,
-                    backgroundColor = MaterialTheme.colorScheme.onSurface,
-                    textColor = MaterialTheme.colorScheme.surface,
+                    iconTint = MaterialTheme.customColor.neutrals.main,
+                    backgroundColor = MaterialTheme.customColor.neutrals.six,
+                    textColor = MaterialTheme.customColor.neutrals.main,
                     onClick = onAppleClicked
                 )
 

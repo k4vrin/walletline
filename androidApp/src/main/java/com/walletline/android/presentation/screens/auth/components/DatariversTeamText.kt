@@ -12,6 +12,7 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.tooling.preview.Preview
 import com.walletline.android.R
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.util.appendSpace
 
 @Composable
@@ -52,7 +53,7 @@ fun DatariversTeamText(
         modifier = modifier,
         text = text,
         style = MaterialTheme.typography.bodySmall,
-        color = MaterialTheme.colorScheme.surface.copy(alpha = 0.4f)
+        color = MaterialTheme.customColor.neutrals.two
     )
 }
 

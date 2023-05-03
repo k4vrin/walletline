@@ -13,6 +13,7 @@ import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.Padding
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 
 @Composable
 fun AuthCard(
@@ -25,7 +26,7 @@ fun AuthCard(
             .fillMaxWidth(),
         shape = RoundedCornerShape(Dimen.DefaultCardCornerRadius),
         shadowElevation = Dimen.DefaultCardElevation,
-        color = MaterialTheme.colorScheme.surface
+        color = MaterialTheme.customColor.neutrals.main
     ) {
         Column(
             verticalArrangement = Arrangement.Top,

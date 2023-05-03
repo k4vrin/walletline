@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.theme.padding
 
 @Composable
@@ -21,7 +22,7 @@ fun FadingDotLoading(
     totalDots: Int = 3,
     dotSize: Dp = MaterialTheme.padding.smallMedium,
     spaceBetweenDots: Dp = MaterialTheme.padding.extraSmall,
-    dotColor: Color = MaterialTheme.colorScheme.surface
+    dotColor: Color = MaterialTheme.customColor.neutrals.main
 ) {
     val animationDurationFactor = remember { animationDuration / 4 }
     val startOffsetFactor = remember { animationDuration / totalDots }
