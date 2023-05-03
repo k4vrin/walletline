@@ -15,12 +15,13 @@ struct DimenGuide: View {
 }
 
 struct Dimen {
-    public static let splashTopMargin: CGFloat = 217
-    public static let defaultCornerRadius: CGFloat = 12
-    public static let heartIconSize: CGFloat = 24
-    public static let walletlineLogoSize: CGFloat = 90
-    public static let walletlineLogoTopMargin: CGFloat = 100
-    public static let walletlineLogoBottomMargin: CGFloat = 70
+    public static let SplashTopMargin: CGFloat = 217
+    public static let DefaultButtonCornerRadius: CGFloat = 12
+    public static let DefaultCardCornerRadius: CGFloat = 16
+    public static let HeartIconSize: CGFloat = 24
+    public static let WalletlineLogoSize: CGFloat = 90
+    public static let WalletlineLogoTopMargin: CGFloat = 100
+    public static let WalletlineLogoBottomMargin: CGFloat = 70
     public static let phoneIconSize: CGFloat = 130
     public static let mobileVerifyTopMargin: CGFloat = 109
     public static let socialMediaMiddleMargin: CGFloat = 120
@@ -34,6 +35,12 @@ struct Dimen {
     public static let lockPatternHeight: CGFloat = 400
     public static let lockPatternWidth: CGFloat = 425
     public static let RegisterFinishedMiddleMargin: CGFloat = 170
+    public static let DisabledAlpha: CGFloat = 0.38
+    public static let SocialMediaButtonHeight: CGFloat = 48
+    public static let OnBoardingImageHeight: CGFloat = 320
+    public static let OnBoardingCardTextHeight: CGFloat = 200
+    public static let TextFieldHeight: CGFloat = 56
+    public static let TextFieldLeadingIconWidth: CGFloat = 51
 }
 
 struct DimenGuide_Previews: PreviewProvider {

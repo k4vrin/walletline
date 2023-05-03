@@ -20,20 +20,20 @@ struct RegistrationFinishedScreen: View {
                     )
                     .offset(CGSize(width: Dimen.registerBgOffsetWidth, height: Dimen.registerBgOffsetHeight))
                 
-                VStack(spacing: Padding.defaultPadd) {
+                VStack(spacing: Padding.defaultPadding) {
                     Image("dolphin_image")
                         .padding(.top, Padding.extraLarge)
                     
-                    HStack(spacing: Padding.defaultPadd) {
+                    HStack(spacing: Padding.defaultPadding) {
                         Text(
                             NSLocalizedString("Account", comment: "")
                         )
                         .titleLargeStyle()
                         .padding(
                             EdgeInsets(
-                                top: Padding.defaultPadd,
-                                leading: Padding.defaultPadd,
-                                bottom: Padding.defaultPadd,
+                                top: Padding.defaultPadding,
+                                leading: Padding.defaultPadding,
+                                bottom: Padding.defaultPadding,
                                 trailing: Padding.extraSmall
                             )
                         )
@@ -55,9 +55,9 @@ struct RegistrationFinishedScreen: View {
                     .padding(
                         EdgeInsets(
                             top: Padding.extraLarge,
-                            leading: Padding.defaultPadd,
-                            bottom: Padding.defaultPadd,
-                            trailing: Padding.defaultPadd
+                            leading: Padding.defaultPadding,
+                            bottom: Padding.defaultPadding,
+                            trailing: Padding.defaultPadding
                         )
                     )
                     
@@ -106,9 +106,9 @@ struct RegistrationFinishedScreen: View {
                     }.padding(
                         EdgeInsets(
                             top: Padding.extraMedium,
-                            leading: Padding.defaultPadd,
+                            leading: Padding.defaultPadding,
                             bottom: Padding.extraLarge,
-                            trailing: Padding.defaultPadd
+                            trailing: Padding.defaultPadding
                         )
                     )
                 }

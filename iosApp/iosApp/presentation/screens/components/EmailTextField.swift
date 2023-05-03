@@ -17,23 +17,25 @@ struct EmailTextField: View {
 
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(spacing: Padding.defaultPadd) {
+            HStack(spacing: Padding.defaultPadding) {
                 ZStack {
                     Image("ic_email")
                         .renderingMode(.template)
-                        .foregroundColor(error == nil ? .gray : .red)
+                        .foregroundColor(error == nil ? .neutralColorShade5 : .errorColor)
                 }
-                .frame(width: 51)
+                .frame(width: Dimen.TextFieldLeadingIconWidth)
 
                 Divider()
+                    .overlay(error == nil ? Color.neutralColorShade2 : Color.errorColor)
                     .padding(.vertical, Padding.small)
                     .padding(.trailing, Padding.smallMedium)
 
                 ZStack {
                     TextField(
-                        NSLocalizedString("", comment: ""),
+                        "",
                         text: $text
                     )
+                    .foregroundColor(.neutralColorShade6)
                     .keyboardType(.emailAddress)
                     .focused($focusField)
                     .autocapitalization(.none)
@@ -52,7 +54,7 @@ struct EmailTextField: View {
                             .onTapGesture {
                                 focusField.toggle()
                             }
-                            .foregroundColor(error == nil ? .gray : .red)
+                            .foregroundColor(error == nil ? .neutralColorShade4 : .errorColor)
                         }
                         .padding(.bottom, placeholderBottomPadding)
                         Spacer()
@@ -64,14 +66,14 @@ struct EmailTextField: View {
                 } label: {
                     Image("ic_cancel")
                 }
-                .frame(width: 51)
+                .frame(width: Dimen.TextFieldLeadingIconWidth)
                 .opacity(text.isEmpty ? 0 : 1)
             }
             .frame(height: 56)
             .overlay {
-                RoundedRectangle(cornerRadius: Dimen.defaultCornerRadius)
+                RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius)
                     .stroke(
-                        error == nil ? Color.gray : Color.red,
+                        error == nil ? Color.neutralColorShade2 : Color.errorColor,
                         lineWidth: Dimen.orDividerHeight
                     )
             }
@@ -89,7 +91,7 @@ struct EmailTextField: View {
             if error != nil {
                 Text(error!)
                     .bodySmallStyle()
-                    .foregroundColor(.red)
+                    .foregroundColor(.errorColor)
             }
         }
         .animation(.default, value: error)

@@ -22,6 +22,7 @@ import com.walletline.android.R
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.theme.padding
 
 @Composable
@@ -32,7 +33,7 @@ fun SocialSignInButton(
     enabled: Boolean = true,
     backgroundColor: Color = Color.Transparent,
     iconTint: Color? = null,
-    textColor: Color = MaterialTheme.colorScheme.onSurface,
+    textColor: Color = MaterialTheme.customColor.neutrals.six,
     onClick: () -> Unit
 ) {
 
@@ -46,7 +47,7 @@ fun SocialSignInButton(
         contentColor = textColor,
         border = BorderStroke(
             width = Dimen.DefaultButtonStrokeWidth,
-            color = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
+            color = MaterialTheme.customColor.neutrals.two
         ),
         interactionSource = remember { MutableInteractionSource() }
     ) {

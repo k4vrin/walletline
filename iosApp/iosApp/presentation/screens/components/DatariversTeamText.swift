@@ -26,7 +26,7 @@ struct DatariversTeamText: View {
             )
                 .fontWeight(.regular)
         }
-        .foregroundColor(.surfaceColor.opacity(0.4))
+        .foregroundColor(.neutralColorShade2)
         .bodySmallStyle()
     }
 }

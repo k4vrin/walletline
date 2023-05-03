@@ -22,7 +22,7 @@ struct WalletLineBackground<Content: View>: View {
 
     var body: some View {
         GeometryReader { geo in
-            Color.backgroundColor
+            Color.mainColor
                 .ignoresSafeArea()
 
             Circle()
@@ -34,7 +34,7 @@ struct WalletLineBackground<Content: View>: View {
                     x: -bigCircleDiam / 2.09,
                     y: bigCircleDiam / 4.6
                 )
-                .foregroundColor(.surfaceColor)
+                .foregroundColor(.neutralColor)
                 .opacity(0.04)
 
             Circle()
@@ -46,7 +46,7 @@ struct WalletLineBackground<Content: View>: View {
                     x: -smallCircleDiam / 2,
                     y: -smallCircleDiam / 2.9
                 )
-                .foregroundColor(.surfaceColor)
+                .foregroundColor(.neutralColor)
                 .opacity(0.04)
             ScrollView(.vertical) {
                 content()

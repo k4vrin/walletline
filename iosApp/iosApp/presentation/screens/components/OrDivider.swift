@@ -13,7 +13,7 @@ struct OrDivider: View {
         HStack(alignment: .center) {
             Rectangle()
                 .frame(height: Dimen.orDividerHeight)
-                .foregroundColor(Color.onSurfaceColor.opacity(0.1))
+                .foregroundColor(.neutralColorShade2)
                 .cornerRadius(Dimen.orDividerRadius, corners: [.topLeft, .bottomLeft])
                 .offset(.init(width: 0, height: Dimen.orDividerOffset))
 
@@ -21,11 +21,11 @@ struct OrDivider: View {
                 NSLocalizedString("or", comment: "")
             )
                 .bodySmallStyle()
-                .foregroundColor(Color.onSurfaceColor.opacity(0.4))
+                .foregroundColor(.neutralColorShade3)
 
             Rectangle()
                 .frame(height: Dimen.orDividerHeight)
-                .foregroundColor(Color.onSurfaceColor.opacity(0.1))
+                .foregroundColor(.neutralColorShade2)
                 .cornerRadius(Dimen.orDividerRadius, corners: [.topRight, .bottomRight])
                 .offset(.init(width: 0, height: Dimen.orDividerOffset))
         }

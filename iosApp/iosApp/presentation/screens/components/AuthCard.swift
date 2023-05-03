@@ -14,7 +14,7 @@ struct AuthCard<Content: View>: View {
         ZStack {
             
             RoundedRectangle(
-                cornerRadius: 16,
+                cornerRadius: Dimen.DefaultCardCornerRadius,
                 style: .continuous
             )
             .fill(Color.surfaceColor)
@@ -24,7 +24,7 @@ struct AuthCard<Content: View>: View {
                 y: 20
             )
             
-            VStack(spacing: 0) {
+            VStack(spacing: Padding.defaultPadding) {
                 content()
             }
         }

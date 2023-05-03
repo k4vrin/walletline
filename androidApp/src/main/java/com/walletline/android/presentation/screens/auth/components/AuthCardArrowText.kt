@@ -15,6 +15,7 @@ import com.walletline.android.R
 import com.walletline.android.presentation.components.WalletLineBackground
 import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
+import com.walletline.android.presentation.theme.customColor
 import com.walletline.android.presentation.theme.padding
 
 @Composable
@@ -30,7 +31,7 @@ fun AuthCardArrowText(
         Text(
             text = text,
             style = MaterialTheme.typography.bodySmall,
-            color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+            color = MaterialTheme.customColor.neutrals.three
         )
 
         Spacer(modifier = Modifier.width(MaterialTheme.padding.small))
@@ -40,7 +41,7 @@ fun AuthCardArrowText(
                 .size(Dimen.ArrowIconSize),
             painter = painterResource(id = R.drawable.arrow_right),
             contentDescription = stringResource(R.string.desc_arrow_icon),
-            tint = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.4f)
+            tint = MaterialTheme.customColor.neutrals.three
         )
     }
 }

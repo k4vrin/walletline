@@ -65,6 +65,9 @@
     <string name="account">Account</string>
     <string name="created">Created</string>
     <string name="start_fun">Start fun!</string>
+    <string name="next">Next</string>
+    <string name="email_address">Email Address</string>
+    <string name="button_continue">Continue</string>
 
 
     <string name="desc_heart_icon">heart icon</string>
@@ -80,6 +83,7 @@
     <string name="desc_walletline_logo">WalletLine Logo</string>
     <string name="desc_arrow_icon">Arrow icon</string>
     <string name="desc_email_icon">Email icon</string>
+    <string name="desc_boarding_image">Boarding section image</string>
 
 
     <string name="err_email_not_valid">This is not a valid email address.</string>
@@ -96,7 +100,14 @@
     <string name="facebook">Facebook</string>
     <string name="apple">Apple ID</string>
     <string name="enter_by_email">Enter by email address</string>
+    <string name="skip">Skip</string>
 
+    <string name="boarding_title_1">You ought to know where your money goes</string>
+    <string name="boarding_desc_1">Get an overview of how you are performing and motivate yourself to achieve even more.</string>
+    <string name="boarding_title_2">Gain total control of your money</string>
+    <string name="boarding_desc_2">Track your transaction easily, with categories and financial report.</string>
+    <string name="boarding_title_3">Plan ahead and manage your money better</string>
+    <string name="boarding_desc_3">Setup your budget for each category so you in control. Track categories you spend the most money on.</string>
 
 
 

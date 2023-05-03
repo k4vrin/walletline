@@ -12,7 +12,7 @@ struct LoginSubHeader: View {
     let text: String
     var body: some View {
         Text(text)
-            .titleMediumStyle()
+            .titleLargeStyle()
             .foregroundColor(Color.onBackgroundColor.opacity(0.6))
     }
 }

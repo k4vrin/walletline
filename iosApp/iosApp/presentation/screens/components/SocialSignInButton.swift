@@ -16,7 +16,7 @@ struct SocialSignInButton<Content: View>: View {
     let fgColor: Color
     let action: () -> Void
     
-    init(radius: CGFloat = 12, icon: @escaping () -> Content, text: String, bgColor: Color = Color.surfaceColor , fgColor: Color = Color.onSurfaceColor, action: @escaping () -> Void) {
+    init(radius: CGFloat = 12, icon: @escaping () -> Content, text: String, bgColor: Color = Color.clear , fgColor: Color = Color.neutralColorShade6, action: @escaping () -> Void) {
         self.radius = radius
         self.icon = icon
         self.text = text
@@ -33,6 +33,7 @@ struct SocialSignInButton<Content: View>: View {
                     icon()
                         
                     Text(text)
+                        .foregroundColor(.neutralColorShade6)
                 }
                 .socialMediaButtonStyle(
                     radius: radius,
@@ -50,9 +51,7 @@ struct SocialMediaButton_Previews: PreviewProvider {
             icon: {
                 Image("facebook_icon")
             },
-            text: "Sign in with Facebook",
-            bgColor: Color.backgroundColor,
-            fgColor: Color.surfaceColor
+            text: "Sign in with Facebook"
         ) {}
     }
 }

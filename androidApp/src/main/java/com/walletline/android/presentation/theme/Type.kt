@@ -69,7 +69,7 @@ fun typography(): Typography =
              fontFamily = plusJakarta,
              fontWeight = FontWeight.Medium,
              fontSize = 14.ssp,
-             lineHeight = 17.ssp,
+             lineHeight = 21.ssp,
          ),
          bodyMedium = TextStyle(
              fontFamily = plusJakarta,

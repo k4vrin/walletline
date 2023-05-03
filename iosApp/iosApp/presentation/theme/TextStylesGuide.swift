@@ -12,16 +12,21 @@ struct TextStylesGuide: View {
     var body: some View {
         VStack(spacing: 30) {
             Text("System")
-                .font(.largeTitle)
             
             Text("Display italic")
                 .displaySmallStyle()
             
-            Text("Title large")
-                .titleLargeStyle()
+            Text("Header Large")
+                .headlineLargeStyle()
             
-            Text("Title Medium")
-                .titleMediumStyle()
+            Text("Header Medium")
+                .headlineMediumStyle()
+            
+            Text("Header Small")
+                .headlineSmallStyle()
+            
+            Text("Title Large")
+                .titleLargeStyle()
             
             Text("Title Small")
                 .titleSmallStyle()
@@ -33,8 +38,8 @@ struct TextStylesGuide: View {
                 .bodySmallStyle()
             
             
-            Text("Label")
-                .labelLargeStyle()
+            Text("Button")
+                .buttonStyle()
         }
     }
 }
@@ -75,7 +80,7 @@ struct HeadlineLargeStyle: ViewModifier {
                     relativeTo: .headline
                 )
             )
-            .lineSpacing(Padding.small)
+            .lineSpacing(Padding.extraSmall)
     }
 }
 
@@ -112,7 +117,7 @@ struct TitleLargeStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.semiBold,
+                    PlusJakartaSans.medium,
                     size: 16,
                     relativeTo: .title
                 )
@@ -140,7 +145,7 @@ struct TitleSmallStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.medium,
+                    PlusJakartaSans.mediumItalic,
                     size: 12,
                     relativeTo: .title3
                 )
@@ -159,7 +164,7 @@ struct BodyLargeStyle: ViewModifier {
                     relativeTo: .subheadline
                 )
             )
-            .lineSpacing(Padding.small)
+            .lineSpacing(2)
     }
 }
 
@@ -182,7 +187,7 @@ struct BodySmallStyle: ViewModifier {
         content
             .font(
                 .custom(
-                    PlusJakartaSans.semiBold,
+                    PlusJakartaSans.medium,
                     size: 12,
                     relativeTo: .body
                 )
@@ -191,7 +196,7 @@ struct BodySmallStyle: ViewModifier {
     }
 }
 
-struct LabelLargeStyle: ViewModifier {
+struct ButtonStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
             .font(
@@ -209,11 +214,17 @@ extension View {
     public func displaySmallStyle() -> some View {
         modifier(DisplaySmallStyle())
     }
+    public func headlineLargeStyle() -> some View {
+        modifier(HeadlineLargeStyle())
+    }
+    public func headlineMediumStyle() -> some View {
+        modifier(HeadlineMediumStyle())
+    }
+    public func headlineSmallStyle() -> some View {
+        modifier(HeadlineSmallStyle())
+    }
     public func titleLargeStyle() -> some View {
         modifier(TitleLargeStyle())
-    }
-    public func titleMediumStyle() -> some View {
-        modifier(TitleMediumStyle())
     }
     public func titleSmallStyle() -> some View {
         modifier(TitleSmallStyle())
@@ -227,8 +238,8 @@ extension View {
     public func bodySmallStyle() -> some View {
         modifier(BodySmallStyle())
     }
-    public func labelLargeStyle() -> some View {
-        modifier(LabelLargeStyle())
+    public func buttonStyle() -> some View {
+        modifier(ButtonStyle())
     }
 }
 

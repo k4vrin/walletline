@@ -6,7 +6,9 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
@@ -79,22 +81,90 @@ private val WalletLineDarkColorScheme = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+private val WalletlineLiteCustomColor = WalletlineColors(
+    material = WalletLineLightColorScheme,
+    main = Shade(
+        main = mainMain,
+        one = main1,
+        two = main2,
+        three = main3,
+        four = main4,
+        five = main5,
+        six = main6
+    ),
+    success = Shade(
+        main = successMain,
+        one = success1,
+        two = success2,
+        three = success3,
+        four = success4,
+        five = success5,
+        six = success6
+    ),
+    warning = Shade(
+        main = warningMain,
+        one = warning1,
+        two = warning2,
+        three = warning3,
+        four = warning4,
+        five = warning5,
+        six = warning6
+    ),
+    error = Shade(
+        main = errorMain,
+        one = error1,
+        two = error2,
+        three = error3,
+        four = error4,
+        five = error5,
+        six = error6
+    ),
+    information = Shade(
+        main = infoMain,
+        one = info1,
+        two = info2,
+        three = info3,
+        four = info4,
+        five = info5,
+        six = info6
+    ),
+    neutrals = Shade(
+        main = neutralsMain,
+        one = neutrals1,
+        two = neutrals2,
+        three = neutrals3,
+        four = neutrals4,
+        five = neutrals5,
+        six = neutrals6
+    )
+
+)
+
+val LocalCustomColor = staticCompositionLocalOf { WalletlineLiteCustomColor }
+val MaterialTheme.customColor: WalletlineColors
+    @Composable
+    @ReadOnlyComposable
+    get() = LocalCustomColor.current
+
 @Composable
 fun WalletLineTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
     // Keep this value false in development
     dynamicColor: Boolean = false,
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
             if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
         }
+
         darkTheme -> WalletLineDarkColorScheme
         else -> WalletLineLightColorScheme
     }
+
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
@@ -105,10 +175,16 @@ fun WalletLineTheme(
         }
     }
 
+    val customColor = when {
+        darkTheme -> WalletlineLiteCustomColor // FIXME:
+        else -> WalletlineLiteCustomColor
+    }
+
     val padding = Padding
 
     CompositionLocalProvider(
         LocalPadding provides padding,
+        LocalCustomColor provides customColor
     ) {
         MaterialTheme(
             colorScheme = colorScheme,

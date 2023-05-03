@@ -13,7 +13,7 @@ struct PatternScreen: View {
     @State private var proceed = false
     var body: some View {
         ScrollView {
-            VStack(spacing: Padding.defaultPadd) {
+            VStack(spacing: Padding.defaultPadding) {
                 NavigationLink(
                     destination: RegistrationFinishedScreen(),
                     isActive: $proceed
