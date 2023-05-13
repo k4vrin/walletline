@@ -40,7 +40,7 @@ fun SplashTitle(
                 .height(Dimen.WalletLogoHeight)
                 .offset(y = (-4).dp),
 
-            painter = painterResource(id = R.drawable.ic_app),
+            painter = painterResource(id = R.drawable.app_logo),
             contentDescription = stringResource(R.string.desc_walletline_logo)
 
         )

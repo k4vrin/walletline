@@ -2,7 +2,6 @@ package com.walletline.android.presentation.screens.auth.email_login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import co.touchlab.kermit.Logger
 import com.walletline.domain.model.EmailValidationMessage
 import com.walletline.domain.model.RegisteredError
 import com.walletline.domain.use_case.auth.AuthUseCase
@@ -61,8 +60,12 @@ class EmailLoginViewModel(
                     when (it) {
                         is Resource.Error -> handleRegisterError(it)
                         is Resource.Success -> {
-                            Logger.d { it.data.otp }
-                            effectChannel.send(EmailLoginContract.Effect.RegisterSuccessful)
+                            effectChannel.send(
+                                EmailLoginContract.Effect.RegisterSuccessful(
+                                    otp = it.data.otp,
+                                    email = state.value.email
+                                )
+                            )
                         }
                     }
                 }
@@ -79,7 +82,11 @@ class EmailLoginViewModel(
                 }
             }
 
-            else -> effectChannel.trySend(EmailLoginContract.Effect.Error(it.message ?: "Unknown error"))
+            else -> effectChannel.trySend(
+                EmailLoginContract.Effect.Error(
+                    it.message ?: "Unknown error"
+                )
+            )
         }
     }
 

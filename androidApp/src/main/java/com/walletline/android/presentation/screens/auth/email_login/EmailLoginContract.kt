@@ -12,7 +12,8 @@ interface EmailLoginContract :
     }
 
     sealed interface Effect {
-        object RegisterSuccessful : Effect
+        // Temp otp for dev stage
+        data class RegisterSuccessful(val otp: String, val email: String) : Effect
         object EnterBySocial : Effect
         data class Error(val message: String) : Effect
     }
