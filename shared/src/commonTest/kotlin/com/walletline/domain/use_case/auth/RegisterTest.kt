@@ -1,12 +1,12 @@
 package com.walletline.domain.use_case.auth
 
-import com.walletline.di.util.CoroutineDispatchers
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.model.RegisteredError
 import com.walletline.domain.model.RegisteredSuccess
 import com.walletline.domain.repository.AuthRepository
 import com.walletline.domain.repository.DeviceRepository
 import com.walletline.domain.util.Resource
+import com.walletline.util.Helpers
 import io.kotest.matchers.shouldBe
 import io.mockative.Mock
 import io.mockative.classOf
@@ -14,8 +14,6 @@ import io.mockative.given
 import io.mockative.mock
 import io.mockative.time
 import io.mockative.verify
-import kotlinx.coroutines.test.StandardTestDispatcher
-import kotlinx.coroutines.test.TestCoroutineScheduler
 import kotlinx.coroutines.test.runTest
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -31,11 +29,12 @@ class RegisterTest {
     private val deviceRepository = mock(classOf<DeviceRepository>())
 
     @BeforeTest
+
     fun setup() {
         register = Register(
             authRepository = authRepository,
             deviceRepository = deviceRepository,
-            dispatchers = dispatchers
+            dispatchers = Helpers.testDispatchers
         )
 
         given(deviceRepository)
@@ -44,7 +43,7 @@ class RegisterTest {
     }
 
     @Test
-    fun `register successfully return Resource success OTP`() = runTest(dispatchers.ui) {
+    fun `register successfully return Resource success OTP and save trackCode`() = runTest(Helpers.testDispatchers.ui) {
 
         given(authRepository)
             .coroutine { register(email, deviceName) }
@@ -53,6 +52,10 @@ class RegisterTest {
         given(authRepository)
             .coroutine { getOtp(registeredSuccess.devCode ?: "") }
             .then { ApiResponse.Success("1234") }
+
+        given(authRepository)
+            .coroutine { setTrackingCode("") }
+            .then { Unit }
 
         val res = register.execute(email)
 
@@ -68,6 +71,10 @@ class RegisterTest {
             .coroutine { getOtp(registeredSuccess.devCode ?: "") }
             .wasInvoked(exactly = 1.time)
 
+        verify(authRepository)
+            .coroutine { setTrackingCode("") }
+            .wasInvoked(exactly = 1.time)
+
 
         (res is Resource.Success) shouldBe true
         val otp = (res as Resource.Success).data.otp
@@ -76,7 +83,7 @@ class RegisterTest {
 
 
     @Test
-    fun `register unsuccessfully return Resource Error `() = runTest(dispatchers.ui) {
+    fun `register unsuccessfully return Resource Error `() = runTest(Helpers.testDispatchers.ui) {
 
         given(authRepository)
             .coroutine { register(email, deviceName) }
@@ -101,13 +108,5 @@ class RegisterTest {
         val deviceName = "iPhone SE"
         val registeredSuccess = RegisteredSuccess(devCode = "1234")
         val registeredError = RegisteredError(emailError = listOf("Error"))
-        private val testDispatcher = StandardTestDispatcher(TestCoroutineScheduler())
-        val dispatchers = CoroutineDispatchers(
-            database = testDispatcher,
-            disk = testDispatcher,
-            network = testDispatcher,
-            ui = testDispatcher
-
-        )
     }
 }

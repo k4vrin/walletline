@@ -1,9 +1,12 @@
 package com.walletline.data.remote
 
 import com.walletline.data.dto.request.RegisterReq
+import com.walletline.data.dto.request.VerifyOtpReq
 import com.walletline.data.dto.response.GetOtpRes
 import com.walletline.data.dto.response.RegisterError
 import com.walletline.data.dto.response.RegisterSuccess
+import com.walletline.data.dto.response.VerifyOtpError
+import com.walletline.data.dto.response.VerifyOtpRes
 import com.walletline.data.util.safeRequest
 import com.walletline.domain.model.ApiResponse
 import io.ktor.client.HttpClient
@@ -32,6 +35,14 @@ class KtorAuthService(
                 append("developer_code", devCode)
             }))
             url(HttpRoutes.GetOTP)
+        }
+    }
+
+    override suspend fun verifyOtp(req: VerifyOtpReq): ApiResponse<VerifyOtpRes, VerifyOtpError> {
+        return client.safeRequest {
+            method = HttpMethod.Post
+            setBody(req)
+            url(HttpRoutes.VerifyOTP)
         }
     }
 }

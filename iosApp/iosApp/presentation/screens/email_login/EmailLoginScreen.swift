@@ -6,25 +6,24 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
-import SwiftUI
-import shared
 import Combine
+import shared
+import SwiftUI
+import UserNotifications
 
 struct EmailLoginScreen: View {
     @State private var isNavActive = false
     @State private var cancellables = Set<AnyCancellable>()
+    @State private var permissionGranted = false
+    @State private var showAlert = false
+    @State private var alertContent = ""
     
-    @ObservedObject var viewModel: EmailLoginViewModel
-    
-    init(isNavActive: Bool = false) {
-        self.isNavActive = isNavActive
-        self.viewModel = EmailLoginViewModel()
-    }
+    @StateObject var viewModel = EmailLoginViewModel()
     
     var body: some View {
         WalletLineBackground {
             NavigationLink(
-                destination: MobileVerifyScreen(),
+                destination: VerifyEmailScreen(email: viewModel.state.email),
                 isActive: $isNavActive
             ) {
                 EmptyView()
@@ -50,17 +49,16 @@ struct EmailLoginScreen: View {
                         ),
                         error: getErrorMessage(from: viewModel.state.emailError)
                     )
-                        .padding(.top, Padding.extraMedium)
-                        .padding(.horizontal, Padding.extraMedium)
+                    .padding(.top, Padding.extraMedium)
+                    .padding(.horizontal, Padding.extraMedium)
                     
-                    Button {
-                        viewModel.onEvent(.continueClicked)
-                    } label: {
-                        Text(
-                            NSLocalizedString("Continue", comment: "")
-                        )
-                            .primaryButtonStyle()
-                    }
+                    AuthButton(
+                        title: NSLocalizedString("Continue", comment: ""),
+                        isLoading: viewModel.state.isLoading,
+                        action: {
+                            viewModel.onEvent(.continueClicked)
+                        }
+                    )
                     .padding(.top, Padding.extraMedium)
                     .padding(.horizontal, Padding.extraMedium)
                     
@@ -72,7 +70,7 @@ struct EmailLoginScreen: View {
                     ) {
                         viewModel.onEvent(.enterBySocials)
                     }
-                        .padding(.vertical, Padding.extraMedium)
+                    .padding(.vertical, Padding.extraMedium)
                 }
                 .padding(.horizontal, Padding.medium)
             }
@@ -81,10 +79,32 @@ struct EmailLoginScreen: View {
                 .padding(.top, Padding.extraLarge)
         }
         .navigationBarBackButtonHidden(true)
+        .alert(alertContent, isPresented: $showAlert, actions: {
+            Button("Ok") {}
+        })
         .onAppear {
+            // Check if we already have permissions to send notifications
+            UNUserNotificationCenter.current().getNotificationSettings { settings in
+                if settings.authorizationStatus == .authorized {
+                    permissionGranted = true
+                } else {
+                    requestPermission()
+                }
+            }
+            
             viewModel.effect().sink(
                 receiveValue: { effect in
-                    print(effect)
+                    switch effect {
+                    case .enterBySocials:
+                        break
+                    case .registerSuccessful(let otp):
+                        if permissionGranted {
+                            NotificationManager.instance.sendOtpNotification(otp: otp)
+                        }
+                        isNavActive = true
+                    case .error(message: let message):
+                        alertContent = message
+                    }
                 }
             )
             .store(in: &cancellables)
@@ -107,6 +127,16 @@ struct EmailLoginScreen: View {
             return "Not a valid email"
         default: return nil
         }
+    }
+    
+    private func requestPermission() {
+        NotificationManager.instance.requestPermission(handler: { success, error in
+            if success {
+                permissionGranted = true
+            } else if let error = error {
+                print(error.localizedDescription)
+            }
+        })
     }
 }
 

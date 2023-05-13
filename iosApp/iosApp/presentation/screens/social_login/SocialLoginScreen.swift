@@ -30,6 +30,7 @@ struct SocialLoginScreen: View {
                         NSLocalizedString("Enter by socials", comment: "Enter by socials")
                     )
                     .padding(.top, Padding.smallLarge)
+                    .padding(.bottom, Padding.extraMedium)
                     
                     SocialSignInButton(
                         icon: {
@@ -40,7 +41,7 @@ struct SocialLoginScreen: View {
                         // onGoogleClick
                     }
                         .padding(.horizontal, Padding.extraMedium)
-                        .padding(.top, Padding.smallMedium)
+                        
                     
                     SocialSignInButton(
                         icon: {

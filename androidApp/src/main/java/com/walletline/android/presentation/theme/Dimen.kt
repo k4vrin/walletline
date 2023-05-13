@@ -46,9 +46,11 @@ object Dimen {
     /* Mobile Number */
 
 
-    /* Verify Number */
+    /* Verify Email */
 
-    val VerifyNumberTopMargin @Composable get() = 100.sdp
+    val OTPHeight @Composable get() = 60.sdp
+    val OTPWidth @Composable get() = 47.sdp
+    val OTPCornerRadius @Composable get() = 8.sdp
 
     /* Registration Finished */
 

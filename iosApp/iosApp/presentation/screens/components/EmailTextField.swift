@@ -41,7 +41,7 @@ struct EmailTextField: View {
                     .autocapitalization(.none)
                     .onChange(of: focusField) { focus in
                         withAnimation(.easeOut(duration: 0.1)) {
-                            updatePlaceholder(focus)
+                            updatePlaceholder(focus, input: text)
                         }
                     }
 
@@ -97,10 +97,10 @@ struct EmailTextField: View {
         .animation(.default, value: error)
     }
 
-    func updatePlaceholder(_ isFocused: Bool) {
-        placeholderFontSize = isFocused ? 11.0 : 14.0
+    func updatePlaceholder(_ isFocused: Bool, input: String) {
+        placeholderFontSize = isFocused || !input.isEmpty ? 11.0 : 14.0
 
-        if isFocused {
+        if isFocused || !input.isEmpty {
             placeholderBottomPadding = 34.0
         } else {
             placeholderBottomPadding = 0.0

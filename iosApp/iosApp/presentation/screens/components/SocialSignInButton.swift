@@ -33,7 +33,7 @@ struct SocialSignInButton<Content: View>: View {
                     icon()
                         
                     Text(text)
-                        .foregroundColor(.neutralColorShade6)
+                        .foregroundColor(fgColor)
                 }
                 .socialMediaButtonStyle(
                     radius: radius,

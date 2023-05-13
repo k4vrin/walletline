@@ -8,10 +8,10 @@ data class EmailLoginState(
     val isLoading: Boolean = false,
     val isActionsEnabled: Boolean = true,
 ) {
-    constructor(): this(
+    constructor() : this(
         email = "",
         emailError = null,
         isLoading = false,
-        isActionsEnabled = true
+        isActionsEnabled = true,
     )
 }

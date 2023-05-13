@@ -1,11 +1,13 @@
 package com.walletline.data.remote
 
 import com.walletline.data.dto.request.RegisterReq
+import com.walletline.data.dto.request.VerifyOtpReq
 import com.walletline.data.dto.response.GetOtpRes
 import com.walletline.data.dto.response.RegisterError
 import com.walletline.data.dto.response.RegisterSuccess
+import com.walletline.data.dto.response.VerifyOtpRes
 import com.walletline.domain.model.ApiResponse
-import com.walletline.util.mockRequest
+import com.walletline.util.Helpers.mockRequest
 import io.kotest.matchers.shouldBe
 import io.ktor.client.engine.mock.respond
 import io.ktor.client.plugins.ConnectTimeoutException
@@ -45,26 +47,79 @@ class AuthServiceTest {
     }
 
     @Test
-    fun `BadRequest -missing email- register should return ApiResponse Error HttpError`() = runTest {
-        val service = mockRequest { reqData ->
-            respond(
-                content = """
+    fun `BadRequest -missing email- register should return ApiResponse Error HttpError`() =
+        runTest {
+            val service = mockRequest { reqData ->
+                respond(
+                    content = """
                     {
                         "email":["error"]
                     }
                 """.trimIndent(),
-                status = HttpStatusCode.BadRequest,
+                    status = HttpStatusCode.BadRequest,
+                    headers = headersOf(name = HttpHeaders.ContentType, value = "application/json")
+                )
+            }
+
+            val response = service.register(RegisterReq(email = "", deviceName = "Iphone6s"))
+
+            response shouldBe ApiResponse.Error.HttpError(
+                code = 400,
+                errorBody = RegisterError(emailErrors = listOf("error"), deviceErrors = null)
+            )
+        }
+
+    @Test
+    fun `successful getOTP request should return ApiResponse Success`() = runTest {
+        val service = mockRequest { reqData ->
+            respond(
+                content = """
+                    {
+                        "otp":"4444"
+                    }
+                """.trimIndent(),
+                status = HttpStatusCode.OK,
                 headers = headersOf(name = HttpHeaders.ContentType, value = "application/json")
             )
         }
 
-        val response = service.register(RegisterReq(email = "", deviceName = "Iphone6s"))
+        val response =
+            service.getOtp(devCode = "")
 
-        response shouldBe ApiResponse.Error.HttpError(
-            code = 400,
-            errorBody = RegisterError(emailErrors = listOf("error"), deviceErrors = null)
+        response shouldBe ApiResponse.Success(GetOtpRes("4444"))
+    }
+
+    @Test
+    fun `successful verifyOtp request should return ApiResponse Success`() = runTest {
+        val service = mockRequest { reqData ->
+            respond(
+                content = """
+                    {
+                        "access_token": "8|NjDiexcGBhSfgRDyyZZ6vMDymhMWUieuMZL6EOFe",
+                        "expires_at": "2023-06-11 13:00:38"
+                    }
+                """.trimIndent(),
+                status = HttpStatusCode.OK,
+                headers = headersOf(name = HttpHeaders.ContentType, value = "application/json")
+            )
+        }
+
+        val response =
+            service.verifyOtp(
+                VerifyOtpReq(
+                    otp = "6040",
+                    tracking_code = "7865"
+                )
+            )
+
+        response shouldBe ApiResponse.Success(
+            VerifyOtpRes(
+                accessToken = "8|NjDiexcGBhSfgRDyyZZ6vMDymhMWUieuMZL6EOFe",
+                expiresAt = "2023-06-11 13:00:38"
+            )
         )
     }
+
 
     @Test
     fun `network issue should return NetworkError`() = runTest {
@@ -87,26 +142,4 @@ class AuthServiceTest {
 
         response shouldBe ApiResponse.Error.SerializationError
     }
-
-    @Test
-    fun `successful getOTP request should return ApiResponse Success`() = runTest {
-        val service = mockRequest { reqData ->
-            respond(
-                content = """
-                    {
-                        "otp":"4444"
-                    }
-                """.trimIndent(),
-                status = HttpStatusCode.OK,
-                headers = headersOf(name = HttpHeaders.ContentType, value = "application/json")
-            )
-        }
-
-        val response =
-            service.getOtp(devCode = "")
-
-        response shouldBe ApiResponse.Success(GetOtpRes("4444"))
-    }
-
-
 }

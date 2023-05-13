@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="app_name">Walletline</string>
     <string name="wallet">Wallet</string>
     <string name="line">Line</string>
     <string name="plus">+</string>
@@ -30,11 +31,13 @@
     <string name="tools_phoneNumber">+98 00 000 000 00.</string>
     <string name="wrongNumber">Wrong Number?</string>
     <string name="changeIt">Change it</string>
-    <string name="didntReceiveCode">Didn’t not received the code?</string>
+    <string name="didntReceiveCode">Didn’t received the code?</string>
     <string name="resendCode">Resend Code</string>
     <string name="proceed">Proceed</string>
-    <string name="term1">by clicking start you agree with our</string>
-    <string name="term2">Terms and Conditions</string>
+    <string name="term1">By clicking continue, you agree with our</string>
+    <string name="term2">Terms &amp; Conditions</string>
+    <string name="term3">and</string>
+    <string name="term4">Privacy Policy</string>
     <string name="setYourOwn">set your own</string>
     <string name="entrance">Entrance</string>
     <string name="pattern">Pattern</string>
@@ -108,7 +111,10 @@
     <string name="boarding_desc_2">Track your transaction easily, with categories and financial report.</string>
     <string name="boarding_title_3">Plan ahead and manage your money better</string>
     <string name="boarding_desc_3">Setup your budget for each category so you in control. Track categories you spend the most money on.</string>
-
+    <string name="verify_email_address">Verify Email Address</string>
+    <string name="desc_edit_icon">Edit icon</string>
+    <string name="enter_the_4_digit_code_we_sent_to">Enter the 4-digit code we sent to</string>
+    <string name="left_as_remain">Left</string>
 
 
 </resources>

@@ -44,13 +44,16 @@ class EmailLoginViewModel: ObservableObject {
         let registerResponse = createFuture(for: useCase.register(email: state.email))
         registerResponse.sink(
             receiveCompletion: { _ in },
-            receiveValue: { res in
+            receiveValue: { [self] res in
+                updateState(isLoading: false)
                 switch res {
                 case is ResourceError<RegisteredError>:
-                    self.handleRegisterError(res as! ResourceError<RegisteredError>)
+                    handleRegisterError(res as! ResourceError<RegisteredError>)
                 case is ResourceSuccess<RegisteredSuccess>:
-                    self.eventSubject.send(.registerSuccessful)
-                default: self.doNothing()
+                    guard let res = res as? ResourceSuccess<OtpData> else { return }
+                    guard let otp = res.data?.otp else { return }
+                    eventSubject.send(.registerSuccessful(otp: otp))
+                default: doNothing()
                 }
             }
         )
@@ -59,7 +62,7 @@ class EmailLoginViewModel: ObservableObject {
 
     private func handleRegisterError(_ res: ResourceError<RegisteredError>) {
         guard let error = res.data?.emailError?.first else {
-            eventSubject.send(.error(message: res.message ?? "Unknown error"))
+            eventSubject.send(.error(message: res.message ?? NSLocalizedString("Unknown error. Please try agian", comment: "")))
             return
         }
         updateState(emailError: EmailValidationMessageDynamic(message: error))
@@ -75,15 +78,17 @@ class EmailLoginViewModel: ObservableObject {
         isLoading: Bool? = nil,
         isActionEnabled: Bool? = nil
     ) {
-        guard let currentState = state.copy() as? EmailLoginState else {return}
-        state = state.doCopy(
-            email: email ?? currentState.email,
-            emailError: emailError ?? currentState.emailError,
-            isLoading: isLoading ?? currentState.isLoading,
-            isActionsEnabled: isActionEnabled ?? currentState.isActionsEnabled
-        )
+        guard let currentState = state.copy() as? EmailLoginState else { return }
+        DispatchQueue.main.async { [self] in
+            state = state.doCopy(
+                email: email ?? currentState.email,
+                emailError: emailError ?? currentState.emailError,
+                isLoading: isLoading ?? currentState.isLoading,
+                isActionsEnabled: isActionEnabled ?? currentState.isActionsEnabled
+            )
+        }
     }
-    
+
     private func cancelAsyncTasks() {
         cancellables.forEach { cancellable in
             cancellable.cancel()
@@ -101,7 +106,7 @@ class EmailLoginViewModel: ObservableObject {
 }
 
 enum EmailEffect {
-    case registerSuccessful
+    case registerSuccessful(otp: String)
     case error(message: String)
     case enterBySocials
 }

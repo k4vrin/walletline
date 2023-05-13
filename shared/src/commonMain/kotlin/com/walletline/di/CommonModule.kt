@@ -16,6 +16,10 @@ import com.walletline.domain.repository.DeviceRepository
 import com.walletline.domain.use_case.DummyUseCase
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.use_case.auth.Register
+import com.walletline.domain.use_case.auth.ResendOtp
+import com.walletline.domain.use_case.auth.VerifyOtp
+import com.walletline.domain.use_case.common.CommonUseCase
+import com.walletline.domain.use_case.common.CountDownTimer
 import com.walletline.domain.use_case.validator.ValidateEmail
 import com.walletline.domain.use_case.validator.ValidateUseCase
 import com.walletline.domain.util.PatternChecker
@@ -41,26 +45,33 @@ val commonModule = module {
     single { provideAppSetting(settings = get()) }
 
     single { provideAuthService(client = get()) }
-    single { provideAuthRepo(authService = get()) }
+    single { provideAuthRepo(authService = get(), appSettings = get()) }
     single { provideDeviceRepo(device = get()) }
 
 
     factory { provideAuthUseCase(authRepository = get(), deviceRepository = get(), dispatchers = get()) }
     factory { provideValidateUseCase(patternChecker = get()) }
+    factory { provideCommonUseCase() }
     factory { provideDummyUseCase(appSettings = get(), dispatchers = get()) }
 
 }
+
+fun provideCommonUseCase() = CommonUseCase(
+    countDownTimer = CountDownTimer()
+)
 
 private fun provideDummyUseCase(appSettings: AppSettings, dispatchers: CoroutineDispatchers): DummyUseCase = DummyUseCase(appSettings, dispatchers)
 
 private fun provideAuthService(client: HttpClient): AuthService = KtorAuthService(client = client)
 
-private fun provideAuthRepo(authService: AuthService): AuthRepository = AuthRepositoryImpl(authService)
+private fun provideAuthRepo(authService: AuthService, appSettings: AppSettings): AuthRepository = AuthRepositoryImpl(authService, appSettings)
 
 private fun provideDeviceRepo(device: Device): DeviceRepository = DeviceRepositoryImpl(device)
 
 private fun provideAuthUseCase(authRepository: AuthRepository, deviceRepository: DeviceRepository, dispatchers: CoroutineDispatchers): AuthUseCase = AuthUseCase(
-    register = Register(dispatchers, authRepository, deviceRepository)
+    register = Register(dispatchers, authRepository, deviceRepository),
+    verifyOtp = VerifyOtp(authRepository, dispatchers),
+    resendOtp = ResendOtp(authRepository, dispatchers)
 )
 
 private fun provideValidateUseCase(patternChecker: PatternChecker): ValidateUseCase = ValidateUseCase(validateEmail = ValidateEmail(patternChecker))
