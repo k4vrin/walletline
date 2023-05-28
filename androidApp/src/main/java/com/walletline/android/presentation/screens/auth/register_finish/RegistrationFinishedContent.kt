@@ -84,10 +84,7 @@ fun RegistrationFinishedContent(
             AuthButton(
                 modifier = Modifier
                     .padding(horizontal = MaterialTheme.padding.smallLarge),
-                height = Dimen.StartButtonHeight,
                 text = stringResource(id = R.string.start_fun),
-                containerColor = MaterialTheme.colorScheme.tertiary,
-                contentColor = MaterialTheme.colorScheme.onTertiary,
                 onClick = onStartClick
             )
             Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))

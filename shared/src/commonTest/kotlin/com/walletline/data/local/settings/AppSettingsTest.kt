@@ -29,4 +29,31 @@ class AppSettingsTest {
         settings.getToken() shouldBe value
     }
 
+    @Test
+    fun `successfully set pattern  and get pattern `() = runTest(Helpers.testDispatchers.ui) {
+        val value = "1234567"
+
+        settings.setPattern(value)
+
+        settings.getPattern() shouldBe value
+    }
+
+    @Test
+    fun `successfully set finger  and get finger `() = runTest(Helpers.testDispatchers.ui) {
+        val value = true
+
+        settings.setIsFingerprint(value)
+
+        settings.getIsFingerprint() shouldBe value
+    }
+
+    @Test
+    fun `successfully set boarded  and get boarded `() = runTest(Helpers.testDispatchers.ui) {
+        val value = true
+
+        settings.setIsOnBoarded(value)
+
+        settings.getIsOnBoarded() shouldBe value
+    }
+
 }

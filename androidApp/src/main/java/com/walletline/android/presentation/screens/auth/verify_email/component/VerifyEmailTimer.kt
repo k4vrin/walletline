@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import com.walletline.android.R
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.customColor
-import java.util.concurrent.TimeUnit
+import com.walletline.android.presentation.util.secondsToMinuteAndSeconds
 
 @Composable
 fun VerifyEmailTimer(
@@ -49,14 +49,6 @@ fun VerifyEmailTimer(
     }
 
 
-}
-
-fun secondsToMinuteAndSeconds(seconds: Long): String {
-    return String.format(
-        "%d:%02d",
-        TimeUnit.SECONDS.toMinutes(seconds),
-        TimeUnit.SECONDS.toSeconds(seconds) - TimeUnit.MINUTES.toSeconds(TimeUnit.SECONDS.toMinutes(seconds))
-    )
 }
 
 

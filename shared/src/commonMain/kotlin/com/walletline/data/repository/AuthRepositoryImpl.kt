@@ -12,7 +12,7 @@ import com.walletline.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(
     private val authService: AuthService,
-    private val appSettings: AppSettings
+    private val appSettings: AppSettings,
 ) : AuthRepository {
 
     override suspend fun register(
@@ -28,7 +28,11 @@ class AuthRepositoryImpl(
         return authService.getOtp(devCode).let {
             when (it) {
                 ApiResponse.Error.NetworkError -> ApiResponse.Error.NetworkError
-                is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(it.code, errorBody = null)
+                is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(
+                    it.code,
+                    errorBody = null
+                )
+
                 is ApiResponse.Success -> ApiResponse.Success(body = it.body.otp)
                 ApiResponse.Error.SerializationError -> ApiResponse.Error.SerializationError
             }
@@ -39,8 +43,15 @@ class AuthRepositoryImpl(
         return authService.verifyOtp(VerifyOtpReq(otp, tracCode)).let {
             when (it) {
                 ApiResponse.Error.NetworkError -> ApiResponse.Error.NetworkError
-                is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(it.code, errorBody = it.errorBody?.message)
-                is ApiResponse.Success -> ApiResponse.Success(body = it.body.accessToken ?: return ApiResponse.Error.NetworkError)
+                is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(
+                    it.code,
+                    errorBody = it.errorBody?.message
+                )
+
+                is ApiResponse.Success -> ApiResponse.Success(
+                    body = it.body.accessToken ?: return ApiResponse.Error.NetworkError
+                )
+
                 ApiResponse.Error.SerializationError -> ApiResponse.Error.SerializationError
             }
         }
@@ -68,5 +79,29 @@ class AuthRepositoryImpl(
 
     override suspend fun getToken(): String {
         return appSettings.getToken()
+    }
+
+    override suspend fun setIsFingerFace(isFinger: Boolean) {
+        appSettings.setIsFingerprint(true)
+    }
+
+    override suspend fun getIsFingerprint(): Boolean {
+        return appSettings.getIsFingerprint()
+    }
+
+    override suspend fun setPattern(pattern: String) {
+        appSettings.setPattern(pattern)
+    }
+
+    override suspend fun getPattern(): String {
+        return appSettings.getPattern()
+    }
+
+    override suspend fun setOnBoarded(isOnBoarded: Boolean) {
+        appSettings.setIsOnBoarded(isOnBoarded)
+    }
+
+    override suspend fun getOnBoarded(): Boolean {
+        return appSettings.getIsOnBoarded()
     }
 }

@@ -40,6 +40,7 @@ android {
                 "-opt-in=androidx.compose.material3.windowsizeclass.ExperimentalMaterial3WindowSizeClassApi",
                 "-opt-in=com.google.accompanist.permissions.ExperimentalPermissionsApi",
                 "-opt-in=androidx.compose.foundation.ExperimentalFoundationApi",
+                "-opt-in=androidx.compose.ui.ExperimentalComposeUiApi",
                 "-opt-in=kotlinx.coroutines.FlowPreview",
             )
         }
@@ -99,6 +100,7 @@ dependencies {
     implementation(AndroidX.lifecycleRuntime)
     implementation(AndroidX.lifecycleRuntimeCompose)
     implementation(AndroidX.lifecycleViewModel)
+    implementation(AndroidX.biometric)
 
     implementation(Kotlin.serializationCore)
     implementation(Kotlin.serializationJson)
@@ -108,6 +110,8 @@ dependencies {
 
     implementation(Coil.core)
     implementation(Coil.compose)
+
+    implementation(DataStore.dataStorePreference)
 
     implementation(ComposeDestinations.composeDestAnimCore)
     ksp(ComposeDestinations.composeDestKSP)

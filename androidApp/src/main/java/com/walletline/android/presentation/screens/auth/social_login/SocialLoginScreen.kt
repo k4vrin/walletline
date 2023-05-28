@@ -8,7 +8,6 @@ import com.walletline.android.presentation.screens.destinations.EmailLoginScreen
 import org.koin.androidx.compose.koinViewModel
 
 
-@AuthNavGraph(start = true)
 @Destination
 @Composable
 fun SocialLoginScreen(

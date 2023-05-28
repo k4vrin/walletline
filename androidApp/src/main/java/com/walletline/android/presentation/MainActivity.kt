@@ -1,8 +1,6 @@
 package com.walletline.android.presentation
 
 import android.os.Bundle
-import android.util.Log
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.navigationBars
@@ -10,34 +8,20 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import androidx.core.view.WindowCompat
-import androidx.lifecycle.lifecycleScope
+import androidx.fragment.app.FragmentActivity
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.walletline.android.presentation.screens.NavGraphs
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.transition.WalletLineTransitionAnimation
-import com.walletline.domain.use_case.DummyUseCase
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.inject
 
 
-class MainActivity : ComponentActivity() {
-    // FIXME: Just for showcase. will be deleted
-    private val useCase: DummyUseCase by inject()
-    // FIXME: Just for showcase. will be deleted
+class MainActivity : FragmentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         // Make status bar be part of component window. edge to edge window
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
-        // FIXME: Just for showcase. will be deleted
-        lifecycleScope.launch {
-            val dummyToken = useCase.execute()
-            Log.d("MainActivity", "onCreate: $dummyToken")
-        }
-        // FIXME: Just for showcase. will be deleted
-
 
         setContent {
             WalletLineTheme {
@@ -61,6 +45,9 @@ class MainActivity : ComponentActivity() {
 
         }
 
+
+
+
+
     }
 }
-

@@ -7,6 +7,9 @@ class MPAppSettings(
 ) : AppSettings {
     private object Keys {
         const val Token = "token"
+        const val Pattern = "pattern"
+        const val IsFingerPrint = "is_fingerprint"
+        const val IsUserOnBoarded = "is_onboarded"
         const val TrackCode = "track_code"
         const val DevCode = "dev_code"
     }
@@ -34,4 +37,32 @@ class MPAppSettings(
     override suspend fun getToken(): String {
         return settings.getString(key = Keys.Token, defaultValue = "")
     }
+
+    override suspend fun setPattern(pattern: String) {
+        settings.putString(key = Keys.Pattern, value = pattern)
+
+    }
+
+    override suspend fun getPattern(): String {
+        return settings.getString(key = Keys.Pattern, defaultValue = "")
+    }
+
+
+    override suspend fun setIsFingerprint(isFingerprint: Boolean) {
+        settings.putBoolean(key = Keys.IsFingerPrint, value = isFingerprint)
+    }
+
+    override suspend fun getIsFingerprint(): Boolean {
+        return settings.getBoolean(key = Keys.IsFingerPrint, defaultValue = false)
+    }
+
+    override suspend fun setIsOnBoarded(isOnBoarded: Boolean) {
+        settings.putBoolean(key = Keys.IsUserOnBoarded, value = isOnBoarded)
+    }
+
+    override suspend fun getIsOnBoarded(): Boolean {
+        return settings.getBoolean(key = Keys.IsUserOnBoarded, defaultValue = false)
+    }
+
+
 }
