@@ -7,8 +7,7 @@
     <string name="plus">+</string>
     <string name="manage_wallet">manage your wallet easily!</string>
     <string name="created_by">created by</string>
-
-
+    <string name="splashTitle">WalletLine+</string>
 
 
     <string name="mobile_number_desc">We will provide you with 4 digit verification code</string>
@@ -42,7 +41,7 @@
     <string name="entrance">Entrance</string>
     <string name="pattern">Pattern</string>
     <string name="submitPattern">Submit Pattern</string>
-    <string name="useMyFinger">Use my face/finger recognition</string>
+    <string name="useMyFinger">Use my Face/Finger recognition</string>
     <string name="preferLessSccure">Prefer less secure?</string>
     <string name="ignoreSettingPattern">Ignore setting pattern</string>
     <string name="accessByYour">access by your</string>
@@ -53,6 +52,18 @@
     <string name="signWithFacebook">Sign in with Facebook</string>
     <string name="usePhoneToLogin">Use your phone number to register or login</string>
     <string name="submitPhoneNumber">Submit phone number</string>
+
+    //pattern
+    <string name="orContinueWith">or continue with</string>
+    <string name="rememberPattern">Remember this pattern. If you forget it, you’ll need to reset your account and all data will be erased.</string>
+    <string name="createYourPattern">Create your pattern</string>
+    <string name="confirmYourPattern">Confirm your pattern</string>
+    <string name="continueButton">Continue</string>
+    <string name="drawUnlockPattern">Draw unlock pattern</string>
+    <string name="incorrectPatternDrawn">Incorrect pattern drawn</string>
+    <string name="wrongPatternError">if you enter the pattern wrongly for %1$d times, \n the app will be lock!</string>
+    <string name="appLockError">The app is locked temporarily. \n You can try again after 1 minute.</string>
+
 
     <string name="stage_button_confirm">Confirm</string>
     <string name="alert_dialog_confirm_message">Successfully Granted.</string>
@@ -93,7 +104,7 @@
     <string name="err_email_not_empty">Email address can\'t be empty.</string>
 
 
-<!--__________________________________________________-->
+    <!--__________________________________________________-->
 
     <string name="designed_by">Designed by</string>
     <string name="dev_teams">developers team</string>
@@ -111,10 +122,14 @@
     <string name="boarding_desc_2">Track your transaction easily, with categories and financial report.</string>
     <string name="boarding_title_3">Plan ahead and manage your money better</string>
     <string name="boarding_desc_3">Setup your budget for each category so you in control. Track categories you spend the most money on.</string>
+    <string name="or_continue_with">or continue with</string>
+    <string name="set_pattern">Set Pattern</string>
     <string name="verify_email_address">Verify Email Address</string>
     <string name="desc_edit_icon">Edit icon</string>
     <string name="enter_the_4_digit_code_we_sent_to">Enter the 4-digit code we sent to</string>
     <string name="left_as_remain">Left</string>
+    <string name="draw_unlock_pattern">Draw unlock pattern</string>
+    <string name="incorrect_pattern_drawn">Incorrect pattern drawn</string>
 
 
 </resources>

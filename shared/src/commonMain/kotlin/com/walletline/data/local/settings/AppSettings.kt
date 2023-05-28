@@ -7,6 +7,16 @@ interface AppSettings {
 
     suspend fun setDevCode(devCode: String)
     suspend fun getDevCode(): String
+
     suspend fun setToken(token: String)
     suspend fun getToken(): String
+
+    suspend fun setPattern(pattern: String)
+    suspend fun getPattern(): String
+
+    suspend fun setIsFingerprint(isFingerprint: Boolean)
+    suspend fun getIsFingerprint(): Boolean
+
+    suspend fun setIsOnBoarded(isOnBoarded: Boolean)
+    suspend fun getIsOnBoarded(): Boolean
 }

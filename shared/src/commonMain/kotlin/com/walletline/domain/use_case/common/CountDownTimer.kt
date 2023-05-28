@@ -14,7 +14,7 @@ class CountDownTimer {
 
     fun start() {
         timer = null
-        timer = (5 downTo 0).asFlow().onEach { delay(1.seconds) }
+        timer = (10 downTo 0).asFlow().onEach { delay(1.seconds) }
     }
 
 }

@@ -23,7 +23,6 @@ class EmailLoginViewModel(
     private val validateUseCase: ValidateUseCase,
 ) : ViewModel(), EmailLoginContract {
 
-
     private val _state = MutableStateFlow(EmailLoginState())
     override val state: StateFlow<EmailLoginState> = _state.asStateFlow()
 

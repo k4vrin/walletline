@@ -9,8 +9,8 @@ import com.walletline.data.local.device.Device
 import com.walletline.data.local.device.DeviceImpl
 import com.walletline.database.WalletlineDB
 import com.walletline.di.util.CoroutineDispatchers
-import com.walletline.domain.util.PatternChecker
-import com.walletline.domain.util.PatternCheckerImpl
+import com.walletline.domain.util.EmailPatternChecker
+import com.walletline.domain.util.EmailPatternCheckerImpl
 import io.ktor.client.engine.*
 import io.ktor.client.engine.darwin.*
 import kotlinx.coroutines.Dispatchers
@@ -52,5 +52,5 @@ private fun provideMpSettings(dispatchers: CoroutineDispatchers): SuspendSetting
 
 private fun provideDevice(): Device = DeviceImpl()
 
-private fun providePatternChecker(): PatternChecker = PatternCheckerImpl()
+private fun providePatternChecker(): EmailPatternChecker = EmailPatternCheckerImpl()
 

@@ -21,7 +21,8 @@ import com.walletline.android.presentation.util.sdp
 
 @Composable
 fun OrDivider(
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    text: String = stringResource(id = R.string.or),
 ) {
 
     Row(
@@ -49,9 +50,9 @@ fun OrDivider(
         )
         {
             Text(
-                text = stringResource(id = R.string.or),
+                text = text,
                 style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.customColor.neutrals.three,
+                color = MaterialTheme.customColor.neutrals.two,
                 textAlign = TextAlign.Center,
             )
         }

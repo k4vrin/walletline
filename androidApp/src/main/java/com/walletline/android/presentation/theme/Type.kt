@@ -83,6 +83,7 @@ fun typography(): Typography =
             fontSize = 12.ssp,
             lineHeight = 25.ssp,
         ),
+         // Label large is figma button style
          labelLarge = TextStyle(
              fontFamily = plusJakarta,
              fontWeight = FontWeight.SemiBold,

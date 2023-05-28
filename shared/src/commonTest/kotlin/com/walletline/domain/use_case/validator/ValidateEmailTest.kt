@@ -1,7 +1,7 @@
 package com.walletline.domain.use_case.validator
 
 import com.walletline.domain.model.EmailValidationMessage
-import com.walletline.domain.util.PatternChecker
+import com.walletline.domain.util.EmailPatternChecker
 import com.walletline.domain.util.ValidationResult
 import io.kotest.matchers.shouldBe
 import io.mockative.Mock
@@ -16,7 +16,7 @@ class ValidateEmailTest {
     private lateinit var validateEmail: ValidateEmail
 
     @Mock
-    val patternChecker = mock(classOf<PatternChecker>())
+    val patternChecker = mock(classOf<EmailPatternChecker>())
 
     @BeforeTest
     fun setup() {

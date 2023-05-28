@@ -29,7 +29,6 @@ class RegisterTest {
     private val deviceRepository = mock(classOf<DeviceRepository>())
 
     @BeforeTest
-
     fun setup() {
         register = Register(
             authRepository = authRepository,

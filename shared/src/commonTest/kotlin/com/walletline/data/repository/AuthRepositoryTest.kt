@@ -131,4 +131,46 @@ class AuthRepositoryTest {
 
     }
 
+    @Test
+    fun `successful set and get pattern`() = runTest {
+        val value = "129564"
+        given(appSettings)
+            .coroutine { setPattern(value) }
+            .then { }
+        authRepository.setPattern(value)
+        verify(appSettings)
+            .coroutine { setPattern(value) }
+            .wasInvoked(exactly = 1.time)
+
+        given(appSettings)
+            .coroutine { getPattern() }
+            .then { value }
+
+        val res = authRepository.getPattern()
+
+        res shouldBe value
+
+    }
+
+    @Test
+    fun `successful set and get isFinger`() = runTest {
+        val value = true
+        given(appSettings)
+            .coroutine { setIsFingerprint(value) }
+            .then { }
+        authRepository.setIsFingerFace(value)
+        verify(appSettings)
+            .coroutine { setIsFingerprint(value) }
+            .wasInvoked(exactly = 1.time)
+
+        given(appSettings)
+            .coroutine { getIsFingerprint() }
+            .then { value }
+
+        val res = authRepository.getIsFingerprint()
+
+        res shouldBe value
+
+    }
+
 }

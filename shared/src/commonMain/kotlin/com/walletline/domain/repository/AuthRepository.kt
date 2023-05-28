@@ -14,4 +14,10 @@ interface AuthRepository {
     suspend fun getDevCode(): String
     suspend fun setToken(token: String)
     suspend fun getToken(): String
+    suspend fun setIsFingerFace(isFinger: Boolean)
+    suspend fun getIsFingerprint(): Boolean
+    suspend fun setPattern(pattern: String)
+    suspend fun getPattern(): String
+    suspend fun setOnBoarded(isOnBoarded: Boolean)
+    suspend fun getOnBoarded(): Boolean
 }

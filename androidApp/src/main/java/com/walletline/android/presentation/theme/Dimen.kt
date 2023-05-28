@@ -2,6 +2,7 @@
 
 import androidx.compose.runtime.Composable
 import com.walletline.android.presentation.util.sdp
+import com.walletline.android.presentation.util.ssp
 
 object Dimen {
     /* General */
@@ -11,11 +12,13 @@ object Dimen {
     val DefaultCardCornerRadius @Composable get() = 16.sdp
     val WalletlineLogoTopMargin @Composable get() = 100.sdp
     val WalletlineLogoBottomMargin @Composable get() = 70.sdp
-    val DefaultButtonStrokeWidth @Composable get() = 1.sdp
+    val DefaultButtonStrokeWidth @Composable get() = 2.sdp
     val DefaultButtonCornerRadius @Composable get() = 12.sdp
     val DefaultButtonHeight @Composable get() = 48.sdp
     val DefaultBorderRadius @Composable get() = 15.sdp
     val ArrowIconSize @Composable get() = 18.sdp
+    val TextLineHeight17 @Composable get() = 17.ssp
+    val TextLineHeight20 @Composable get() = 20.ssp
 
 
     val PhoneTextFieldHeight @Composable get() = 56.sdp
@@ -33,14 +36,21 @@ object Dimen {
     val SkipButtonHeight @Composable get() = 33.sdp
     val SliderImageHeight @Composable get() = 300.sdp
 
+    /* Pattern */
+    val ContinueButtonHPadding @Composable get() = 16.sdp
+    val ButtonBorderWidth @Composable get() = 1.sdp
 
-
+    val ContinueButtonHeight @Composable get() = 48.sdp
+    val SensorRecognitionImageSize @Composable get() = 28.sdp
+    val ConfirmPatternButtonsMargin @Composable get() = 165.sdp
+    val PasswordPatternSize @Composable get() = 250.sdp
 
 
     /* Splash */
 
     val WalletLogoWidth @Composable get() = 64.sdp
     val WalletLogoHeight @Composable get() = 59.sdp
+    val WalletHeaderTopMargin @Composable get() = 280.sdp
     val HeartIconSize @Composable get() = 22.sdp
 
     /* Mobile Number */
@@ -67,5 +77,4 @@ object Dimen {
 
     /* Entrance Pattern */
 
-    val PasswordPatternSize @Composable get() = 274.sdp
 }

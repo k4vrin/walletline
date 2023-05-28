@@ -124,7 +124,6 @@ fun VerifyEmailContent(
                     enabled = !state.isLoading,
                     isLoading = state.isLoading,
                     text = stringResource(R.string.button_continue),
-                    height = Dimen.DefaultButtonHeight
                 )
 
                 Spacer(modifier = Modifier.height(MaterialTheme.padding.medium))
