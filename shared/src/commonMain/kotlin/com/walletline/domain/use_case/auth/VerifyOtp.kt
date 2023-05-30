@@ -1,5 +1,6 @@
 package com.walletline.domain.use_case.auth
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.walletline.di.util.CoroutineDispatchers
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.repository.AuthRepository
@@ -13,6 +14,7 @@ class VerifyOtp(
     private val dispatchers: CoroutineDispatchers,
 ) {
 
+    @NativeCoroutines
     suspend fun execute(otp: String): Resource<Boolean, Nothing> = coroutineScope {
         val trackCode = async(dispatchers.database) { authRepository.getTrackingCode() }
 

@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "41867280237",
+    "project_id": "walletlineplus",
+    "storage_bucket": "walletlineplus.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41867280237:android:7f51c4737020b1df836464",
+        "android_client_info": {
+          "package_name": "com.walletline.android"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41867280237-3i2j2b105bfd40jbldkn4orilh1rusf4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.walletline.android",
+            "certificate_hash": "f413dc5898e16896058fbd32a3b87de6b7f348c0"
+          }
+        },
+        {
+          "client_id": "41867280237-d1opai2d59v887nepe457tjun5nu7kta.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpmStnXUUGSxyomVFgMrZXpNc-ElYZu0k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41867280237-d1opai2d59v887nepe457tjun5nu7kta.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "41867280237-87cum6b9uhi5oi26kr05pme30pc16c6b.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.walletline.iosApp"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

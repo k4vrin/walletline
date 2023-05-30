@@ -8,6 +8,7 @@ import com.walletline.android.presentation.screens.NavGraphs
 import com.walletline.android.presentation.screens.destinations.EnterPatternScreenDestination
 import com.walletline.android.presentation.screens.destinations.OnBoardingScreenDestination
 import com.walletline.android.presentation.screens.destinations.SocialLoginScreenDestination
+import com.walletline.android.presentation.screens.destinations.SplashScreenDestination
 import com.walletline.android.presentation.screens.intro.IntroContract
 import com.walletline.android.presentation.screens.intro.IntroViewModel
 import com.walletline.android.presentation.util.collectInLaunchedEffect
@@ -29,7 +30,11 @@ fun SplashScreen(
         when (effect) {
             IntroContract.Effect.UserOnBoarded -> Unit
             is IntroContract.Effect.Navigate -> when (effect.userCondition) {
-                UserCondition.FirstTime -> navigator.navigate(OnBoardingScreenDestination())
+                UserCondition.FirstTime -> navigator.navigate(OnBoardingScreenDestination()) {
+                    popUpTo(SplashScreenDestination.route) {
+                        inclusive = true
+                    }
+                }
                 UserCondition.OnBoarded -> navigator.navigate(SocialLoginScreenDestination()) {
                     popUpTo(NavGraphs.intro.route) {
                         inclusive = true

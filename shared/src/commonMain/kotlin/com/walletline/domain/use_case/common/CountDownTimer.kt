@@ -1,5 +1,6 @@
 package com.walletline.domain.use_case.common
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.asFlow
@@ -8,6 +9,7 @@ import kotlin.time.Duration.Companion.seconds
 
 class CountDownTimer {
 
+    @NativeCoroutines
     var timer: Flow<Int>? = null
         private set
 

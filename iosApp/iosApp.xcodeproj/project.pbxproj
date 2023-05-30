@@ -22,6 +22,7 @@
 		4C4E166729AB531400017A39 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166629AB531400017A39 /* Components.swift */; };
 		4C4E166929AB534600017A39 /* LockScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166829AB534600017A39 /* LockScreen.swift */; };
 		4C4E166B29AB536E00017A39 /* LockScreenPattern.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4E166A29AB536E00017A39 /* LockScreenPattern.swift */; };
+		4C5258AA2A0FC28300D9F827 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C5258A92A0FC28300D9F827 /* GoogleService-Info.plist */; };
 		4C56487929A7F979005C0B44 /* SocialLoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */; };
 		4C5FFAB32A24C57700783A8B /* LockAppScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FFAB22A24C57700783A8B /* LockAppScreen.swift */; };
 		4C5FFAB52A24C75800783A8B /* LockTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C5FFAB42A24C75800783A8B /* LockTimer.swift */; };
@@ -51,6 +52,8 @@
 		4CA151FE2A194659001F1918 /* FingerPrintButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA151FD2A194659001F1918 /* FingerPrintButton.swift */; };
 		4CA4BAD42A0D275700991BFA /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4BAD32A0D275700991BFA /* NotificationManager.swift */; };
 		4CA4BAD62A0D28B200991BFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CA4BAD52A0D28B200991BFA /* AppDelegate.swift */; };
+		4CB5F8F32A129CF800E9A6A7 /* SocialLoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5F8F22A129CF800E9A6A7 /* SocialLoginViewModel.swift */; };
+		4CB5F8F52A12A39200E9A6A7 /* GoogleSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB5F8F42A12A39200E9A6A7 /* GoogleSignInClient.swift */; };
 		4CB79F0F29EC732E00BAE308 /* EmailTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79F0E29EC732E00BAE308 /* EmailTextField.swift */; };
 		4CB79F1129EC77F500BAE308 /* AnimatableCustomFontModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB79F1029EC77F500BAE308 /* AnimatableCustomFontModifier.swift */; };
 		4CBA1F0A29A3E37300649304 /* ColorizedFirstCharText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CBA1F0929A3E37300649304 /* ColorizedFirstCharText.swift */; };
@@ -71,12 +74,13 @@
 		4CE9075D2A002EDB000B4146 /* DotIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CE9075C2A002EDB000B4146 /* DotIndicator.swift */; };
 		4CEAECB329A236A500449F92 /* ColorGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CEAECB229A236A500449F92 /* ColorGuide.swift */; };
 		4CF0E65B29A8DFC600173976 /* SocialSignInButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */; };
+		4CF2141D2A1417F100DB3F49 /* FacebookSignInClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CF2141C2A1417F100DB3F49 /* FacebookSignInClient.swift */; };
 		4CFBF60429A659E000D0F806 /* VerifyEmailScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60329A659E000D0F806 /* VerifyEmailScreen.swift */; };
 		4CFBF60629A65A3D00D0F806 /* ColorizedText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60529A65A3D00D0F806 /* ColorizedText.swift */; };
 		4CFBF60829A6620300D0F806 /* UnderlineText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CFBF60729A6620300D0F806 /* UnderlineText.swift */; };
 		4FC1362329B8BF6E008718A7 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC1362229B8BF6E008718A7 /* SplashScreen.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
-		C32C6BFBBD75ECE66905647D /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 221791591AF4D75EC77E772F /* Pods_iosApp.framework */; };
+		D583FAEF216702133F25D09F /* Pods_iosApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 517AA676CA03850A148F472F /* Pods_iosApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -96,6 +100,7 @@
 		4C4E166629AB531400017A39 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		4C4E166829AB534600017A39 /* LockScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreen.swift; sourceTree = "<group>"; };
 		4C4E166A29AB536E00017A39 /* LockScreenPattern.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockScreenPattern.swift; sourceTree = "<group>"; };
+		4C5258A92A0FC28300D9F827 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginScreen.swift; sourceTree = "<group>"; };
 		4C5FFAB22A24C57700783A8B /* LockAppScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockAppScreen.swift; sourceTree = "<group>"; };
 		4C5FFAB42A24C75800783A8B /* LockTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LockTimer.swift; sourceTree = "<group>"; };
@@ -126,6 +131,8 @@
 		4CA151FD2A194659001F1918 /* FingerPrintButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FingerPrintButton.swift; sourceTree = "<group>"; };
 		4CA4BAD32A0D275700991BFA /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = NotificationManager.swift; path = notification/NotificationManager.swift; sourceTree = "<group>"; };
 		4CA4BAD52A0D28B200991BFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4CB5F8F22A129CF800E9A6A7 /* SocialLoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialLoginViewModel.swift; sourceTree = "<group>"; };
+		4CB5F8F42A12A39200E9A6A7 /* GoogleSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleSignInClient.swift; sourceTree = "<group>"; };
 		4CB79F0E29EC732E00BAE308 /* EmailTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmailTextField.swift; sourceTree = "<group>"; };
 		4CB79F1029EC77F500BAE308 /* AnimatableCustomFontModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatableCustomFontModifier.swift; sourceTree = "<group>"; };
 		4CBA1F0929A3E37300649304 /* ColorizedFirstCharText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizedFirstCharText.swift; sourceTree = "<group>"; };
@@ -147,15 +154,18 @@
 		4CE9075C2A002EDB000B4146 /* DotIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotIndicator.swift; sourceTree = "<group>"; };
 		4CEAECB229A236A500449F92 /* ColorGuide.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorGuide.swift; sourceTree = "<group>"; };
 		4CF0E65A29A8DFC600173976 /* SocialSignInButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialSignInButton.swift; sourceTree = "<group>"; };
+		4CF2141B2A140F0F00DB3F49 /* iosApp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = iosApp.entitlements; sourceTree = "<group>"; };
+		4CF2141C2A1417F100DB3F49 /* FacebookSignInClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookSignInClient.swift; sourceTree = "<group>"; };
 		4CFBF60329A659E000D0F806 /* VerifyEmailScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailScreen.swift; sourceTree = "<group>"; };
 		4CFBF60529A65A3D00D0F806 /* ColorizedText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorizedText.swift; sourceTree = "<group>"; };
 		4CFBF60729A6620300D0F806 /* UnderlineText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlineText.swift; sourceTree = "<group>"; };
 		4FC1362229B8BF6E008718A7 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
-		7555FF7B242A565900829871 /* Walletline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Walletline.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		517AA676CA03850A148F472F /* Pods_iosApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_iosApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		56DC98F99B33F0C4450499C6 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
+		5B0835D1BE9DDDE6B4B39710 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
+		7555FF7B242A565900829871 /* WalletLine.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WalletLine.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		83DC41FC94E165440EF10096 /* Pods-iosApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.debug.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.debug.xcconfig"; sourceTree = "<group>"; };
-		C57E445268DF6E64E1B9E677 /* Pods-iosApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-iosApp.release.xcconfig"; path = "Target Support Files/Pods-iosApp/Pods-iosApp.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,7 +173,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C32C6BFBBD75ECE66905647D /* Pods_iosApp.framework in Frameworks */,
+				D583FAEF216702133F25D09F /* Pods_iosApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -232,6 +242,7 @@
 			isa = PBXGroup;
 			children = (
 				4C56487829A7F979005C0B44 /* SocialLoginScreen.swift */,
+				4CB5F8F22A129CF800E9A6A7 /* SocialLoginViewModel.swift */,
 			);
 			path = social_login;
 			sourceTree = "<group>";
@@ -415,6 +426,8 @@
 			isa = PBXGroup;
 			children = (
 				4CDAC1C129F70927000597B9 /* Extensions.swift */,
+				4CB5F8F42A12A39200E9A6A7 /* GoogleSignInClient.swift */,
+				4CF2141C2A1417F100DB3F49 /* FacebookSignInClient.swift */,
 				4C772B762A2281DF006CD404 /* BiometricPrompt.swift */,
 			);
 			path = util;
@@ -453,14 +466,14 @@
 				7555FF7D242A565900829871 /* iosApp */,
 				7555FF7C242A565900829871 /* Products */,
 				9ED69A922773770067042ECF /* Pods */,
-				F386ED5427CAF8D24368C412 /* Frameworks */,
+				99DBAE03E3CB86DEA8F65DC0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		7555FF7C242A565900829871 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7555FF7B242A565900829871 /* Walletline.app */,
+				7555FF7B242A565900829871 /* WalletLine.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -468,6 +481,8 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				4CF2141B2A140F0F00DB3F49 /* iosApp.entitlements */,
+				4C5258A92A0FC28300D9F827 /* GoogleService-Info.plist */,
 				4CCCF24029F6EF3D00B6B519 /* iosAppDebug.entitlements */,
 				4C98AD7329A1601E00B6D814 /* Font */,
 				4C1AA0A9299EC212005B9B09 /* presentation */,
@@ -482,21 +497,21 @@
 			path = iosApp;
 			sourceTree = "<group>";
 		};
+		99DBAE03E3CB86DEA8F65DC0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				517AA676CA03850A148F472F /* Pods_iosApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		9ED69A922773770067042ECF /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				83DC41FC94E165440EF10096 /* Pods-iosApp.debug.xcconfig */,
-				C57E445268DF6E64E1B9E677 /* Pods-iosApp.release.xcconfig */,
+				56DC98F99B33F0C4450499C6 /* Pods-iosApp.debug.xcconfig */,
+				5B0835D1BE9DDDE6B4B39710 /* Pods-iosApp.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		F386ED5427CAF8D24368C412 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				221791591AF4D75EC77E772F /* Pods_iosApp.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -506,11 +521,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7555FFA5242A565B00829871 /* Build configuration list for PBXNativeTarget "iosApp" */;
 			buildPhases = (
-				A51932510DC8E87CDCD685AF /* [CP] Check Pods Manifest.lock */,
+				AE2A9247A8F4DE72472B0F1C /* [CP] Check Pods Manifest.lock */,
 				7555FF77242A565900829871 /* Sources */,
 				7555FF79242A565900829871 /* Resources */,
 				BC6EB057678E35A20C6260B0 /* Frameworks */,
-				9DB7B71C7BAEEDB7B1820E10 /* [CP] Embed Pods Frameworks */,
+				9D0A1E954C5034D1FDD18DAF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -518,7 +533,7 @@
 			);
 			name = iosApp;
 			productName = iosApp;
-			productReference = 7555FF7B242A565900829871 /* Walletline.app */;
+			productReference = 7555FF7B242A565900829871 /* WalletLine.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -568,6 +583,7 @@
 				4C6785E929E2FF66001E423D /* PlusJakartaSans-Medium.ttf in Resources */,
 				4C98AD7729A1607B00B6D814 /* dm_sans_bold.ttf in Resources */,
 				4C6785E629E2FF66001E423D /* PlusJakartaSans-Bold.ttf in Resources */,
+				4C5258AA2A0FC28300D9F827 /* GoogleService-Info.plist in Resources */,
 				4C98AD7529A1606900B6D814 /* dm_sans_regular.ttf in Resources */,
 				058557BB273AAA24004C7B11 /* Assets.xcassets in Resources */,
 			);
@@ -576,7 +592,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		9DB7B71C7BAEEDB7B1820E10 /* [CP] Embed Pods Frameworks */ = {
+		9D0A1E954C5034D1FDD18DAF /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -593,7 +609,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-iosApp/Pods-iosApp-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A51932510DC8E87CDCD685AF /* [CP] Check Pods Manifest.lock */ = {
+		AE2A9247A8F4DE72472B0F1C /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -639,6 +655,7 @@
 				4CBA1F0A29A3E37300649304 /* ColorizedFirstCharText.swift in Sources */,
 				4CA4BAD62A0D28B200991BFA /* AppDelegate.swift in Sources */,
 				4C8BA6FD2A0BA55800CAA3A1 /* VerifyEmailTimer.swift in Sources */,
+				4CF2141D2A1417F100DB3F49 /* FacebookSignInClient.swift in Sources */,
 				4CBA1F0C29A3F77E00649304 /* PhoneTextField.swift in Sources */,
 				4C8C742F29A77C05005F6E2D /* EmbeddedUnderlineText.swift in Sources */,
 				4C4E166929AB534600017A39 /* LockScreen.swift in Sources */,
@@ -665,6 +682,7 @@
 				4C1977B029BF99E100808A98 /* DimenGuide.swift in Sources */,
 				4C6259522A190D9100F9A6C5 /* PatternTitle.swift in Sources */,
 				4C20103F29A7D263007BDF7D /* AuthBodyText.swift in Sources */,
+				4CB5F8F32A129CF800E9A6A7 /* SocialLoginViewModel.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				4CA151FC2A194430001F1918 /* PatternButton.swift in Sources */,
 				4C46BF472A018ED9000A7E01 /* SkipButton.swift in Sources */,
@@ -675,6 +693,7 @@
 				4CA151FE2A194659001F1918 /* FingerPrintButton.swift in Sources */,
 				4CD874EE29A2A4A2004D9B6A /* EmailLoginScreen.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				4CB5F8F52A12A39200E9A6A7 /* GoogleSignInClient.swift in Sources */,
 				4C4E166729AB531400017A39 /* Components.swift in Sources */,
 				4C5FFABA2A24ED3400783A8B /* IntroViewModel.swift in Sources */,
 				4C09932529A5262E004772A3 /* OrDivider.swift in Sources */,
@@ -819,7 +838,7 @@
 		};
 		7555FFA6242A565B00829871 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 83DC41FC94E165440EF10096 /* Pods-iosApp.debug.xcconfig */;
+			baseConfigurationReference = 56DC98F99B33F0C4450499C6 /* Pods-iosApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = iosApp/iosAppDebug.entitlements;
@@ -827,13 +846,14 @@
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WalletLine;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
-				PRODUCT_NAME = Walletline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.walletline.iosApp;
+				PRODUCT_NAME = WalletLine;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -841,20 +861,22 @@
 		};
 		7555FFA7242A565B00829871 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C57E445268DF6E64E1B9E677 /* Pods-iosApp.release.xcconfig */;
+			baseConfigurationReference = 5B0835D1BE9DDDE6B4B39710 /* Pods-iosApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = iosApp/iosApp.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"iosApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = iosApp/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = WalletLine;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = orgIdentifier.iosApp;
-				PRODUCT_NAME = Walletline;
+				PRODUCT_BUNDLE_IDENTIFIER = com.walletline.iosApp;
+				PRODUCT_NAME = WalletLine;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

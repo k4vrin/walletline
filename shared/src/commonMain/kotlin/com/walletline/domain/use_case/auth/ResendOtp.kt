@@ -1,5 +1,6 @@
 package com.walletline.domain.use_case.auth
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.walletline.di.util.CoroutineDispatchers
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.model.OtpData
@@ -13,6 +14,7 @@ class ResendOtp(
     private val authRepository: AuthRepository,
     private val dispatchers: CoroutineDispatchers
 ) {
+    @NativeCoroutines
     suspend fun execute(): Resource<OtpData, Nothing> {
         val devCode = withTimeout(10.seconds) {
             authRepository.getDevCode()

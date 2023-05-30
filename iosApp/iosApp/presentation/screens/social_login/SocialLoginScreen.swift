@@ -10,6 +10,11 @@ import SwiftUI
 
 struct SocialLoginScreen: View {
     @State private var isNavActive = false
+    let googleSignInClient = GoogleSignInClient()
+    let facebookSignInClient = FacebookSignInClient()
+    
+    @StateObject var viewModel = SocialLoginViewModel()
+    
     var body: some View {
         WalletLineBackground { geo in
             NavigationLink(
@@ -38,7 +43,9 @@ struct SocialLoginScreen: View {
                         },
                         text: NSLocalizedString("Google Account", comment: "")
                     ) {
-                        // onGoogleClick
+                        googleSignInClient.signIn { signInResult in
+                            viewModel.onEvent(.SignInWithGoogle(tokens: signInResult))
+                        }
                     }
                         .padding(.horizontal, Padding.extraMedium)
                         
@@ -49,7 +56,10 @@ struct SocialLoginScreen: View {
                         },
                         text: NSLocalizedString("Facebook", comment: "")
                     ) {
-                        // onFacebookClick
+//                        googleSignInClient.signOut()
+                        facebookSignInClient.signIn { tokens in
+                            viewModel.onEvent(.SignInWithFacebook(tokens: tokens))
+                        }
                     }
                         .padding(.horizontal, Padding.extraMedium)
                         .padding(.top, Padding.smallMedium)

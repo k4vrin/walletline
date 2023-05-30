@@ -4,15 +4,19 @@ import com.walletline.data.dto.request.RegisterReq
 import com.walletline.data.dto.request.VerifyOtpReq
 import com.walletline.data.local.settings.AppSettings
 import com.walletline.data.mapper.toDomain
-import com.walletline.data.remote.AuthService
+import com.walletline.data.remote.firebase.auth.FirebaseAuthClient
+import com.walletline.data.remote.server.AuthService
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.model.RegisteredError
 import com.walletline.domain.model.RegisteredSuccess
+import com.walletline.domain.model.SignInResult
+import com.walletline.domain.model.SocialSignType
 import com.walletline.domain.repository.AuthRepository
 
 class AuthRepositoryImpl(
     private val authService: AuthService,
     private val appSettings: AppSettings,
+    private val firebaseAuthClient: FirebaseAuthClient,
 ) : AuthRepository {
 
     override suspend fun register(
@@ -28,11 +32,7 @@ class AuthRepositoryImpl(
         return authService.getOtp(devCode).let {
             when (it) {
                 ApiResponse.Error.NetworkError -> ApiResponse.Error.NetworkError
-                is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(
-                    it.code,
-                    errorBody = null
-                )
-
+                is ApiResponse.Error.HttpError -> ApiResponse.Error.HttpError(it.code, errorBody = null)
                 is ApiResponse.Success -> ApiResponse.Success(body = it.body.otp)
                 ApiResponse.Error.SerializationError -> ApiResponse.Error.SerializationError
             }
@@ -79,6 +79,18 @@ class AuthRepositoryImpl(
 
     override suspend fun getToken(): String {
         return appSettings.getToken()
+    }
+
+    override suspend fun signInWithGoogle(googleAuth: SocialSignType.GoogleAuth): SignInResult {
+        return firebaseAuthClient.signInWithGoogle(googleAuth)
+    }
+
+    override suspend fun signInWithFacebook(facebookAuth: SocialSignType.FacebookAuth): SignInResult {
+        return firebaseAuthClient.signInWithFacebook(facebookAuth)
+    }
+
+    override suspend fun getCurrentUserFirebaseID(): String? {
+        return firebaseAuthClient.getCurrentUserIDToken()
     }
 
     override suspend fun setIsFingerFace(isFinger: Boolean) {

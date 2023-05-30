@@ -73,10 +73,7 @@ struct VerifyEmailScreen: View {
                     
                     if viewModel.state.isTimerActive {
                         VerifyEmailTimer(
-                            time: Binding(
-                                get: { viewModel.state.timer },
-                                set: { _, _ in }
-                            )
+                            time: viewModel.state.timer
                         )
                         .padding(.top, Padding.smallLarge)
                     } else {
@@ -126,8 +123,6 @@ struct VerifyEmailScreen: View {
                     switch effect {
                     case .NavigateToEmail:
                         self.presentation.wrappedValue.dismiss()
-                    case .NavigateToPattern:
-                        break
                     case .ResendOTP(otp: let otp):
                         NotificationManager.instance.sendOtpNotification(otp: otp)
                     case .ShowPolicy:
@@ -135,7 +130,7 @@ struct VerifyEmailScreen: View {
                     case .ShowTerms:
                         break
                     case .VerifySuccessful:
-                        break
+                        goToPatternScreen = true
                     case .Error(message: let message):
                         alertContent = message
                     }
@@ -154,7 +149,6 @@ struct VerifyEmailScreen: View {
         }
         .animation(.default, value: viewModel.state.isTimerActive)
         .navigationBarBackButtonHidden(true)
-        .background(Color.backgroundColor)
     }
 }
 
