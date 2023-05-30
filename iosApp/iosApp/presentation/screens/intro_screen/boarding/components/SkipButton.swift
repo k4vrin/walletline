@@ -31,7 +31,7 @@ struct SkipButton: View {
 
 struct SkipButton_Previews: PreviewProvider {
     static var previews: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             
             SkipButton {
                 

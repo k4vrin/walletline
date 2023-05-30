@@ -122,25 +122,30 @@ class PatternView: UIView {
             var middlePoint = CGPoint()
             middlePoint.x = (line.fromPoint.x + line.toPoint.x) / 2
             middlePoint.y = (line.fromPoint.y + line.toPoint.y) / 2
-            let arrowWingLength: CGFloat = 10
+            let arrowWingLength: CGFloat = 8
             
             let startEndAngle = atan(
                 (line.toPoint.y - line.fromPoint.y) / (line.toPoint.x - line.fromPoint.x)) + ((line.toPoint.x - line.fromPoint.x) < 0 ?
                 CGFloat(Double.pi) : 0
             )
             let arrowLine1 = CGPoint(
-                x: middlePoint.x + arrowWingLength * cos(CGFloat(Double.pi) - startEndAngle + CGFloat(Double.pi / 4)),
-                y: middlePoint.y - arrowWingLength * sin(CGFloat(Double.pi) - startEndAngle + CGFloat(Double.pi / 4))
+                x: middlePoint.x + arrowWingLength * cos(CGFloat(Double.pi) - startEndAngle + CGFloat(Double.pi / 6)),
+                y: middlePoint.y - arrowWingLength * sin(CGFloat(Double.pi) - startEndAngle + CGFloat(Double.pi / 6))
             )
             let arrowLine2 = CGPoint(
-                x: middlePoint.x + arrowWingLength * cos(CGFloat(Double.pi) - startEndAngle - CGFloat(Double.pi / 4)),
-                y: middlePoint.y - arrowWingLength * sin(CGFloat(Double.pi) - startEndAngle - CGFloat(Double.pi / 4))
+                x: middlePoint.x + arrowWingLength * cos(CGFloat(Double.pi) - startEndAngle - CGFloat(Double.pi / 6)),
+                y: middlePoint.y - arrowWingLength * sin(CGFloat(Double.pi) - startEndAngle - CGFloat(Double.pi / 6))
             )
+            ctx?.strokePath()
+            ctx?.beginPath()
             ctx?.move(to: middlePoint)
             ctx?.addLine(to: arrowLine1)
             ctx?.move(to: middlePoint)
             ctx?.addLine(to: arrowLine2)
-            ctx?.strokePath()
+            ctx?.addLine(to: arrowLine1)
+            ctx?.closePath()
+            ctx?.setFillColor(lineColor.cgColor)
+            ctx?.fillPath()
             let bubbleWidth = pointWidth // The top and end of the line contains a circular bubble for better UI feel
             let frontBubbleFrame = CGRect(
                 origin: CGPoint(x: line.fromPoint.x - bubbleWidth, y: line.fromPoint.y - bubbleWidth),
@@ -148,7 +153,6 @@ class PatternView: UIView {
             )
             ctx?.setFillColor(linePointColor.cgColor)
             ctx?.fillEllipse(in: frontBubbleFrame)
-            
             if line.isFullLength {
                 let backBubbleFrame = CGRect(
                     origin: CGPoint(x: line.toPoint.x - bubbleWidth, y: line.toPoint.y - bubbleWidth),

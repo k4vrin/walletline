@@ -33,7 +33,7 @@ struct DatariversTeamText: View {
 
 struct DatariversTeamText_Previews: PreviewProvider {
     static var previews: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             DatariversTeamText()
         }
     }

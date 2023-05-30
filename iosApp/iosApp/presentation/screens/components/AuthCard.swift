@@ -35,7 +35,7 @@ struct AuthCard<Content: View>: View {
 
 struct AuthCard_Previews: PreviewProvider {
     static var previews: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             VStack(spacing: 0) {
                 AuthCard {
                     Text("Hello")

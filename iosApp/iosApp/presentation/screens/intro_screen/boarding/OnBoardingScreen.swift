@@ -11,6 +11,7 @@ import SwiftUI
 struct OnBoardingScreen: View {
     @State private var page = 0
     @State private var isNavActive = false
+    @ObservedObject var viewModel: IntroViewModel
     
     let pages = [
         OnBoardingPage(
@@ -31,7 +32,7 @@ struct OnBoardingScreen: View {
     ]
 
     var body: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             NavigationLink(
                 destination: SocialLoginScreen(),
                 isActive: $isNavActive
@@ -43,6 +44,7 @@ struct OnBoardingScreen: View {
                 HStack {
                     Spacer()
                     SkipButton {
+                        viewModel.onEvent(.UserOnBoarded)
                         isNavActive = true
                     }
                 }
@@ -80,6 +82,7 @@ struct OnBoardingScreen: View {
                         if page < pages.count - 1 {
                             page += 1
                         } else {
+                            viewModel.onEvent(.UserOnBoarded)
                             isNavActive = true
                         }
                         
@@ -101,6 +104,6 @@ struct OnBoardingScreen: View {
 
 struct OnBoardingScreen_Previews: PreviewProvider {
     static var previews: some View {
-        OnBoardingScreen()
+        OnBoardingScreen(viewModel: IntroViewModel())
     }
 }

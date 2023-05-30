@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct OrDivider: View {
+    var text: String = NSLocalizedString("or", comment: "")
     var body: some View {
         HStack(alignment: .center) {
             Rectangle()
@@ -18,10 +19,10 @@ struct OrDivider: View {
                 .offset(.init(width: 0, height: Dimen.orDividerOffset))
 
             Text(
-                NSLocalizedString("or", comment: "")
+                text
             )
                 .bodySmallStyle()
-                .foregroundColor(.neutralColorShade3)
+                .foregroundColor(.neutralColorShade2)
 
             Rectangle()
                 .frame(height: Dimen.orDividerHeight)

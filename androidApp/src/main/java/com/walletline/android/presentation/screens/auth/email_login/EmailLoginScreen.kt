@@ -13,6 +13,7 @@ import com.walletline.android.di.util.KoinAndroidQualifiers
 import com.walletline.android.presentation.navigation.AuthNavGraph
 import com.walletline.android.presentation.notification.NotificationService
 import com.walletline.android.presentation.screens.auth.verify_email.VerifyEmailNavArg
+import com.walletline.android.presentation.screens.destinations.EmailLoginScreenDestination
 import com.walletline.android.presentation.screens.destinations.SocialLoginScreenDestination
 import com.walletline.android.presentation.screens.destinations.VerifyEmailScreenDestination
 import com.walletline.android.presentation.util.collectInLaunchedEffect
@@ -46,9 +47,11 @@ fun EmailLoginScreen(
 
     effectFlow.collectInLaunchedEffect { effect ->
         when (effect) {
-            EmailLoginContract.Effect.EnterBySocial -> navigator.navigate(
-                SocialLoginScreenDestination
-            )
+            EmailLoginContract.Effect.EnterBySocial -> navigator.navigate(SocialLoginScreenDestination) {
+                popUpTo(EmailLoginScreenDestination.route) {
+                    inclusive = true
+                }
+            }
 
             is EmailLoginContract.Effect.Error -> {/* FIXME: Showing error to user, such as connection issue, server error and etc through snackbar or toast */
             }

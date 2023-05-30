@@ -79,10 +79,10 @@ public class LockScreen: UIView {
     }
     
     func setupScreen() {
-        let grid = Double(min(frame.width, frame.height))/Double(2*size + 1)
+        let grid = Double(min(frame.width, frame.height))/Double(2*size)
         let gap = grid
         let topOffset = grid
-        let radius = 48.0/2
+        let radius = 12.0/2
 
         for index in 0..<numberOfCircles {
             let circle = PatternCircle(radius: CGFloat(radius))
@@ -163,17 +163,17 @@ public class LockScreen: UIView {
         var middlePoint = CGPoint()
         
         if beginPoint != nil {
-            middlePoint.x = (beginPoint!.x + point.x) / 2
-            middlePoint.y = (beginPoint!.y + point.y) / 2
+            middlePoint.x = (beginPoint!.x + point.x)/2
+            middlePoint.y = (beginPoint!.y + point.y)/2
         }
+        
         for view in subviews {
-            if let circle = view as? PatternCircle, circle.frame.contains(point) {
-                
+            if let circle = view as? PatternCircle, sensitiveFrame(circle: circle).contains(point) {
                 if !circle.isSelected {
                     circle.isSelected = true
                     currentCellIndex = index(of: circle)
                     selectedCircle = circle
-                } else if circle.isSelected && allowClosedPattern{
+                } else if circle.isSelected && allowClosedPattern {
                     currentCellIndex = index(of: circle)
                     selectedCircle = circle
                 }
@@ -186,13 +186,12 @@ public class LockScreen: UIView {
         }
         
         for view in subviews {
-            if let circle = view as? PatternCircle, circle.frame.contains(middlePoint)  {
-                
+            if let circle = view as? PatternCircle, sensitiveFrame(circle: circle).contains(middlePoint) {
                 if !circle.isSelected {
                     circle.isSelected = true
                     currentCellIndex = index(of: circle)
                     selectedCircle = circle
-                } else if circle.isSelected && allowClosedPattern{
+                } else if circle.isSelected && allowClosedPattern {
                     currentCellIndex = index(of: circle)
                     selectedCircle = circle
                 }
@@ -209,15 +208,13 @@ public class LockScreen: UIView {
     func handlePan(at point: CGPoint) {
         oldCellIndex = currentCellIndex
         let cellPos = index(point) // This part will also change currentCellIndex
-        print("cellPos: \(cellPos)")
         if cellPos >= 0 && cellPos != oldCellIndex && allowClosedPattern == true {
             cellsInOrder.append(currentCellIndex)
             
         } else if cellPos >= 0 && cellPos != oldCellIndex && !cellsInOrder.contains(cellPos) && allowClosedPattern == false && cellsInOrder.count < size*size {
-//            print("cellPos: \(cellPos)" )
             cellsInOrder.append(currentCellIndex)
         }
-//        print(finalLines)
+
         if cellPos < 0 && oldCellIndex < 0 {
             return
         } else if cellPos < 0, let circle = cell(at: oldCellIndex) {
@@ -260,7 +257,10 @@ public class LockScreen: UIView {
         return finalNum
     }
     
-    func resetScreen() {
+    func resetScreen(_ reset: Bool = true) {
+        if !reset {
+            return
+        }
         for view in subviews {
             if let circle = view as? PatternCircle { circle.isSelected = false }
         }
@@ -271,5 +271,9 @@ public class LockScreen: UIView {
         oldCellIndex = -1
         currentCellIndex = -1
         selectedCircle = nil
+    }
+    
+    func sensitiveFrame(circle: PatternCircle) -> CGRect {
+        CGRectInset(circle.frame, -circle.frame.width, -circle.frame.height)
     }
 }

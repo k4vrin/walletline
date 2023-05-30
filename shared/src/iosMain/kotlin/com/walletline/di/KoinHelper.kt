@@ -9,7 +9,7 @@ import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
 class KoinHelper : KoinComponent {
-    private val authUseCase: AuthUseCase by inject()
+    val authUseCase: AuthUseCase by inject()
     private val commonUseCase: CommonUseCase by inject()
     private val validateUseCase: ValidateUseCase by inject()
 
