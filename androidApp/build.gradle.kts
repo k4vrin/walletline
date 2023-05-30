@@ -5,6 +5,8 @@ plugins {
     id(AndroidPlugins.Ksp) version AndroidPlugins.KspVersion
     id(GradleVersions.Plugin) version GradleVersions.Version
 
+    id(Firebase.Plugin) version Firebase.PluginVersion
+
     kotlin(KotlinPlugins.Android)
     kotlin(KotlinPlugins.Serialization) version Kotlin.Version
 
@@ -126,6 +128,11 @@ dependencies {
     implementation(Kermit.logger)
 
     testImplementation(Test.junit)
+
+    implementation(platform(Firebase.bom))
+    implementation(Firebase.auth)
+    implementation(Firebase.googlePlayServiceAuth)
+    implementation(Facebook.login)
 }
 
 tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates")

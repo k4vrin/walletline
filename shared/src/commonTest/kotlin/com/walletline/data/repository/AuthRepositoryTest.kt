@@ -5,9 +5,14 @@ import com.walletline.data.dto.request.VerifyOtpReq
 import com.walletline.data.dto.response.RegisterSuccess
 import com.walletline.data.dto.response.VerifyOtpRes
 import com.walletline.data.local.settings.AppSettings
-import com.walletline.data.remote.AuthService
+import com.walletline.data.remote.firebase.auth.FirebaseAuthClient
+import com.walletline.data.remote.server.AuthService
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.model.RegisteredSuccess
+import com.walletline.domain.model.SignInResult
+import com.walletline.domain.model.SocialSignInError
+import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.UserData
 import com.walletline.domain.repository.AuthRepository
 import io.kotest.matchers.shouldBe
 import io.mockative.Mock
@@ -25,13 +30,17 @@ class AuthRepositoryTest {
 
     @Mock
     private val authService = mock(classOf<AuthService>())
+
     @Mock
     private val appSettings = mock(classOf<AppSettings>())
+
+    @Mock
+    private val firebaseAuth = mock(classOf<FirebaseAuthClient>())
     private lateinit var authRepository: AuthRepository
 
     @BeforeTest
     fun setup() {
-        authRepository = AuthRepositoryImpl(authService, appSettings)
+        authRepository = AuthRepositoryImpl(authService, appSettings, firebaseAuth)
     }
 
 
@@ -129,6 +138,130 @@ class AuthRepositoryTest {
             .coroutine { setToken(token) }
             .wasInvoked(exactly = 1.time)
 
+    }
+
+    @Test
+    fun `successfully sign in with google should return SingResult with user`() = runTest {
+        val googleAuthTokens = SocialSignType.GoogleAuth(idToken = "1234", accessToken = null)
+
+        given(firebaseAuth)
+            .coroutine { signInWithGoogle(googleAuthTokens) }
+            .then { successSignInResult }
+
+        val res = authRepository.signInWithGoogle(googleAuthTokens)
+
+        verify(firebaseAuth)
+            .coroutine { signInWithGoogle(googleAuthTokens) }
+            .wasInvoked(exactly = 1.time)
+
+        res shouldBe successSignInResult
+
+    }
+
+    @Test
+    fun `unsuccessfully sign in with google should return SingResult with null user`() = runTest {
+        val googleAuthTokens = SocialSignType.GoogleAuth(idToken = "1234", accessToken = null)
+
+        given(firebaseAuth)
+            .coroutine { signInWithGoogle(googleAuthTokens) }
+            .then { failureSignInResult }
+
+        val res = authRepository.signInWithGoogle(googleAuthTokens)
+
+        verify(firebaseAuth)
+            .coroutine { signInWithGoogle(googleAuthTokens) }
+            .wasInvoked(exactly = 1.time)
+
+        res shouldBe failureSignInResult
+
+    }
+
+    @Test
+    fun `successfully sign in with facebook should return SingResult with user`() = runTest {
+        val facebookAuthTokens = SocialSignType.FacebookAuth(accessToken = "123")
+
+        given(firebaseAuth)
+            .coroutine { signInWithFacebook(facebookAuthTokens) }
+            .then { successSignInResult }
+
+        val res = authRepository.signInWithFacebook(facebookAuthTokens)
+
+        verify(firebaseAuth)
+            .coroutine { signInWithFacebook(facebookAuthTokens) }
+            .wasInvoked(exactly = 1.time)
+
+        res shouldBe successSignInResult
+
+    }
+
+    @Test
+    fun `unsuccessfully sign in with facebook should return SingResult with null user`() = runTest {
+        val facebookAuthTokens = SocialSignType.FacebookAuth(accessToken = "2137")
+
+        given(firebaseAuth)
+            .coroutine { signInWithFacebook(facebookAuthTokens) }
+            .then { failureSignInResult }
+
+        val res = authRepository.signInWithFacebook(facebookAuthTokens)
+
+        verify(firebaseAuth)
+            .coroutine { signInWithFacebook(facebookAuthTokens) }
+            .wasInvoked(exactly = 1.time)
+
+        res shouldBe failureSignInResult
+
+    }
+
+    @Test
+    fun `successfully get current user id should return non null string`() = runTest {
+
+        val id = "1234"
+        given(firebaseAuth)
+            .coroutine { getCurrentUserIDToken() }
+            .then { id }
+
+        val res = authRepository.getCurrentUserFirebaseID()
+
+        verify(firebaseAuth)
+            .coroutine { getCurrentUserIDToken() }
+            .wasInvoked(exactly = 1.time)
+
+        res shouldBe id
+
+    }
+
+    @Test
+    fun `unsuccessfully get current user id should return null string`() = runTest {
+
+        val id: String? = null
+        given(firebaseAuth)
+            .coroutine { getCurrentUserIDToken() }
+            .then { id }
+
+        val res = authRepository.getCurrentUserFirebaseID()
+
+        verify(firebaseAuth)
+            .coroutine { getCurrentUserIDToken() }
+            .wasInvoked(exactly = 1.time)
+
+        res shouldBe null
+
+    }
+
+    companion object {
+        val successSignInResult = SignInResult(
+            data = UserData(
+                userId = "homero",
+                username = null,
+                profilePicUrl = null
+            ),
+            errorMessage = null
+        )
+
+        val failureSignInResult = SignInResult(
+            data = null,
+            errorMessage = SocialSignInError.UnknownError
+        )
     }
 
     @Test

@@ -3,6 +3,8 @@ package com.walletline.domain.repository
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.model.RegisteredError
 import com.walletline.domain.model.RegisteredSuccess
+import com.walletline.domain.model.SignInResult
+import com.walletline.domain.model.SocialSignType
 
 interface AuthRepository {
     suspend fun register(email: String, deviceName: String): ApiResponse<RegisteredSuccess, RegisteredError>
@@ -14,6 +16,9 @@ interface AuthRepository {
     suspend fun getDevCode(): String
     suspend fun setToken(token: String)
     suspend fun getToken(): String
+    suspend fun signInWithGoogle(googleAuth: SocialSignType.GoogleAuth): SignInResult
+    suspend fun signInWithFacebook(facebookAuth: SocialSignType.FacebookAuth): SignInResult
+    suspend fun getCurrentUserFirebaseID(): String?
     suspend fun setIsFingerFace(isFinger: Boolean)
     suspend fun getIsFingerprint(): Boolean
     suspend fun setPattern(pattern: String)

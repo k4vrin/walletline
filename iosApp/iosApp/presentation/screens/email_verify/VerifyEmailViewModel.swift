@@ -15,6 +15,7 @@ import shared
 class VerifyEmailViewModel: ObservableObject {
     private let useCase = KoinHelper()
     private var cancellables = Set<AnyCancellable>()
+    private var timerCancellable: AnyCancellable? = nil
 
     @Published private(set) var state = VerifyEmailState()
     private let eventSubject = PassthroughSubject<VerifyEmailEffect, Never>()
@@ -51,7 +52,7 @@ class VerifyEmailViewModel: ObservableObject {
     }
 
     private func verifyOTP() {
-        let verifyFuture = createFuture(for: useCase.verifyOtp(otp: state.otp))
+        let verifyFuture = createFuture(for: useCase.authUseCase.verifyOtp.execute(otp: state.otp))
         updateState(isLoading: true)
         verifyFuture.sink(
             receiveCompletion: { _ in },
@@ -71,12 +72,11 @@ class VerifyEmailViewModel: ObservableObject {
     }
 
     private func resendOTP() {
-        let resendOTPFuture = createFuture(for: useCase.resendOtp())
+        let resendOTPFuture = createFuture(for: useCase.authUseCase.resendOtp.execute())
         updateState(isLoading: true)
         resendOTPFuture.sink(
-            receiveCompletion: { _ in },
+            receiveCompletion: { _ in self.updateState(isLoading: false)},
             receiveValue: { [self] res in
-                updateState(isLoading: false)
                 switch res {
                 case is ResourceError<KotlinNothing>:
                     handleVerifyError((res as? ResourceError<KotlinNothing>)?.message)
@@ -102,16 +102,19 @@ class VerifyEmailViewModel: ObservableObject {
     }
 
     private func startTimer() {
-        useCase.startTimer()
-        guard let timer = useCase.timer() else { eventSubject.send(.Error(message: "timer null"));return }
+        timerCancellable?.cancel()
+
+        let countDownTimer = useCase.commonUseCase.countDownTimer
+        countDownTimer.start()
+        guard let timer = countDownTimer.timer else { eventSubject.send(.Error(message: "timer null"));return }
+
         let publisher = createPublisher(for: timer)
-        
-        publisher.sink(receiveCompletion: { _ in
+        updateState(isTimerActive: true)
+        timerCancellable = publisher.sink(receiveCompletion: { _ in
             self.updateState(isTimerActive: false)
         }, receiveValue: { value in
             self.updateState(timer: Int32(truncating: value))
         })
-        .store(in: &cancellables)
     }
 
     private func updateState(
@@ -168,7 +171,6 @@ enum VerifyEmailEffect {
     case Error(message: String)
     case VerifySuccessful
     case NavigateToEmail
-    case NavigateToPattern
     case ShowPolicy
     case ShowTerms
     case ResendOTP(otp: String)

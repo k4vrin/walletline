@@ -5,8 +5,10 @@ import com.russhwolf.settings.coroutines.SuspendSettings
 import com.walletline.data.local.device.Device
 import com.walletline.data.local.settings.AppSettings
 import com.walletline.data.local.settings.MPAppSettings
-import com.walletline.data.remote.AuthService
-import com.walletline.data.remote.KtorAuthService
+import com.walletline.data.remote.firebase.auth.FirebaseAuthClient
+import com.walletline.data.remote.firebase.auth.FirebaseAuthClientImpl
+import com.walletline.data.remote.server.AuthService
+import com.walletline.data.remote.server.KtorAuthService
 import com.walletline.data.repository.AuthRepositoryImpl
 import com.walletline.data.repository.DeviceRepositoryImpl
 import com.walletline.database.WalletlineDB
@@ -18,6 +20,7 @@ import com.walletline.domain.use_case.auth.GetAdmission
 import com.walletline.domain.use_case.auth.GetPattern
 import com.walletline.domain.use_case.auth.Register
 import com.walletline.domain.use_case.auth.ResendOtp
+import com.walletline.domain.use_case.auth.SignInWithSocial
 import com.walletline.domain.use_case.auth.SetAdmission
 import com.walletline.domain.use_case.auth.SetOnBoarded
 import com.walletline.domain.use_case.auth.VerifyOtp
@@ -46,14 +49,22 @@ val commonModule = module {
     single { provideSqlDatabase(sqlDriver = get()) }
     single { provideHttpClient(engine = get()) }
     single { provideAppSetting(settings = get()) }
+    single { provideFirebaseAuthClient() }
 
     single { provideAuthService(client = get()) }
-    single { provideAuthRepo(authService = get(), appSettings = get()) }
+    single { provideAuthRepo(authService = get(), appSettings = get(), firebaseAuthClient = get()) }
     single { provideDeviceRepo(device = get()) }
 
 
     factory { provideAuthUseCase(authRepository = get(), deviceRepository = get(), dispatchers = get()) }
     factory { provideValidateUseCase(emailPatternChecker = get()) }
+    factory {
+        provideAuthUseCase(
+            authRepository = get(),
+            deviceRepository = get(),
+            dispatchers = get()
+        )
+    }
     factory { provideCommonUseCase() }
 
 }
@@ -62,33 +73,44 @@ fun provideCommonUseCase() = CommonUseCase(
     countDownTimer = CountDownTimer()
 )
 
-
 private fun provideAuthService(client: HttpClient): AuthService = KtorAuthService(client = client)
+private fun provideFirebaseAuthClient(): FirebaseAuthClient = FirebaseAuthClientImpl()
 
-private fun provideAuthRepo(authService: AuthService, appSettings: AppSettings): AuthRepository = AuthRepositoryImpl(authService, appSettings)
+private fun provideAuthRepo(
+    authService: AuthService,
+    appSettings: AppSettings,
+    firebaseAuthClient: FirebaseAuthClient,
+): AuthRepository = AuthRepositoryImpl(authService, appSettings, firebaseAuthClient)
 
 private fun provideDeviceRepo(device: Device): DeviceRepository = DeviceRepositoryImpl(device)
 
-private fun provideAuthUseCase(authRepository: AuthRepository, deviceRepository: DeviceRepository, dispatchers: CoroutineDispatchers): AuthUseCase = AuthUseCase(
+private fun provideAuthUseCase(
+    authRepository: AuthRepository,
+    deviceRepository: DeviceRepository,
+    dispatchers: CoroutineDispatchers,
+): AuthUseCase = AuthUseCase(
     register = Register(dispatchers, authRepository, deviceRepository),
     verifyOtp = VerifyOtp(authRepository, dispatchers),
     resendOtp = ResendOtp(authRepository, dispatchers),
     setAdmission = SetAdmission(authRepository, dispatchers),
     getAdmission = GetAdmission(authRepository, dispatchers),
     getPattern = GetPattern(authRepository),
-    setOnBoarded = SetOnBoarded(authRepository)
+    setOnBoarded = SetOnBoarded(authRepository),
+    signInWithSocial = SignInWithSocial(authRepository, dispatchers)
 )
 
 private fun provideValidateUseCase(emailPatternChecker: EmailPatternChecker): ValidateUseCase = ValidateUseCase(validateEmail = ValidateEmail(emailPatternChecker))
 
-private fun provideAppSetting(settings: SuspendSettings): AppSettings = MPAppSettings(settings = settings)
+
+private fun provideAppSetting(settings: SuspendSettings): AppSettings =
+    MPAppSettings(settings = settings)
 
 private fun provideSqlDatabase(
-    sqlDriver: SqlDriver
+    sqlDriver: SqlDriver,
 ): WalletlineDB = WalletlineDB(driver = sqlDriver)
 
 private fun provideHttpClient(
-    engine: HttpClientEngine
+    engine: HttpClientEngine,
 ): HttpClient = HttpClient(engine = engine) {
 
     install(Logging) {
@@ -121,6 +143,7 @@ private fun provideHttpClient(
     defaultRequest {
         contentType(ContentType.Application.Json)
         accept(ContentType.Application.Json)
+        // host has a bug on Darwin client
 //        url {
 //            protocol = URLProtocol.HTTPS
 //            host = HttpRoutes.Host
@@ -130,6 +153,7 @@ private fun provideHttpClient(
     /**
      * Throws error for non-2xx responses
      *
+     * **See Also** [SafeRequest](com.walletline.data.util.safeRequest)
      * **See Also** [Response validation](https://ktor.io/docs/response-validation.html)
      */
     expectSuccess = true

@@ -37,11 +37,11 @@ class EmailLoginViewModel: ObservableObject {
     }
 
     private func registerEmail() {
-        let emailValidation = useCase.validateEmail(email: state.email)
+        let emailValidation = useCase.validateUseCase.validateEmail.execute(email: state.email)
         updateState(emailError: emailValidation.message)
         if !emailValidation.isSuccess { return }
         updateState(isLoading: true)
-        let registerResponse = createFuture(for: useCase.register(email: state.email))
+        let registerResponse = createFuture(for: useCase.authUseCase.register_.execute(email: state.email))
         registerResponse.sink(
             receiveCompletion: { _ in },
             receiveValue: { [self] res in

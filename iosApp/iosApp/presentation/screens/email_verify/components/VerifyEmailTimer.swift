@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct VerifyEmailTimer: View {
-    @Binding var time: Int32
+    var time: Int32
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 2) {
             Text(secondsToMinuteAndSeconds(time))
@@ -24,9 +24,6 @@ struct VerifyEmailTimer: View {
                 
         }
         .animation(.default, value: time)
-        .onChange(of: time, perform: {
-            print("Timer: \($0)")
-        })
     }
     
     func secondsToMinuteAndSeconds(_ seconds: Int32) -> String {
@@ -40,6 +37,6 @@ struct VerifyEmailTimer: View {
 
 struct CountDownTimer_Previews: PreviewProvider {
     static var previews: some View {
-        VerifyEmailTimer(time: .constant(32))
+        VerifyEmailTimer(time: 32)
     }
 }

@@ -1,5 +1,6 @@
 package com.walletline.domain.use_case.auth
 
+import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.walletline.di.util.CoroutineDispatchers
 import com.walletline.domain.model.ApiResponse
 import com.walletline.domain.model.OtpData
@@ -16,6 +17,7 @@ class Register(
     private val authRepository: AuthRepository,
     private val deviceRepository: DeviceRepository
 ) {
+    @NativeCoroutines
     suspend fun execute(email: String): Resource<OtpData, RegisteredError> = coroutineScope {
 
         val deviceName = async(dispatchers.database) { deviceRepository.getDeviceName() }

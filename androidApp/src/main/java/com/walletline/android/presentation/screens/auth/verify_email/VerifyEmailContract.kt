@@ -6,8 +6,6 @@ import com.walletline.presentation.screens.auth.verify_email.VerifyEmailState
 interface VerifyEmailContract :
     UnidirectionalViewModel<VerifyEmailState, VerifyEmailContract.Effect, VerifyEmailContract.Event> {
 
-
-
     sealed interface Event {
         data class OTPChange(val text: String) : Event
         object OnContinueClicked : Event
@@ -20,10 +18,9 @@ interface VerifyEmailContract :
     sealed interface Effect {
         object VerifySuccessful : Effect
         object NavigateToEmail : Effect
-        object NavigateToPattern : Effect
         object ShowPolicy : Effect
         object ShowTerms : Effect
-        data class Error(val message: String) : Effect
+        data class ShowError(val message: String) : Effect
         data class ResendOtpSuccess(val otp: String) : Effect
     }
 }

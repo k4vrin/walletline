@@ -2,6 +2,12 @@
 <resources>
 
     <string name="app_name">Walletline</string>
+    <string name="web_client_id">41867280237-d1opai2d59v887nepe457tjun5nu7kta.apps.googleusercontent.com</string>
+
+    <string name="facebook_app_id">1458079677930341</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_app_secret">5799bdccf6d6680c7ff08c57e462bd55</string>
+
     <string name="wallet">Wallet</string>
     <string name="line">Line</string>
     <string name="plus">+</string>

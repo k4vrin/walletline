@@ -17,13 +17,14 @@ struct EmailLoginScreen: View {
     @State private var permissionGranted = false
     @State private var showAlert = false
     @State private var alertContent = ""
+    @State private var dest: AnyView? = nil
     
     @StateObject var viewModel = EmailLoginViewModel()
     
     var body: some View {
         WalletLineBackground { geo in
             NavigationLink(
-                destination: VerifyEmailScreen(email: viewModel.state.email),
+                destination: dest,
                 isActive: $isNavActive
             ) {
                 EmptyView()
@@ -96,11 +97,14 @@ struct EmailLoginScreen: View {
                 receiveValue: { effect in
                     switch effect {
                     case .enterBySocials:
-                        break
+                        dest = AnyView(SocialLoginScreen())
+                        isNavActive = true
                     case .registerSuccessful(let otp):
                         if permissionGranted {
                             NotificationManager.instance.sendOtpNotification(otp: otp)
                         }
+                        dest = AnyView(VerifyEmailScreen(email: viewModel.state.email))
+                        
                         isNavActive = true
                     case .error(message: let message):
                         alertContent = message

@@ -4,4 +4,8 @@ target 'iosApp' do
   pod 'shared', :path => '../shared'
   pod 'KMPNativeCoroutinesCombine', '1.0.0-ALPHA-5'
   pod 'KMPNativeCoroutinesAsync', '1.0.0-ALPHA-5'
+  pod 'FirebaseAnalytics'
+  pod 'FirebaseAuth'
+  pod 'GoogleSignIn'
+  pod 'FBSDKLoginKit'
 end

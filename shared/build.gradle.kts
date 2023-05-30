@@ -7,7 +7,6 @@ plugins {
     id(SqlDelight.Plugin) version SqlDelight.Version
     id(GradleVersions.Plugin) version GradleVersions.Version
     id(KMPNativeCoroutine.Plugin) version KMPNativeCoroutine.Version
-//    id(Moko.KswiftPlugin) version Moko.KswiftVersion
 }
 
 version = "1.0"
@@ -27,7 +26,7 @@ kotlin {
         podfile = project.file("../iosApp/Podfile")
         framework {
             baseName = "shared"
-            isStatic = false // SwiftUI preview requires dynamic framework
+            isStatic = true
         }
     }
 
@@ -64,6 +63,9 @@ kotlin {
                 implementation(MultiplatformSettings.mps)
                 implementation(MultiplatformSettings.mpsCoroutine)
 
+                // Kmm Firebase
+                implementation(Firebase.kmmAuth)
+
             }
         }
         val commonTest by getting {
@@ -80,6 +82,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies {
+                implementation(Koin.test)
                 implementation(Kotlin.test)
                 implementation(SqlDelight.androidDriver)
                 implementation(Ktor.okhttp)
@@ -165,9 +168,3 @@ dependencies {
             add(it.name, Mockative.processor)
         }
 }
-
-//kswift {
-//    install(dev.icerock.moko.kswift.plugin.feature.SealedToSwiftEnumFeature) {
-//        filter = excludeFilter("selector: ClassContext/app.cash.sqldelight:native-driver/app/cash/sqldelight/driver/native/ConnectionWrapper")
-//    }
-//}
