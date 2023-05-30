@@ -32,8 +32,8 @@ struct Dimen {
     public static let registerBgHeight: CGFloat = 280
     public static let registerBgOffsetWidth: CGFloat = 60
     public static let registerBgOffsetHeight: CGFloat = -210
-    public static let lockPatternHeight: CGFloat = 400
-    public static let lockPatternWidth: CGFloat = 425
+    public static let lockPatternHeight: CGFloat = 370
+    public static let lockPatternWidth: CGFloat = 370
     public static let RegisterFinishedMiddleMargin: CGFloat = 170
     public static let DisabledAlpha: CGFloat = 0.38
     public static let SocialMediaButtonHeight: CGFloat = 48

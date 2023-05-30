@@ -9,4 +9,14 @@ data class LoginPatternState(
     val isScrollEnabled: Boolean = true,
     val patternError: PatternValidationMessage? = null,
     val lockTimer: Int = 60,
-)
+) {
+
+    constructor(): this(
+        pattern = "",
+        remainingAttempts = 6,
+        showRemainingAttempts = false,
+        isScrollEnabled = true,
+        patternError = null,
+        lockTimer = 60
+    )
+}

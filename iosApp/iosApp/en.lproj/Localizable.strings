@@ -47,8 +47,8 @@
 "Entrance" = "Entrance";
 "Pattern" = "Pattern";
 "Submit Pattern" = "Submit Pattern";
-"Use my face/finger recognition" = "Use my face/finger recognition";
-"Prefer less secure?" = "Prefer less secure?";
+
+
 "Ignore setting pattern" = "Ignore setting pattern";
 
 
@@ -67,3 +67,16 @@
 "Enter by socials" = "Enter by socials";
 "Verify Email Address" = "Verify Email Address";
 "Left" = "Left";
+"Remember this pattern" = "Remember this pattern. If you forget it, you’ll need to reset your account and all data will be erased.";
+"Create your pattern" = "Create your pattern";
+"or continue with" = "or continue with";
+"Use my Face/Finger recognition" = "Use my face/finger recognition";
+"or continue with" = "or continue with";
+"Prefer less secure?" = "Prefer less secure?";
+"Set Pattern" = "Set Pattern";
+"Confirm your pattern" = "Confirm your pattern";
+"Retry" = "Retry";
+"if you enter the pattern wrongly" = "if you enter the pattern wrongly for %1$i times, the app will be lock!";
+"Incorrect pattern drawn" = "Incorrect pattern drawn";
+"The app is locked temporarily" = "The app is locked temporarily. \nYou can try again after 1 minute.";
+"Version 1.0" = "Version 1.0";

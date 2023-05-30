@@ -21,9 +21,9 @@ struct VerifyEmailScreen: View {
     @Environment(\.presentationMode) var presentation
     
     var body: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             NavigationLink(
-                destination: PatternScreen(),
+                destination: CreatePatternScreen(),
                 isActive: $goToPatternScreen
             ) {
                 EmptyView()

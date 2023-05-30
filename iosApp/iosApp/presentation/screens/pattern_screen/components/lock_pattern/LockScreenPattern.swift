@@ -11,17 +11,18 @@ import SwiftUI
 struct LockScreenPattern: UIViewRepresentable {
     typealias UIViewType = LockScreen
     var frame: CGRect = .init(x: -100, y: -100, width: 300, height: 300)
+    var resetView = false
     let action: (Double, [Int]) -> Void
     
     func makeUIView(context: Context) -> LockScreen {
         // Return LockScreen instance.
         var config = LockScreen.Config()
-        config.lineColor = UIColor(Color.secondaryContainerColor)
-        config.circleHighlightColor = UIColor(Color.surfaceVariantColor)
-        config.circleOuterRingColor = UIColor.clear
-        config.circleInnerRingColor = UIColor(Color.surfaceVariantColor)
-        config.lineEdgeColor = UIColor(Color.secondaryContainerColor)
-        config.lineWidth = 3
+        config.lineColor = UIColor(Color.neutralColor)
+        config.circleHighlightColor = UIColor(Color.red)
+        config.circleOuterRingColor = UIColor(Color.neutralColor)
+        config.circleInnerRingColor = UIColor(Color.neutralColor)
+        config.lineEdgeColor = UIColor(Color.neutralColor.opacity(0.2))
+        config.lineWidth = 1.5
         
         return LockScreen(
             frame: frame,
@@ -34,6 +35,8 @@ struct LockScreenPattern: UIViewRepresentable {
     
     func updateUIView(_ uiView: LockScreen, context: Context) {
         // Updates the state of the specified view with new information from SwiftUI.
+            print("call uiView \(resetView)")
+            uiView.resetScreen(resetView)
     }
 }
 

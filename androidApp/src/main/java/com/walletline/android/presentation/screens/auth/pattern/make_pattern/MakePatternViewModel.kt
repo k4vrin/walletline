@@ -124,7 +124,7 @@ class MakePatternViewModel(
                 state.copy(
                     confirmPattern = event.pattern,
                     isScrollEnabled = event.isScrollEnabled,
-                    isConfirmButtonEnable = event.pattern.length >= 4
+                    isContinueButtonEnable = event.pattern.length >= 4
                 )
             }
 

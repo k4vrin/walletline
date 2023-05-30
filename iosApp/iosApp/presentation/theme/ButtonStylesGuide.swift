@@ -47,28 +47,31 @@ struct ButtonStylesGuide: View {
 
 struct PrimaryButtonStyle: ViewModifier {
     @Environment(\.isEnabled) var isEnabled
+    var contentColor = Color.neutralColor
+    var backgroundColor = Color.mainColorShade4
+    var borderColor: Color? = nil
 
-    var backgroundColor: Color {
-        isEnabled ? Color.mainColorShade4 : Color.mainColorShade4.opacity(Dimen.DisabledAlpha)
+    var bColor: Color {
+        isEnabled ? backgroundColor : backgroundColor.opacity(Dimen.DisabledAlpha)
     }
 
-    var contentColor: Color {
-        isEnabled ? Color.neutralColor : Color.neutralColor.opacity(Dimen.DisabledAlpha)
+    var cColor: Color {
+        isEnabled ? contentColor : contentColor.opacity(Dimen.DisabledAlpha)
     }
 
     func body(content: Content) -> some View {
         content
             .frame(maxWidth: .infinity)
             .buttonStyle()
-            .foregroundColor(contentColor)
+            .foregroundColor(cColor)
             .padding(Padding.medium)
             .background(
                 RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius, style: .continuous)
-                    .fill(backgroundColor)
+                    .fill(bColor)
             )
             .overlay(
                 RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius, style: .continuous)
-                    .stroke(Color.neutralColorShade2)
+                    .stroke(borderColor ?? bColor, lineWidth: 2)
             )
     }
 }
@@ -129,8 +132,18 @@ struct SocialMediaButtonStyle: ViewModifier {
 }
 
 public extension View {
-    func primaryButtonStyle() -> some View {
-        modifier(PrimaryButtonStyle())
+    func primaryButtonStyle(
+        backgroundColor: Color = Color.mainColorShade4,
+        contentColor: Color = Color.neutralColor,
+        borderColor: Color? = nil
+    ) -> some View {
+        modifier(
+            PrimaryButtonStyle(
+                contentColor: contentColor,
+                backgroundColor: backgroundColor,
+                borderColor: borderColor
+            )
+        )
     }
 
     func startButtonStyle() -> some View {

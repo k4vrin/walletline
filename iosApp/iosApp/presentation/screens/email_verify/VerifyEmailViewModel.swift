@@ -104,7 +104,6 @@ class VerifyEmailViewModel: ObservableObject {
     private func startTimer() {
         useCase.startTimer()
         guard let timer = useCase.timer() else { eventSubject.send(.Error(message: "timer null"));return }
-        print("Timer is \(timer)")
         let publisher = createPublisher(for: timer)
         
         publisher.sink(receiveCompletion: { _ in

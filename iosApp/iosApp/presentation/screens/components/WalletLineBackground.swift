@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct WalletLineBackground<Content: View>: View {
-    @ViewBuilder let content: () -> Content
+    @ViewBuilder let content: (_ geo: GeometryProxy) -> Content
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     var bigCircleDiam: CGFloat {
@@ -49,7 +49,7 @@ struct WalletLineBackground<Content: View>: View {
                 .foregroundColor(.neutralColor)
                 .opacity(0.04)
             ScrollView(.vertical) {
-                content()
+                content(geo)
             }
             .frame(
                 width: geo.size.width
@@ -60,7 +60,7 @@ struct WalletLineBackground<Content: View>: View {
 
 struct WalletLineBackground_Previews: PreviewProvider {
     static var previews: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             Text("Hello World")
         }
     }

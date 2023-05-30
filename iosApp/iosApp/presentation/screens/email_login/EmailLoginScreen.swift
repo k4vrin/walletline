@@ -21,7 +21,7 @@ struct EmailLoginScreen: View {
     @StateObject var viewModel = EmailLoginViewModel()
     
     var body: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             NavigationLink(
                 destination: VerifyEmailScreen(email: viewModel.state.email),
                 isActive: $isNavActive

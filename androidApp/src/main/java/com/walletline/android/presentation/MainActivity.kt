@@ -14,6 +14,7 @@ import com.ramcosta.composedestinations.animations.rememberAnimatedNavHostEngine
 import com.walletline.android.presentation.screens.NavGraphs
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.transition.WalletLineTransitionAnimation
+import com.walletline.android.presentation.util.BackPressHandler
 
 
 class MainActivity : FragmentActivity() {
@@ -43,11 +44,8 @@ class MainActivity : FragmentActivity() {
                 }
             }
 
+            BackPressHandler()
+
         }
-
-
-
-
-
     }
 }

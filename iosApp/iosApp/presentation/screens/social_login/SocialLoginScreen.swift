@@ -11,7 +11,7 @@ import SwiftUI
 struct SocialLoginScreen: View {
     @State private var isNavActive = false
     var body: some View {
-        WalletLineBackground {
+        WalletLineBackground { geo in
             NavigationLink(
                 destination: EmailLoginScreen(),
                 isActive: $isNavActive

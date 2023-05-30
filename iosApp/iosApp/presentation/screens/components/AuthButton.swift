@@ -10,7 +10,7 @@ import SwiftUI
 
 struct AuthButton: View {
     let title: String
-    var isLoading: Bool = true
+    var isLoading: Bool = false
     let action: () -> Void
     var body: some View {
         Button {
