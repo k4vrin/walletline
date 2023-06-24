@@ -1,10 +1,10 @@
 package com.walletline.domain.repository
 
 import com.walletline.domain.model.ApiResponse
-import com.walletline.domain.model.RegisteredError
-import com.walletline.domain.model.RegisteredSuccess
-import com.walletline.domain.model.SignInResult
-import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.auth.RegisteredError
+import com.walletline.domain.model.auth.RegisteredSuccess
+import com.walletline.domain.model.auth.SignInResult
+import com.walletline.domain.model.auth.SocialSignType
 
 interface AuthRepository {
     suspend fun register(email: String, deviceName: String): ApiResponse<RegisteredSuccess, RegisteredError>

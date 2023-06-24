@@ -1,8 +1,8 @@
 package com.walletline.data.remote.firebase.auth
 
-import com.walletline.domain.model.SignInResult
-import com.walletline.domain.model.SocialSignType
-import com.walletline.domain.model.UserData
+import com.walletline.domain.model.auth.SignInResult
+import com.walletline.domain.model.auth.SocialSignType
+import com.walletline.domain.model.auth.UserData
 
 interface FirebaseAuthClient {
 

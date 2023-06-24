@@ -2,8 +2,8 @@ package com.walletline.android.presentation.screens.auth.pattern.make_pattern
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.walletline.domain.model.BiometricType
-import com.walletline.domain.model.PatternValidationMessage
+import com.walletline.domain.model.auth.BiometricType
+import com.walletline.domain.model.auth.PatternValidationMessage
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.presentation.screens.auth.pattern.make_pattern.MakePatternState
 import kotlinx.coroutines.channels.Channel

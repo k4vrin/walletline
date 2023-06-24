@@ -8,11 +8,11 @@ import com.walletline.data.local.settings.AppSettings
 import com.walletline.data.remote.firebase.auth.FirebaseAuthClient
 import com.walletline.data.remote.server.AuthService
 import com.walletline.domain.model.ApiResponse
-import com.walletline.domain.model.RegisteredSuccess
-import com.walletline.domain.model.SignInResult
-import com.walletline.domain.model.SocialSignInError
-import com.walletline.domain.model.SocialSignType
-import com.walletline.domain.model.UserData
+import com.walletline.domain.model.auth.RegisteredSuccess
+import com.walletline.domain.model.auth.SignInResult
+import com.walletline.domain.model.auth.SocialSignInError
+import com.walletline.domain.model.auth.SocialSignType
+import com.walletline.domain.model.auth.UserData
 import com.walletline.domain.repository.AuthRepository
 import io.kotest.matchers.shouldBe
 import io.mockative.Mock
@@ -132,7 +132,7 @@ class AuthRepositoryTest {
         val token = "123456789564"
         given(appSettings)
             .coroutine { setToken(token) }
-            .then { Unit }
+            .then { }
         authRepository.setToken(token)
         verify(appSettings)
             .coroutine { setToken(token) }

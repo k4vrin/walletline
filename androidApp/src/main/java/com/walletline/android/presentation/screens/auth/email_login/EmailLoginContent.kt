@@ -32,7 +32,7 @@ import com.walletline.android.presentation.theme.Dimen
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.padding
 import com.walletline.android.presentation.util.ThemePreviews
-import com.walletline.domain.model.EmailValidationMessage
+import com.walletline.domain.model.auth.EmailValidationMessage
 import com.walletline.presentation.screens.auth.email_login.EmailLoginState
 
 @Composable

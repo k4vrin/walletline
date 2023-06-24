@@ -192,7 +192,7 @@ struct BodySmallStyle: ViewModifier {
                     relativeTo: .body
                 )
             )
-            .lineSpacing(Padding.small)
+            .lineSpacing(1)
     }
 }
 

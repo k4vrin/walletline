@@ -1,7 +1,7 @@
 package com.walletline.android.presentation.screens.auth.verify_email
 
 import androidx.compose.ui.tooling.preview.PreviewParameterProvider
-import com.walletline.domain.model.OTPValidationMessage
+import com.walletline.domain.model.auth.OTPValidationMessage
 import com.walletline.presentation.screens.auth.verify_email.VerifyEmailState
 
 class VerifyEmailPreviewProvider : PreviewParameterProvider<VerifyEmailState> {

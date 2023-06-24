@@ -1,6 +1,6 @@
 package com.walletline.presentation.screens.auth.admission
 
-import com.walletline.domain.model.UserCondition
+import com.walletline.domain.model.auth.UserCondition
 
 data class IntroState(
     val userCondition: UserCondition = UserCondition.FirstTime,

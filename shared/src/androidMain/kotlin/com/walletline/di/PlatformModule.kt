@@ -5,6 +5,7 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStoreFile
+import androidx.sqlite.db.SupportSQLiteDatabase
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.android.AndroidSqliteDriver
 import com.russhwolf.settings.coroutines.SuspendSettings
@@ -38,7 +39,13 @@ private fun provideSqlDriver(
 ): SqlDriver = AndroidSqliteDriver(
     schema = WalletlineDB.Schema,
     context = context,
-    name = "walletline.db"
+    name = "walletline.db",
+    callback = object : AndroidSqliteDriver.Callback(WalletlineDB.Schema) {
+        override fun onOpen(db: SupportSQLiteDatabase) {
+            super.onOpen(db)
+            db.setForeignKeyConstraintsEnabled(true)
+        }
+    }
 )
 
 private fun provideHttpClientEngine(): HttpClientEngine = OkHttp.create()

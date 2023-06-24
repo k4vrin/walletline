@@ -30,7 +30,7 @@ struct WalletLineLogoHeader: View {
 
 struct WalletLineLogoHeader_Previews: PreviewProvider {
     static var previews: some View {
-        WalletLineBackground { geo in
+        WalletLineAuthBackground { geo in
             WalletLineLogoHeader()
                 .padding(.vertical, 100)
         }

@@ -2,8 +2,8 @@ package com.walletline.android.presentation.screens.auth.email_login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.walletline.domain.model.EmailValidationMessage
-import com.walletline.domain.model.RegisteredError
+import com.walletline.domain.model.auth.EmailValidationMessage
+import com.walletline.domain.model.auth.RegisteredError
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.use_case.validator.ValidateUseCase
 import com.walletline.domain.util.Resource

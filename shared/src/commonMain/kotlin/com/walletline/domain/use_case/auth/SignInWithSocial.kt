@@ -3,8 +3,8 @@ package com.walletline.domain.use_case.auth
 import co.touchlab.kermit.Logger
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.walletline.di.util.CoroutineDispatchers
-import com.walletline.domain.model.SocialSignInError
-import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.auth.SocialSignInError
+import com.walletline.domain.model.auth.SocialSignType
 import com.walletline.domain.repository.AuthRepository
 import com.walletline.domain.util.Resource
 import kotlinx.coroutines.withContext

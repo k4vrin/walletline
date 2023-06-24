@@ -1,6 +1,6 @@
 package com.walletline.presentation.screens.auth.email_login
 
-import com.walletline.domain.model.EmailValidationMessage
+import com.walletline.domain.model.auth.EmailValidationMessage
 
 data class EmailLoginState(
     val email: String = "",

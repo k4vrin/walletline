@@ -2,6 +2,7 @@ package com.walletline.di
 
 import app.cash.sqldelight.db.SqlDriver
 import app.cash.sqldelight.driver.native.NativeSqliteDriver
+import co.touchlab.sqliter.DatabaseConfiguration
 import com.russhwolf.settings.NSUserDefaultsSettings
 import com.russhwolf.settings.coroutines.SuspendSettings
 import com.russhwolf.settings.coroutines.toSuspendSettings
@@ -36,7 +37,12 @@ private fun provideDispatchers(): CoroutineDispatchers = CoroutineDispatchers(
 
 private fun provideSqlDriver(): SqlDriver = NativeSqliteDriver(
     schema = WalletlineDB.Schema,
-    name = "walletline.db"
+    name = "walletline.db",
+    onConfiguration = { config ->
+        config.copy(
+            extendedConfig = DatabaseConfiguration.Extended(foreignKeyConstraints = true)
+        )
+    }
 )
 
 /**

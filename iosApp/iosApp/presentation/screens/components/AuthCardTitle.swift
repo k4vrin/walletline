@@ -17,7 +17,7 @@ struct AuthCardTitle: View {
     var body: some View {
         Text(text)
             .titleLargeStyle()
-            .foregroundColor(.neutralColorShade6)
+            .foregroundColor(.neutralColorDark)
     }
 }
 

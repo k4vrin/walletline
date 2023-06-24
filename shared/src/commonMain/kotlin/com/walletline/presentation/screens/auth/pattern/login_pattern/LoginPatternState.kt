@@ -1,6 +1,6 @@
 package com.walletline.presentation.screens.auth.pattern.login_pattern
 
-import com.walletline.domain.model.PatternValidationMessage
+import com.walletline.domain.model.auth.PatternValidationMessage
 
 data class LoginPatternState(
     val pattern: String = "",

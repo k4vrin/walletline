@@ -13,7 +13,7 @@ import com.walletline.android.presentation.screens.intro.IntroContract
 import com.walletline.android.presentation.screens.intro.IntroViewModel
 import com.walletline.android.presentation.util.collectInLaunchedEffect
 import com.walletline.android.presentation.util.use
-import com.walletline.domain.model.UserCondition
+import com.walletline.domain.model.auth.UserCondition
 import org.koin.androidx.compose.koinViewModel
 
 @IntroNavGraph(start = true)

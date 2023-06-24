@@ -1,0 +1,29 @@
+CREATE TABLE partnerEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    img TEXT NOT NULL
+);
+
+insertPartner:
+INSERT OR ABORT
+INTO partnerEntity(
+    id,
+    name,
+    img
+) VALUES (?, ?, ?);
+
+getAllPartners:
+SELECT *
+FROM partnerEntity;
+
+getPartnerById:
+SELECT *
+FROM partnerEntity
+WHERE id = ?;
+
+deletePartnerById:
+DELETE FROM partnerEntity
+WHERE id = ?;
+
+deleteAllPartners:
+DELETE FROM partnerEntity;

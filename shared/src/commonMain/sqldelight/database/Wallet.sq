@@ -1,0 +1,32 @@
+
+CREATE TABLE walletEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    name TEXT NOT NULL,
+    balance TEXT NOT NULL,
+    description TEXT
+);
+
+insertWallet:
+INSERT OR REPLACE
+INTO walletEntity(
+    id,
+    name,
+    balance,
+    description
+) VALUES (?, ?, ?, ?);
+
+getAllWallets:
+SELECT *
+FROM walletEntity;
+
+getWalletById:
+SELECT *
+FROM walletEntity
+WHERE id = ?;
+
+deleteWalletById:
+DELETE FROM walletEntity
+WHERE id = ?;
+
+deleteAllWallets:
+DELETE FROM walletEntity;

@@ -4,9 +4,9 @@ import android.content.Context
 import androidx.biometric.BiometricManager
 import androidx.biometric.BiometricPrompt
 import androidx.fragment.app.FragmentActivity
-import com.walletline.domain.model.BiometricAuthResult
-import com.walletline.domain.model.BiometricError
-import com.walletline.domain.model.BiometricType
+import com.walletline.domain.model.auth.BiometricAuthResult
+import com.walletline.domain.model.auth.BiometricError
+import com.walletline.domain.model.auth.BiometricType
 import kotlinx.coroutines.suspendCancellableCoroutine
 
 class BiometricClient {

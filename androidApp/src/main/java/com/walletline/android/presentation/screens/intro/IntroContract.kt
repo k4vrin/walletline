@@ -1,7 +1,7 @@
 package com.walletline.android.presentation.screens.intro
 
 import com.walletline.android.presentation.util.UnidirectionalViewModel
-import com.walletline.domain.model.UserCondition
+import com.walletline.domain.model.auth.UserCondition
 import com.walletline.presentation.screens.auth.admission.IntroState
 
 interface IntroContract :

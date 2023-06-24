@@ -1,6 +1,6 @@
 package com.walletline.domain.use_case.validator
 
-import com.walletline.domain.model.EmailValidationMessage
+import com.walletline.domain.model.auth.EmailValidationMessage
 import com.walletline.domain.util.EmailPatternChecker
 import com.walletline.domain.util.ValidationResult
 
