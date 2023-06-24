@@ -1,8 +1,8 @@
 package com.walletline.android.presentation.screens.auth.social_login
 
 import com.walletline.android.presentation.util.UnidirectionalViewModel
-import com.walletline.domain.model.SocialSignInError
-import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.auth.SocialSignInError
+import com.walletline.domain.model.auth.SocialSignType
 import com.walletline.presentation.screens.auth.social_login.SocialLoginState
 
 interface SocialLoginContract :

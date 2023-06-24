@@ -4,6 +4,7 @@ import com.walletline.data.remote.firebase.auth.FirebaseAuthClientImpl
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.use_case.common.CommonUseCase
 import com.walletline.domain.use_case.validator.ValidateUseCase
+import com.walletline.domain.use_case.wallet.WalletUseCase
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
@@ -11,6 +12,7 @@ class KoinHelper : KoinComponent {
      val authUseCase: AuthUseCase by inject()
      val commonUseCase: CommonUseCase by inject()
      val validateUseCase: ValidateUseCase by inject()
+     val walletUseCase: WalletUseCase by inject()
      val firebaseAuthClientImpl by lazy { FirebaseAuthClientImpl() }
 }
 

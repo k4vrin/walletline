@@ -6,7 +6,7 @@ import android.content.IntentSender
 import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.gms.auth.api.identity.SignInClient
 import com.walletline.android.R
-import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.auth.SocialSignType
 import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.cancellation.CancellationException
 

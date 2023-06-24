@@ -2,7 +2,7 @@ package com.walletline.domain.use_case.auth
 
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.walletline.di.util.CoroutineDispatchers
-import com.walletline.domain.model.UserCondition
+import com.walletline.domain.model.auth.UserCondition
 import com.walletline.domain.repository.AuthRepository
 import kotlinx.coroutines.async
 import kotlinx.coroutines.coroutineScope

@@ -66,6 +66,9 @@ kotlin {
                 // Kmm Firebase
                 implementation(Firebase.kmmAuth)
 
+                // BigNum
+                implementation(BigNum.bigNum)
+
             }
         }
         val commonTest by getting {
@@ -78,6 +81,8 @@ kotlin {
                 implementation(Ktor.clientMock)
                 implementation(Kotest.assertion)
                 implementation(Mockative.core)
+                // BigNum
+                implementation(BigNum.bigNum)
             }
         }
         val androidMain by getting {
@@ -100,6 +105,11 @@ kotlin {
                 implementation("androidx.test:core:1.5.0")
                 implementation("androidx.test.ext:junit:1.1.5")
                 implementation("androidx.test:rules:1.5.0")
+            }
+        }
+        val androidUnitTest by getting {
+            dependencies {
+                dependsOn(androidInstrumentedTest)
             }
         }
         val iosX64Main by getting

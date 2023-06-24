@@ -1,9 +1,9 @@
 package com.walletline.domain.use_case.auth
 
-import com.walletline.domain.model.SignInResult
-import com.walletline.domain.model.SocialSignInError
-import com.walletline.domain.model.SocialSignType
-import com.walletline.domain.model.UserData
+import com.walletline.domain.model.auth.SignInResult
+import com.walletline.domain.model.auth.SocialSignInError
+import com.walletline.domain.model.auth.SocialSignType
+import com.walletline.domain.model.auth.UserData
 import com.walletline.domain.repository.AuthRepository
 import com.walletline.domain.util.Resource
 import com.walletline.util.Helpers

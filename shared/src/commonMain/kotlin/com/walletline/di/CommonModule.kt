@@ -2,6 +2,10 @@ package com.walletline.di
 
 import app.cash.sqldelight.db.SqlDriver
 import com.russhwolf.settings.coroutines.SuspendSettings
+import com.walletline.data.local.db.SqlDelightWalletDataSource
+import com.walletline.data.local.db.SqlDelightWalletLineDataSource
+import com.walletline.data.local.db.WalletDataSource
+import com.walletline.data.local.db.WalletLineDataSource
 import com.walletline.data.local.device.Device
 import com.walletline.data.local.settings.AppSettings
 import com.walletline.data.local.settings.MPAppSettings
@@ -11,10 +15,13 @@ import com.walletline.data.remote.server.AuthService
 import com.walletline.data.remote.server.KtorAuthService
 import com.walletline.data.repository.AuthRepositoryImpl
 import com.walletline.data.repository.DeviceRepositoryImpl
+import com.walletline.data.repository.WalletRepositoryImpl
 import com.walletline.database.WalletlineDB
 import com.walletline.di.util.CoroutineDispatchers
+import com.walletline.di.util.listOfStringsAdapter
 import com.walletline.domain.repository.AuthRepository
 import com.walletline.domain.repository.DeviceRepository
+import com.walletline.domain.repository.WalletRepository
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.use_case.auth.GetAdmission
 import com.walletline.domain.use_case.auth.GetPattern
@@ -28,7 +35,15 @@ import com.walletline.domain.use_case.common.CommonUseCase
 import com.walletline.domain.use_case.common.CountDownTimer
 import com.walletline.domain.use_case.validator.ValidateEmail
 import com.walletline.domain.use_case.validator.ValidateUseCase
+import com.walletline.domain.use_case.wallet.CreateLine
+import com.walletline.domain.use_case.wallet.CreateWallet
+import com.walletline.domain.use_case.wallet.DeleteWallet
+import com.walletline.domain.use_case.wallet.EditWallet
+import com.walletline.domain.use_case.wallet.GetWallet
+import com.walletline.domain.use_case.wallet.GetWallets
+import com.walletline.domain.use_case.wallet.WalletUseCase
 import com.walletline.domain.util.EmailPatternChecker
+import database.WalletLineEntity
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.plugins.HttpTimeout
@@ -55,6 +70,9 @@ val commonModule = module {
     single { provideAuthRepo(authService = get(), appSettings = get(), firebaseAuthClient = get()) }
     single { provideDeviceRepo(device = get()) }
 
+    single { provideWalletDataSource(database = get()) }
+    single { provideWalletLineDataSource(database = get()) }
+    single { provideWalletRepository(walletDataSource = get(), lineDataSource = get()) }
 
     factory { provideAuthUseCase(authRepository = get(), deviceRepository = get(), dispatchers = get()) }
     factory { provideValidateUseCase(emailPatternChecker = get()) }
@@ -66,11 +84,34 @@ val commonModule = module {
         )
     }
     factory { provideCommonUseCase() }
+    factory { provideWalletUseCase(walletRepository = get(), dispatchers = get()) }
 
+}
+
+fun provideWalletRepository(
+    walletDataSource: WalletDataSource,
+    lineDataSource: WalletLineDataSource
+): WalletRepository = WalletRepositoryImpl(walletDataSource, lineDataSource)
+
+fun provideWalletLineDataSource(database: WalletlineDB): WalletLineDataSource {
+    return SqlDelightWalletLineDataSource(db = database)
+}
+
+fun provideWalletDataSource(database: WalletlineDB): WalletDataSource {
+    return SqlDelightWalletDataSource(db = database)
 }
 
 fun provideCommonUseCase() = CommonUseCase(
     countDownTimer = CountDownTimer()
+)
+
+fun provideWalletUseCase(walletRepository: WalletRepository, dispatchers: CoroutineDispatchers) = WalletUseCase(
+    createWallet = CreateWallet(walletRepository = walletRepository, dispatchers = dispatchers),
+    createLine = CreateLine(walletRepository = walletRepository, dispatchers = dispatchers),
+    getWallets = GetWallets(walletRepository = walletRepository, dispatchers = dispatchers),
+    getWallet = GetWallet(walletRepository = walletRepository, dispatchers = dispatchers),
+    editWallet = EditWallet(walletRepository = walletRepository, dispatchers = dispatchers),
+    deleteWallet = DeleteWallet(walletRepository = walletRepository, dispatchers = dispatchers),
 )
 
 private fun provideAuthService(client: HttpClient): AuthService = KtorAuthService(client = client)
@@ -107,7 +148,10 @@ private fun provideAppSetting(settings: SuspendSettings): AppSettings =
 
 private fun provideSqlDatabase(
     sqlDriver: SqlDriver,
-): WalletlineDB = WalletlineDB(driver = sqlDriver)
+): WalletlineDB = WalletlineDB(
+    driver = sqlDriver,
+    walletLineEntityAdapter = WalletLineEntity.Adapter(categoriesAdapter = listOfStringsAdapter)
+)
 
 private fun provideHttpClient(
     engine: HttpClientEngine,

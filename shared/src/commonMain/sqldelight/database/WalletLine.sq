@@ -1,0 +1,44 @@
+import kotlin.String;
+import kotlin.collections.List;
+
+
+CREATE TABLE walletLineEntity (
+    id TEXT NOT NULL PRIMARY KEY,
+    wallet_id TEXT NOT NULL,
+    name TEXT NOT NULL,
+    percentage INTEGER NOT NULL,
+    balance TEXT NOT NULL,
+    description TEXT,
+    categories TEXT AS List<String> NOT NULL,
+    FOREIGN KEY (wallet_id) REFERENCES walletEntity(id) ON DELETE CASCADE
+);
+
+insertWalletLine:
+INSERT OR ABORT
+INTO walletLineEntity(
+    id,
+    wallet_id,
+    name,
+    percentage,
+    balance,
+    description,
+    categories
+) VALUES (?, ?, ?, ?, ?, ?, ?);
+
+getAllWalletLines:
+SELECT *
+FROM walletLineEntity
+WHERE wallet_id = ?;
+
+getWalletLineById:
+SELECT *
+FROM walletLineEntity
+WHERE id = ?;
+
+deleteWalletLineById:
+DELETE FROM walletLineEntity
+WHERE id = ?;
+
+deleteAllWalletLines:
+DELETE FROM walletLineEntity
+WHERE wallet_id = ?;

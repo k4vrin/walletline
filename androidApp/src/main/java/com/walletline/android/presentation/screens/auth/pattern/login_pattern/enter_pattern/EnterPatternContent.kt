@@ -21,7 +21,7 @@ import com.walletline.android.presentation.screens.auth.pattern.component.patter
 import com.walletline.android.presentation.screens.auth.pattern.login_pattern.LoginPatternContract
 import com.walletline.android.presentation.theme.WalletLineTheme
 import com.walletline.android.presentation.theme.padding
-import com.walletline.domain.model.PatternValidationMessage
+import com.walletline.domain.model.auth.PatternValidationMessage
 import com.walletline.presentation.screens.auth.pattern.login_pattern.LoginPatternState
 
 @Composable

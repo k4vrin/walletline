@@ -4,7 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.walletline.android.presentation.screens.navArgs
-import com.walletline.domain.model.OTPValidationMessage
+import com.walletline.domain.model.auth.OTPValidationMessage
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.use_case.common.CommonUseCase
 import com.walletline.domain.util.Resource

@@ -1,8 +1,8 @@
 package com.walletline.domain.use_case.auth
 
 import com.walletline.domain.model.ApiResponse
-import com.walletline.domain.model.RegisteredError
-import com.walletline.domain.model.RegisteredSuccess
+import com.walletline.domain.model.auth.RegisteredError
+import com.walletline.domain.model.auth.RegisteredSuccess
 import com.walletline.domain.repository.AuthRepository
 import com.walletline.domain.repository.DeviceRepository
 import com.walletline.domain.util.Resource
@@ -54,7 +54,7 @@ class RegisterTest {
 
         given(authRepository)
             .coroutine { setTrackingCode("") }
-            .then { Unit }
+            .then { }
 
         val res = register.execute(email)
 

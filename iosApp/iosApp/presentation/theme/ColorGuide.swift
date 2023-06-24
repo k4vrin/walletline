@@ -110,7 +110,7 @@ struct ColorGuide: View {
                 Capsule()
                     .fill(Color.neutralColorShade5)
                 Capsule()
-                    .fill(Color.neutralColorShade6)
+                    .fill(Color.neutralColorDark)
             }
             
         }
@@ -203,6 +203,7 @@ extension Color {
     public static let neutralColorShade4: Color = Color("neutralColorShade4")
     public static let neutralColorShade5: Color = Color("neutralColorShade5")
     public static let neutralColorShade6: Color = Color("neutralColorShade6")
+    public static let neutralColorDark: Color = Color("neutralColorDark")
 }
 
 struct ColorGuide_Previews: PreviewProvider {

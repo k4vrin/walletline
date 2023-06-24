@@ -3,7 +3,7 @@ package com.walletline.domain.use_case.auth
 import com.rickclephas.kmp.nativecoroutines.NativeCoroutines
 import com.walletline.di.util.CoroutineDispatchers
 import com.walletline.domain.model.ApiResponse
-import com.walletline.domain.model.OtpData
+import com.walletline.domain.model.auth.OtpData
 import com.walletline.domain.repository.AuthRepository
 import com.walletline.domain.util.Resource
 import kotlinx.coroutines.withContext

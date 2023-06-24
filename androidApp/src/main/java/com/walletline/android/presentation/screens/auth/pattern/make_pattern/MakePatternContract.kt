@@ -1,9 +1,9 @@
 package com.walletline.android.presentation.screens.auth.pattern.make_pattern
 
 import com.walletline.android.presentation.util.UnidirectionalViewModel
-import com.walletline.domain.model.BiometricError
-import com.walletline.domain.model.BiometricType
-import com.walletline.domain.model.PatternValidationMessage
+import com.walletline.domain.model.auth.BiometricError
+import com.walletline.domain.model.auth.BiometricType
+import com.walletline.domain.model.auth.PatternValidationMessage
 import com.walletline.presentation.screens.auth.pattern.make_pattern.MakePatternState
 
 interface MakePatternContract :

@@ -18,8 +18,8 @@ import com.walletline.android.presentation.util.BiometricClient
 import com.walletline.android.presentation.util.collectInLaunchedEffect
 import com.walletline.android.presentation.util.koinSharedViewModel
 import com.walletline.android.presentation.util.use
-import com.walletline.domain.model.BiometricError
-import com.walletline.domain.model.BiometricType
+import com.walletline.domain.model.auth.BiometricError
+import com.walletline.domain.model.auth.BiometricType
 
 @AuthNavGraph(start = true)
 @Destination

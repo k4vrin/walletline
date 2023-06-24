@@ -2,8 +2,8 @@ package com.walletline.android.presentation.screens.auth.social_login
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.walletline.domain.model.SocialSignInError
-import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.auth.SocialSignInError
+import com.walletline.domain.model.auth.SocialSignType
 import com.walletline.domain.use_case.auth.AuthUseCase
 import com.walletline.domain.util.Resource
 import com.walletline.presentation.screens.auth.social_login.SocialLoginState

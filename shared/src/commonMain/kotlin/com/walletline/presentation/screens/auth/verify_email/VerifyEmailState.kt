@@ -1,6 +1,6 @@
 package com.walletline.presentation.screens.auth.verify_email
 
-import com.walletline.domain.model.OTPValidationMessage
+import com.walletline.domain.model.auth.OTPValidationMessage
 
 data class VerifyEmailState(
     val otp: String = "",

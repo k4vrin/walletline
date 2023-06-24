@@ -6,13 +6,14 @@
 //  Copyright © 2023 orgName. All rights reserved.
 //
 
+import FBSDKLoginKit
+import FirebaseAuth
+import FirebaseCore
 import Foundation
+import GoogleSignIn
+import SwiftUI
 import UIKit
 import UserNotifications
-import FirebaseCore
-import FirebaseAuth
-import GoogleSignIn
-import FBSDKLoginKit
 
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -22,14 +23,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if url.scheme?.contains("google") == true {
             return GIDSignIn.sharedInstance.handle(url)
         } else {
             return ApplicationDelegate.shared.application(app, open: url, options: options)
         }
     }
-    
+
     func userNotificationCenter(
         _ center: UNUserNotificationCenter,
         willPresent notification: UNNotification,
@@ -39,6 +40,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Show a banner
         completionHandler(.banner)
-
     }
 }

@@ -6,7 +6,7 @@ import co.touchlab.kermit.Logger
 import com.google.firebase.auth.OAuthProvider
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
-import com.walletline.domain.model.SocialSignType
+import com.walletline.domain.model.auth.SocialSignType
 import kotlinx.coroutines.tasks.await
 import kotlin.coroutines.cancellation.CancellationException
 

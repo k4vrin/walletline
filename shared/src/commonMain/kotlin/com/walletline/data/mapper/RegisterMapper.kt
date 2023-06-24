@@ -3,8 +3,8 @@ package com.walletline.data.mapper
 import com.walletline.data.dto.response.RegisterError
 import com.walletline.data.dto.response.RegisterSuccess
 import com.walletline.domain.model.ApiResponse
-import com.walletline.domain.model.RegisteredError
-import com.walletline.domain.model.RegisteredSuccess
+import com.walletline.domain.model.auth.RegisteredError
+import com.walletline.domain.model.auth.RegisteredSuccess
 
 fun RegisterError.toRegisteredError(): RegisteredError = with(this) {
     RegisteredError(

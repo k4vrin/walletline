@@ -131,6 +131,36 @@ struct SocialMediaButtonStyle: ViewModifier {
     }
 }
 
+struct TabRowButtonStyle: ViewModifier {
+    var selectedBgColor: Color
+    var unSelectedBgColor: Color
+    var selectedFgColor: Color
+    var unSelectedFgColor: Color
+    var isSelected: Bool
+    var radius: CGFloat = 8
+
+    var backgroundColor: Color {
+        isSelected ? selectedBgColor : unSelectedBgColor
+    }
+
+    var contentColor: Color {
+        isSelected ? selectedFgColor : unSelectedFgColor
+    }
+
+    func body(content: Content) -> some View {
+        content
+            .frame(maxWidth: .infinity)
+            .bodyLargeStyle()
+            .padding(Padding.smallMedium)
+            .foregroundColor(contentColor)
+            .background(
+                RoundedRectangle(cornerRadius: 8, style: .continuous)
+                    .fill(backgroundColor)
+                    .shadow(color: .neutralColorShade2, radius: 0, y: 2)
+            )
+    }
+}
+
 public extension View {
     func primaryButtonStyle(
         backgroundColor: Color = Color.mainColorShade4,
@@ -152,6 +182,17 @@ public extension View {
 
     func socialMediaButtonStyle(radius: CGFloat = 12, bgColor: Color, fgColor: Color) -> some View {
         modifier(SocialMediaButtonStyle(bgColor: bgColor, fgColor: fgColor, radius: radius))
+    }
+    
+    func tabRowButtonStyle(
+    selectedBgColor: Color,
+    unSelectedBgColor: Color,
+    selectedFgColor: Color,
+    unSelectedFgColor: Color,
+    isSelected: Bool,
+    radius: CGFloat = 8
+    )  -> some View  {
+        modifier(TabRowButtonStyle(selectedBgColor: selectedBgColor, unSelectedBgColor: unSelectedBgColor, selectedFgColor: selectedFgColor, unSelectedFgColor: unSelectedFgColor, isSelected: isSelected))
     }
 }
 
