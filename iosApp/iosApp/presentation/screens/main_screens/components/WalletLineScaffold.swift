@@ -18,7 +18,7 @@ struct WalletLineScaffold<Content: View, TopBar: View>: View {
     var body: some View {
         GeometryReader { geo in
             OffsetObservingScrollView(offset: $scrollOffset) {
-                Spacer(minLength: 70)
+                Spacer(minLength: 75)
                 content(geo)
                 Spacer(minLength: 86)
             }

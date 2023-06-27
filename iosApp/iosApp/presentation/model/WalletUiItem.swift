@@ -14,4 +14,5 @@ struct WalletUiItem: Hashable, Identifiable {
     let balance: Decimal
     let description: String?
     let lines: [WalletLineUiItem]
+    let transactions: [TransactionUiItem]
 }

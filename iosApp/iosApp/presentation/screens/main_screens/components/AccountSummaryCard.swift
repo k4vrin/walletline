@@ -194,7 +194,7 @@ struct AccountSummaryCard_Previews: PreviewProvider {
                         description: nil,
                         categories: []
                     )
-                ]), blurBalance: false
+                ], transactions: []), blurBalance: false
             ) {}
                 .frame(height: 184)
                 .padding()

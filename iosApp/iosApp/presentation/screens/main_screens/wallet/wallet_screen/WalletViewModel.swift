@@ -18,8 +18,6 @@ class WalletViewModel: ObservableObject {
 
     @Published private(set) var state = WalletState()
     private let effectSubject = PassthroughSubject<WalletEffect, Never>()
-    
-    
 
     func effect() -> AnyPublisher<WalletEffect, Never> {
         return effectSubject.eraseToAnyPublisher()
@@ -49,6 +47,8 @@ class WalletViewModel: ObservableObject {
             effectSubject.send(.NavigateCreateWallet)
         case .GetWallets:
             getWallets()
+        case .ChangeFilter(order: let order):
+            updateState(filterOrder: order)
         }
     }
 
@@ -70,10 +70,11 @@ class WalletViewModel: ObservableObject {
                                 description: line.description_,
                                 categories: line.categories
                             )
-                        }
+                        },
+                        transactions: self.dummyTransactions()
                     )
                 }
-                
+
                 self.updateState(wallets: uiWallets)
             })
             .store(in: &cancellables)
@@ -85,14 +86,56 @@ class WalletViewModel: ObservableObject {
         }
     }
 
+    private func dummyTransactions() -> [TransactionUiItem] {
+        return [
+            TransactionUiItem(
+                id: UUID().uuidString,
+                title: "Salary",
+                isDeposit: true,
+                amount: 120,
+                description: "Datarivers",
+                categories: [],
+                date: .now,
+                isTaxInculded: true
+            ),
+            TransactionUiItem(
+                id: UUID().uuidString,
+                title: "Transportation",
+                isDeposit: false,
+                amount: 86.80,
+                description: "Petrol",
+                categories: [],
+                date: .distantPast,
+                isTaxInculded: true
+            ),
+            TransactionUiItem(
+                id: UUID().uuidString,
+                title: "Gym",
+                isDeposit: false,
+                amount: 63.90,
+                description: "Shahin",
+                categories: [],
+                date: .distantPast,
+                isTaxInculded: true
+            ),
+        ]
+    }
+
     private func doNothing() {}
 
     private func updateState(
         wallets: [WalletUiItem]? = nil,
-        isLinesSelected: Bool? = nil
+        isLinesSelected: Bool? = nil,
+        filterOrder: TransactionFilterOrder? = nil
     ) {
+        
         DispatchQueue.main.async { [self] in
-            state = WalletState(wallets: wallets ?? state.wallets, isLinesSelected: isLinesSelected ?? state.isLinesSelected, selectedWallet: state.wallets.last)
+            state = WalletState(
+                wallets: wallets ?? state.wallets,
+                isLinesSelected: isLinesSelected ?? state.isLinesSelected,
+                selectedWallet: state.wallets.last,
+                transOrder: filterOrder ?? state.transOrder
+            )
         }
     }
 }
@@ -108,6 +151,7 @@ enum WalletEvent {
     case CancelTasks
     case CreateWalletClicked
     case GetWallets
+    case ChangeFilter(order: TransactionFilterOrder)
 }
 
 enum WalletEffect {
@@ -122,4 +166,5 @@ struct WalletState {
     var wallets: [WalletUiItem] = []
     var isLinesSelected: Bool = true
     var selectedWallet: WalletUiItem? = nil
+    var transOrder: TransactionFilterOrder = .NewestToOldest
 }
