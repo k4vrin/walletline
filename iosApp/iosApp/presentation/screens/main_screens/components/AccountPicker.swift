@@ -80,7 +80,7 @@ struct AccountPicker_Previews: PreviewProvider {
                     description: nil,
                     categories: []
                 )
-            ]),
+            ], transactions: []),
             WalletUiItem(id: UUID().uuidString, title: "Wallet", balance: 5465.45, description: nil, lines: [
                 WalletLineUiItem(
                     id: UUID().uuidString,
@@ -106,7 +106,7 @@ struct AccountPicker_Previews: PreviewProvider {
                     description: nil,
                     categories: []
                 )
-            ]),
+            ], transactions: []),
             WalletUiItem(id: UUID().uuidString, title: "Wallet", balance: 5465.45, description: nil, lines: [
                 WalletLineUiItem(
                     id: UUID().uuidString,
@@ -132,7 +132,7 @@ struct AccountPicker_Previews: PreviewProvider {
                     description: nil,
                     categories: []
                 )
-            ]),
+            ], transactions: []),
             WalletUiItem(id: UUID().uuidString, title: "Wallet", balance: 5465.45, description: nil, lines: [
                 WalletLineUiItem(
                     id: UUID().uuidString,
@@ -158,7 +158,7 @@ struct AccountPicker_Previews: PreviewProvider {
                     description: nil,
                     categories: []
                 )
-            ])
+            ], transactions: [])
         ]), blurBalance: .constant(false)
         )
     }

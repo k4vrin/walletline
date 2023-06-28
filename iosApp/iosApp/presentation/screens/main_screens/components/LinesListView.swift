@@ -15,7 +15,7 @@ struct LinesListView: View {
         VStack(spacing: Padding.defaultPadding) {
             ForEach(lines, id: \.title) { line in
                 ZStack {
-                    RoundedRectangle(cornerRadius: 24)
+                    RoundedRectangle(cornerRadius: 16)
                         .fill(Color.neutralColor)
                         .frame(height: 88)
                         

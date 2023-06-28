@@ -16,12 +16,21 @@ struct WalletScreen: View {
     @State private var isNavActive = false
     @State private var cancellables = Set<AnyCancellable>()
     @State private var blurBalance = false
+    @State private var filterOrder = TransactionFilterOrder.NewestToOldest {
+        didSet {
+            viewModel.onEvent(.ChangeFilter(order: filterOrder))
+        }
+    }
     @ObservedObject var navController: NavigationController
     
     @State private var accounts: [WalletUiItem] = []
     
     var lines: [WalletLineUiItem]? {
         return accounts.last?.lines
+    }
+    
+    var transactions: [TransactionUiItem] {
+        return accounts.last?.transactions ?? []
     }
     
     var body: some View {
@@ -42,9 +51,6 @@ struct WalletScreen: View {
                     .padding(.horizontal, Padding.medium)
                     .padding(.bottom, Padding.extraLarge)
                     
-//                    PartnersSection()
-//                        .padding(.horizontal, Padding.medium)
-                    
                     LineTransTabRow(
                         isLineSelected: Binding(
                             get: { viewModel.state.isLinesSelected },
@@ -53,26 +59,20 @@ struct WalletScreen: View {
                     )
                     .padding(.horizontal, Padding.medium)
                     
-                    if viewModel.state.isLinesSelected, let lines = lines {
-                        LinesListView(lines: lines)
-                            .padding(.horizontal, Padding.medium)
-                    }
+                    WalletTabSection(
+                        isLinesSelected: viewModel.state.isLinesSelected,
+                        lines: lines,
+                        isAccsEmpty: accounts.isEmpty,
+                        transactions: transactions,
+                        filterOrder: $filterOrder,
+                        onCreateWalletClicked: { viewModel.onEvent(.CreateWalletClicked) },
+                        onCreateLineClicked: { viewModel.onEvent(.CreateLineClicked) }
+                    )
                 } else {
                     WalletEmptyView(
                         title: NSLocalizedString("There is no wallet yet!", comment: ""),
                         desc: NSLocalizedString("Plan ahead and manage", comment: "")
                     ).frame(height: geo.size.height / 2, alignment: .bottom)
-                }
-                
-                if viewModel.state.isLinesSelected {
-                    DashedBorderButton(title: accounts.isEmpty ? NSLocalizedString("Create your 1st wallet", comment: "") : NSLocalizedString("Create line", comment: "")) {
-                        if accounts.isEmpty {
-                            viewModel.onEvent(.CreateWalletClicked)
-                        } else {
-                            viewModel.onEvent(.CreateLineClicked)
-                        }
-                    }
-                    .padding([.horizontal, .top], Padding.medium)
                 }
             }
             
@@ -85,7 +85,7 @@ struct WalletScreen: View {
                 menu: {
                     if !accounts.isEmpty {
                         Button {
-                            guard let id = accounts.last?.id else {return}
+                            guard let id = accounts.last?.id else { return }
                             viewModel.onEvent(.EditWalletClicked(walletId: id))
                         } label: {
                             HStack {
@@ -95,7 +95,7 @@ struct WalletScreen: View {
                                 Text(
                                     NSLocalizedString("Edit Wallet", comment: "")
                                 )
-                                    .titleLargeStyle()
+                                .titleLargeStyle()
                             }
                         }
                     }
@@ -134,6 +134,7 @@ struct WalletScreen: View {
         .onChange(of: viewModel.state.wallets) { wallets in
             self.accounts = wallets
         }
+        
     }
     
     private func doNothing() {}
