@@ -267,9 +267,9 @@ struct WalletSetupScreen: View {
     
     private func doNothing() {}
 }
-
-struct WalletSetupScreen_Previews: PreviewProvider {
-    static var previews: some View {
-        WalletSetupScreen(walletId: nil)
-    }
-}
+//
+//struct WalletSetupScreen_Previews: PreviewProvider {
+//    static var previews: some View {
+//        WalletSetupScreen(walletId: nil)
+//    }
+//}

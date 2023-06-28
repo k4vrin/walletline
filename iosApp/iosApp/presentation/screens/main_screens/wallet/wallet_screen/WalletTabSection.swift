@@ -48,8 +48,9 @@ struct WalletTabSection: View {
                     onEditClick: { id in
                         print("transId: \(id)")
                     }
-                ).simultaneousGesture(DragGesture(minimumDistance: 0), including: .all)
+                )
                 .padding([.horizontal, .top], Padding.medium)
             }
-        }    }
+        }
+    }
 }

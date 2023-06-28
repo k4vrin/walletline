@@ -8,8 +8,11 @@
 
 import SwiftUI
 
-struct LineTransTabRow: View {
-    @Binding var isLineSelected: Bool
+struct WalletLineTabRow: View {
+    @Binding var isFirstTabSelected: Bool
+    
+    let firstTabName: String
+    let secondTabName: String
 
     var body: some View {
         ZStack {
@@ -17,33 +20,33 @@ struct LineTransTabRow: View {
 
             HStack(spacing: Padding.defaultPadding) {
                 Button {
-                    isLineSelected = true
+                    isFirstTabSelected = true
                 } label: {
                     Text(
-                        NSLocalizedString("Lines", comment: "")
+                        firstTabName
                     )
                     .tabRowButtonStyle(
                         selectedBgColor: .neutralColor,
                         unSelectedBgColor: .clear,
                         selectedFgColor: .neutralColorDark,
                         unSelectedFgColor: .neutralColorShade3,
-                        isSelected: isLineSelected
+                        isSelected: isFirstTabSelected
                     )
                 }
                 .padding(.horizontal, 6)
 
                 Button {
-                    isLineSelected = false
+                    isFirstTabSelected = false
                 } label: {
                     Text(
-                        NSLocalizedString("Transactions", comment: "")
+                        secondTabName
                     )
                     .tabRowButtonStyle(
                         selectedBgColor: .neutralColor,
                         unSelectedBgColor: .clear,
                         selectedFgColor: .neutralColorDark,
                         unSelectedFgColor: .neutralColorShade3,
-                        isSelected: !isLineSelected
+                        isSelected: !isFirstTabSelected
                     )
                 }
                 .padding(.horizontal, 6)
@@ -56,6 +59,6 @@ struct LineTransTabRow: View {
 
 struct LineTransTabRow_Previews: PreviewProvider {
     static var previews: some View {
-        LineTransTabRow(isLineSelected: .constant(true))
+        WalletLineTabRow(isFirstTabSelected: .constant(true), firstTabName: "Lines", secondTabName: "Trans")
     }
 }
