@@ -184,16 +184,24 @@ struct TransactionItem: View {
                     Spacer()
                     
                     VStack(alignment: .trailing, spacing: Padding.small) {
-                        CurrencyText(
-                            amount: transaction.amount,
-                            currencyCode: currencyCode,
-                            symbolFont: .custom(PlusJakartaSans.medium, size: 16),
-                            symbolColor: transaction.isDeposit ? .successColor : .errorColor,
-                            wholePartFont: .custom(PlusJakartaSans.medium, size: 16),
-                            wholePartColor: transaction.isDeposit ? .successColor : .errorColor,
-                            fracPartFont: .custom(PlusJakartaSans.semiBold, size: 12),
-                            fracPartColor: transaction.isDeposit ? .successColor : .errorColor
-                        )
+                        HStack(spacing: Padding.extraSmall) {
+                            Text(
+                                transaction.isDeposit ? "+" : "-"
+                            )
+                            .font(.custom(PlusJakartaSans.medium, size: 16))
+                            .foregroundColor(transaction.isDeposit ? .successColor : .errorColor)
+                            
+                            CurrencyText(
+                                amount: transaction.amount,
+                                currencyCode: currencyCode,
+                                symbolFont: .custom(PlusJakartaSans.medium, size: 16),
+                                symbolColor: transaction.isDeposit ? .successColor : .errorColor,
+                                wholePartFont: .custom(PlusJakartaSans.medium, size: 16),
+                                wholePartColor: transaction.isDeposit ? .successColor : .errorColor,
+                                fracPartFont: .custom(PlusJakartaSans.semiBold, size: 12),
+                                fracPartColor: transaction.isDeposit ? .successColor : .errorColor
+                            )
+                        }
                         
                         Text(transaction.date.formatted(date: .omitted, time: .shortened))
                             .bodySmallStyle()
@@ -203,8 +211,8 @@ struct TransactionItem: View {
                 .padding(.horizontal, Padding.medium)
             }
             .offset(CGSize(width: offset.width, height: 0))
-            .gesture(
-                DragGesture()
+            .simultaneousGesture(
+                DragGesture(minimumDistance: 30)
                     .onChanged { gesture in
                         offset = gesture.translation
                     }

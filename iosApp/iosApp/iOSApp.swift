@@ -13,7 +13,7 @@ struct iOSApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationView {
-                MainView()
+                AddEditTransactionScreen()
             }
             .onOpenURL(
                 perform: { url in

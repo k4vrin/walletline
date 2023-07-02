@@ -51,11 +51,13 @@ struct WalletScreen: View {
                     .padding(.horizontal, Padding.medium)
                     .padding(.bottom, Padding.extraLarge)
                     
-                    LineTransTabRow(
-                        isLineSelected: Binding(
+                    WalletLineTabRow(
+                        isFirstTabSelected: Binding(
                             get: { viewModel.state.isLinesSelected },
                             set: { value in viewModel.onEvent(.ChangeTab(isLineSelected: value)) }
-                        )
+                        ),
+                        firstTabName: NSLocalizedString("Lines", comment: ""),
+                        secondTabName: NSLocalizedString("Transactions", comment: "")
                     )
                     .padding(.horizontal, Padding.medium)
                     
