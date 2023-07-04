@@ -74,7 +74,8 @@ struct DefaultTopBar<TopBarMenu: View>: View {
             .padding(.horizontal, Padding.medium)
             
         }
-        .frame(height: height)
+        .frame(height: height, alignment: .top)
+        
         
     }
     

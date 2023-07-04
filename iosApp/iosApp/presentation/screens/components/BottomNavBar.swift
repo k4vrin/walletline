@@ -10,7 +10,7 @@ import SwiftUI
 
 struct BottomNavBar: View {
     @ObservedObject var navController: NavigationController
-    
+
     var body: some View {
         ZStack {
             BottomBarShape(clipHeight: 15)
@@ -23,23 +23,21 @@ struct BottomNavBar: View {
                 )
                 .background(Material.ultraThinMaterial)
                 .clipShape(BottomBarShape(clipHeight: 15))
-            
-            Button {
-                
-            } label: {
+
+            NavigationLink(destination: AddEditTransactionScreen(), label: {
                 ZStack {
                     Circle()
                         .fill(Color.mainColor)
                         .frame(width: 56, height: 56)
                         .shadow(radius: 10, y: 10)
-                    
+
                     Image(systemName: "plus")
                         .resizable()
                         .foregroundColor(.white)
                         .frame(width: 16, height: 16)
                 }
-            }
-            
+            })
+
             HStack(spacing: Padding.defaultPadding) {
                 Button {
                     navController.currentGraph = .home
@@ -60,7 +58,7 @@ struct BottomNavBar: View {
                 .offset(CGSize(width: 0, height: 10))
 
                 Spacer()
-                
+
                 Button {
                     navController.currentGraph = .wallet
                 } label: {
@@ -78,7 +76,6 @@ struct BottomNavBar: View {
                     }
                 }
                 .offset(CGSize(width: 0, height: 10))
-                
             }
             .padding(.horizontal, Padding.extraLarge)
             .frame(maxWidth: .infinity)
@@ -99,7 +96,7 @@ struct BottomBarShape: Shape {
     var clipHeight: CGFloat
     func path(in rect: CGRect) -> Path {
         var path = Path()
-        
+
         path.addArc(
             center: CGPoint(x: cornerRadius, y: cornerRadius + clipHeight),
             radius: cornerRadius,
@@ -120,7 +117,7 @@ struct BottomBarShape: Shape {
             control1: CGPoint(x: rect.width/2 + (middleCornerRadius/2), y: 0),
             control2: CGPoint(x: rect.width/2 + middleCornerRadius, y: clipHeight)
         )
-        
+
         path.addLine(to: CGPoint(x: rect.width - cornerRadius, y: clipHeight))
 
         path.addArc(

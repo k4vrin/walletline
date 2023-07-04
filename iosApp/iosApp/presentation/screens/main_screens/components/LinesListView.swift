@@ -12,60 +12,13 @@ struct LinesListView: View {
     var lines: [WalletLineUiItem]
     
     var body: some View {
-        VStack(spacing: Padding.defaultPadding) {
+        VStack(spacing: Padding.small) {
             ForEach(lines, id: \.title) { line in
-                ZStack {
-                    RoundedRectangle(cornerRadius: 16)
-                        .fill(Color.neutralColor)
-                        .frame(height: 88)
-                        
-                    
-                    HStack(spacing: Padding.defaultPadding) {
-                        
-                        RoundedRectangle(cornerRadius: Padding.smallMedium)
-                            .stroke(Color.neutralColorShade2)
-                            .frame(width: 44, height: 44)
-                            .padding(.trailing, Padding.smallMedium)
-                        
-                        VStack(alignment: .leading, spacing: Padding.small) {
-                            Text(line.title)
-                                .headlineSmallStyle()
-                                .foregroundColor(.neutralColorDark)
-                            
-                            Text(line.percentage, format: .percent)
-                                .bodySmallStyle()
-                        }
-                        
-                        Spacer()
-                        
-                        CurrencyText(
-                            amount: line.balance,
-                            symbolFont: .custom(DMSans.bold, size: 16),
-                            symbolColor: .neutralColorDark,
-                            wholePartFont: .custom(DMSans.bold, size: 24),
-                            wholePartColor: .neutralColorDark,
-                            fracPartFont: .custom(DMSans.bold, size: 16),
-                            fracPartColor: .neutralColorDark
-                        )
-                        .padding(.trailing, Padding.medium)
-                        
-                        Button {
-                            
-                        } label: {
-                            ZStack {
-                                Circle()
-                                    .stroke(Color.neutralColorShade2)
-                                    .frame(width: 48, height: 48)
-                                Image(systemName: "arrow.forward")
-                                    .renderingMode(.template)
-                                    .foregroundColor(.neutralColorDark)
-                            }
-                        }
-                        
-                    }
-                    .padding(.horizontal, Padding.medium)
-                }
-                .padding(.vertical, Padding.extraSmall)
+                WalletLineItem(
+                    title: line.title,
+                    percentage: line.percentage,
+                    balance: line.balance
+                )
             }
         }
     }
@@ -109,5 +62,6 @@ struct LinesListView_Previews: PreviewProvider {
         }
     }
 }
+
 
 
