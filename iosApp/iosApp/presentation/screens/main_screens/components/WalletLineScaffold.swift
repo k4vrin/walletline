@@ -11,7 +11,7 @@ import SwiftUI
 struct WalletLineScaffold<Content: View, TopBar: View>: View {
     @State var scrollOffset = CGPoint.zero
     @Binding var isScrolling: Bool
-    var backgroundColor: Color = .neutralColorShade1
+    var backgroundColor: Color = .neutralColor
     @ViewBuilder let content: (_ geo: GeometryProxy) -> Content
     @ViewBuilder let topBar: () -> TopBar
 
@@ -26,10 +26,12 @@ struct WalletLineScaffold<Content: View, TopBar: View>: View {
             .frame(
                 width: geo.size.width
             )
+            
         }
         .overlay {
             topBar()
                 .frame(maxHeight: .infinity, alignment: .top)
+            
         }
         .onChange(of: scrollOffset) { offset in
 
@@ -40,6 +42,7 @@ struct WalletLineScaffold<Content: View, TopBar: View>: View {
             }
         }
         .animation(.default, value: isScrolling)
+        
         
     }
 }

@@ -17,7 +17,7 @@ struct DashedBorderButton: View {
         } label: {
             ZStack {
                 RoundedRectangle(cornerRadius: 12)
-                    .stroke(style: StrokeStyle(dash: [3]))
+                    .stroke(style: StrokeStyle(dash: [5]))
                     .foregroundColor(.neutralColorShade3)
                 
                 Text(title)
