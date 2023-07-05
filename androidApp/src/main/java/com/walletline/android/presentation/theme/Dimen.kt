@@ -13,6 +13,7 @@ object Dimen {
     val WalletlineLogoTopMargin @Composable get() = 100.sdp
     val WalletlineLogoBottomMargin @Composable get() = 70.sdp
     val DefaultButtonStrokeWidth @Composable get() = 2.sdp
+    val ButtonStrokeWidth @Composable get() = 1.sdp
     val DefaultButtonCornerRadius @Composable get() = 12.sdp
     val DefaultButtonHeight @Composable get() = 48.sdp
     val DefaultBorderRadius @Composable get() = 15.sdp
@@ -76,5 +77,27 @@ object Dimen {
     val StartButtonHeight @Composable get() = 55.sdp
 
     /* Entrance Pattern */
+    
+    //Wallet
+    val WalletAccountSectionHeight @Composable get() = 184.sdp
+    val WalletIconBackSize @Composable get() = 44.sdp
+    val WalletEyeIconSize @Composable get() = 18.sdp
+    val ViewAllArrowIconSize @Composable get() = 16.sdp
+    val LineSwitchButtonHeight @Composable get() = 53.sdp
+    val WalletLineBackIconSize @Composable get() = 41.sdp
+    val WalletFABSize @Composable get() = 56.sdp
+    val BottomBarHeight @Composable get() = 86.sdp
+    val DefaultWalletButtonSize @Composable get() = 24.sdp
+    val BottomBarColumnHeight @Composable get() = 40.sdp
+    val TextFieldSmallHeight @Composable get() = 52.sdp
+    val TextFieldLargeHeight @Composable get() = 97.sdp
+    val ShareButtonCornerReadius @Composable get() = 4.sdp
+    val ShareButtonHeight @Composable get() = 36.sdp
+    val PartnerItemHeight @Composable get() = 65.sdp
+    val DropDownMenuWidth @Composable get() = 226.sdp
+    val DropDownXOffset @Composable get() = 133.sdp
+    val DropDownYOffset @Composable get() = 52.sdp
+    val WalletButtonCornerRadius @Composable get() = 8.sdp
+
 
 }
