@@ -108,6 +108,7 @@ PODS:
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.2.0)
   - shared (1.0)
+  - WrappingHStack (2.2.10)
 
 DEPENDENCIES:
   - FBSDKLoginKit
@@ -117,6 +118,7 @@ DEPENDENCIES:
   - KMPNativeCoroutinesAsync (= 1.0.0-ALPHA-5)
   - KMPNativeCoroutinesCombine (= 1.0.0-ALPHA-5)
   - shared (from `../shared`)
+  - WrappingHStack
 
 SPEC REPOS:
   trunk:
@@ -141,6 +143,7 @@ SPEC REPOS:
     - KMPNativeCoroutinesCore
     - nanopb
     - PromisesObjC
+    - WrappingHStack
 
 EXTERNAL SOURCES:
   shared:
@@ -169,7 +172,8 @@ SPEC CHECKSUMS:
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   shared: 52b3c010bcc94262058adba481b9752a0d3560d9
+  WrappingHStack: f784737f5707f8fea91b687074530dbefd2dbf05
 
-PODFILE CHECKSUM: 2fcde4c811bfdd8a1d1303c67e56cbd44b2a8034
+PODFILE CHECKSUM: 28b8a38a9ba34ea38bb974144c3d65db42cd2d52
 
 COCOAPODS: 1.12.1
