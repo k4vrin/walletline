@@ -133,6 +133,8 @@ dependencies {
     implementation(Firebase.auth)
     implementation(Firebase.googlePlayServiceAuth)
     implementation(Facebook.login)
+
+    implementation(CardStack.cardStack)
 }
 
 tasks.named<com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask>("dependencyUpdates")

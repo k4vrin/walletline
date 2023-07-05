@@ -137,5 +137,46 @@
     <string name="draw_unlock_pattern">Draw unlock pattern</string>
     <string name="incorrect_pattern_drawn">Incorrect pattern drawn</string>
 
+    //Wallet
+    <string name="home_menu">Home</string>
+    <string name="wallet_menu">Wallet</string>
+    <string name="share_menu">Share</string>
+    <string name="edit_wallet_menu">Edit Wallet</string>
+    <string name="delete_wallet_menu">Delete Wallet</string>
+    <string name="category_menu">Category</string>
+    <string name="report_menu">Report</string>
+    <string name="security_menu">Security</string>
+    <string name="account_balance">Account Balance</string>
+    <string name="current_lines">Current Lines</string>
+    <string name="lines">Lines</string>
+    <string name="transactions">Transactions</string>
+    <string name="needs">Needs</string>
+    <string name="partners">Partners</string>
+    <string name="view_all">View all</string>
+    <string name="wallets">Wallets</string>
+    <string name="edit_wallet">Edit Wallet</string>
+    <string name="title">Title</string>
+    <string name="balance">Balance</string>
+    <string name="salary">salary</string>
+    <string name="balance_placeholder">23456.45</string>
+    <string name="description">Description</string>
+    <string name="optional">(optional)</string>
+    <string name="describe_your_category">Describe your category</string>
+    <string name="share_with_contacts">Share with contacts</string>
+    <string name="save">Save</string>
+    <string name="create_line">Create Line</string>
+    <string name="delete_wallet">Delete Wallet</string>
+    <string name="view_partners_list">View partners list</string>
+    <string name="partners_list">Partners List</string>
+    <string name="create_first_wallet">Create your 1st Wallet</string>
+    <string name="set_lines">Set Lines</string>
+    <string name="apply">Apply</string>
+    <string name="setup_wallet">Wallet Setup</string>
+    <string name="no_wallet">There is no wallet yet!</string>
+    <string name="empty_title_error">Wallet title cannot be null</string>
+    <string name="empty_balance_error">Wallet balance cannot be null</string>
+    <string name="save_wallet_message">Wallet Saved Successfully</string>
+    <string name="manage_wallet_txt">Plan ahead and manage your money better.\n" +
+                    "A description about lines and Necessity of its creation.</string>
 
 </resources>

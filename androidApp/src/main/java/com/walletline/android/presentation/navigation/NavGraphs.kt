@@ -4,7 +4,7 @@ import com.ramcosta.composedestinations.annotation.NavGraph
 import com.ramcosta.composedestinations.annotation.RootNavGraph
 
 
-@RootNavGraph(start = true)
+@RootNavGraph
 @NavGraph
 annotation class IntroNavGraph(
     val start: Boolean = false
@@ -17,3 +17,8 @@ annotation class AuthNavGraph(
     val start: Boolean = false
 )
 
+@RootNavGraph(start = true)
+@NavGraph
+annotation class WalletNavGraph(
+    val start: Boolean = false
+)
