@@ -75,7 +75,6 @@ struct SomeDetailsSection: View {
             .padding(.top, Padding.small)
         }
         .padding(.top, Padding.small)
-        .padding(.horizontal, Padding.medium)
     }
 }
 

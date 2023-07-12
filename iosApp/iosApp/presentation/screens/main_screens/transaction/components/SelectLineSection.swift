@@ -14,25 +14,9 @@ struct SelectLineSection: View {
     var lines: [WalletLineUiItem]
     
     var onAddClick: () -> Void
-    var onCancelClick: () -> Void
     
     var body: some View {
         VStack(spacing: Padding.defaultPadding) {
-            HStack(spacing: Padding.defaultPadding) {
-                Text("Select Line to Borrow from")
-                    .headlineLargeStyle()
-                
-                Spacer()
-                
-                Button {
-                    selectedLine = nil
-                    onCancelClick()
-                } label: {
-                    Text("Cancel")
-                        .buttonStyle()
-                        .foregroundColor(.infoColorShade4)
-                }
-            }
             
             VStack(spacing: Padding.small) {
                 ForEach(lines) { line in
@@ -93,8 +77,7 @@ struct SelectLineSection_Previews: PreviewProvider {
                     categories: []
                 )
             ],
-            onAddClick: {},
-            onCancelClick: {}
+            onAddClick: {}
         )
     }
 }

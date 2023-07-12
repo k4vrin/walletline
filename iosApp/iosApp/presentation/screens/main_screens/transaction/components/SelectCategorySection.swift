@@ -15,24 +15,10 @@ struct SelectCategorySection: View {
     var catagories: [String]
     
     var onAddClick: () -> Void
-    var onCancelClick: () -> Void
     
     var body: some View {
         VStack(spacing: Padding.defaultPadding) {
-            HStack(spacing: Padding.defaultPadding) {
-                Text("Select Category")
-                    .headlineLargeStyle()
-                
-                Spacer()
-                
-                Button {
-                    onCancelClick()
-                } label: {
-                    Text("Cancel")
-                        .buttonStyle()
-                        .foregroundColor(.infoColorShade4)
-                }
-            }
+            
             
             WrappingHStack(Array(selectedCategories), id: \.self, alignment: .center) { catagory in
                 CategoryChip(name: catagory)
@@ -118,8 +104,7 @@ struct SelectCategorySection_Previews: PreviewProvider {
         SelectCategorySection(
             selectedCategories: .constant([]),
             catagories: ["Gym", "Gym2", "Gym4", "Gymsda", "Gym5", "Gym6", "Gym7"],
-            onAddClick: {},
-            onCancelClick: {}
+            onAddClick: {}
         )
     }
 }

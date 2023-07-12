@@ -49,8 +49,22 @@ struct AddEditTransactionScreen: View {
     ]
     @State private var showLineSheet: Bool = false
     @State private var showCategorySheet: Bool = false
+    @State private var showPeriodicalSheet: Bool = false
+    @State private var showPeriodicalConfirmation: Bool = false
+    @State private var showDateSheet: Bool = false
+    @State private var selectedFirstDate: Date?
     @State private var categories = ["Gym", "Gym2", "Gym4", "Gymsda", "Gym5", "Gym6", "Gym7"]
     @State private var selectedCategories: Set<String> = []
+    @State private var isTaxIncluded: Bool = false
+    @State private var isPeriodical: Bool = false
+    @State private var desc: String = ""
+    
+    @State var selectedFrequency: Frequency?
+    @State var selectedCustomFrequency: [DayFrequency] = []
+    @State var selectedStartDate: Date?
+    @State var selectedEndDate: Date?
+    @State var selectedDuration: Duration?
+    @State var selectedDurationTimes: Int = 1
     
     @FocusState private var focusField: Bool
     
@@ -116,10 +130,25 @@ struct AddEditTransactionScreen: View {
                 .padding(.top, Padding.extraMedium)
                     
                 ExpandableVStack(expanded: $showMoreDetail, title: "More Details") {
-                    ZStack {
-                        Rectangle()
-                            .fill(.yellow)
-                    }
+                    MoreDetailsSection(
+                        date: selectedFirstDate,
+                        desc: $desc,
+                        isTaxIncluded: $isTaxIncluded,
+                        isPeriodical: $isPeriodical,
+                        focus: $focusField,
+                        onDateClick: {
+                            showDateSheet = true
+                        },
+                        onPeriodicalClick: {
+                            let wasPeriodical = isPeriodical
+                            
+                            if wasPeriodical {
+                                showPeriodicalConfirmation = true
+                            } else {
+                                showPeriodicalSheet = true
+                            }
+                        }
+                    )
                 }
                 .padding(.horizontal, Padding.medium)
                     
@@ -151,17 +180,14 @@ struct AddEditTransactionScreen: View {
             
             // Line
             BottomSheet(
+                title: "Select Line to Borrow from",
                 buttonTitle: "Done",
                 showSheet: $showLineSheet
             ) {
                 SelectLineSection(
                     selectedLine: $line,
                     lines: walletLines,
-                    onAddClick: {},
-                    onCancelClick: {
-                        line = nil
-                        showLineSheet.toggle()
-                    }
+                    onAddClick: {}
                 )
                 .padding(.horizontal, Padding.medium)
                 .padding(.vertical)
@@ -174,17 +200,14 @@ struct AddEditTransactionScreen: View {
             
             // Category
             BottomSheet(
+                title: "Select Category",
                 buttonTitle: "Done",
                 showSheet: $showCategorySheet
             ) {
                 SelectCategorySection(
                     selectedCategories: $selectedCategories,
                     catagories: categories,
-                    onAddClick: {},
-                    onCancelClick: {
-                        showCategorySheet.toggle()
-                        selectedCategories = []
-                    }
+                    onAddClick: {}
                 )
                 .padding(.horizontal, Padding.medium)
                 .padding(.vertical)
@@ -194,6 +217,44 @@ struct AddEditTransactionScreen: View {
                 showCategorySheet.toggle()
                 selectedCategories = []
             }
+            
+            // Periodical
+            BottomSheet(
+                title: "Periodical Withdraw",
+                buttonTitle: "Done",
+                showSheet: $showPeriodicalSheet
+            ) {
+                PeriodicalWithdrawSection(
+                    selectedFrequency: $selectedFrequency,
+                    selectedCustomFrequency: $selectedCustomFrequency,
+                    selectedStartDate: $selectedStartDate,
+                    selectedEndDate: $selectedEndDate,
+                    selectedDuration: $selectedDuration,
+                    selectedDurationTimes: $selectedDurationTimes
+                )
+                .padding(.vertical)
+            } onDoneClick: {
+                showPeriodicalSheet.toggle()
+            } onCancelClick: {
+                cancelPeriodical()
+            }
+            
+            // Date
+            BottomSheet(
+                title: "Select a date",
+                buttonTitle: "Done",
+                showSheet: $showDateSheet
+            ) {
+                WLDatePicker(selectedDate: $selectedFirstDate)
+                .padding(.vertical)
+            } onDoneClick: {
+                showDateSheet = false
+            } onCancelClick: {
+                selectedFirstDate = nil
+                showDateSheet = false
+            }
+            
+            
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
@@ -205,15 +266,38 @@ struct AddEditTransactionScreen: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
-        .animation(.default, value: showSomeDetail)
-        .animation(.default, value: showMoreDetail)
         .onChange(of: showLineSheet, perform: { _ in
             focusField = false
         })
         .onChange(of: showCategorySheet, perform: { _ in
             focusField = false
         })
+        .onChange(of: showPeriodicalSheet, perform: { show in
+            focusField = false
+            
+        })
+        .confirmationDialog("Delete Periodical Withdraw?", isPresented: $showPeriodicalConfirmation, actions: {
+            Button("Yes", role: .destructive) {
+                cancelPeriodical()
+            }
+            Button("Cancel", role: .cancel) {
+                isPeriodical = true
+            }
+        }, message: {
+            Text("Are you sure? all of your periodical settings will be lost")
+                .bodyMediumStyle()
+        })
         .navigationBarBackButtonHidden(true)
+    }
+    
+    func cancelPeriodical() {
+        isPeriodical = false
+        selectedFrequency = nil
+        selectedCustomFrequency = []
+        selectedStartDate = nil
+        selectedEndDate = nil
+        selectedDuration = nil
+        selectedDurationTimes = 1
     }
 }
 
@@ -248,13 +332,16 @@ struct ExpandableVStack<Content: View>: View {
                 expanded.toggle()
             }
             
-            content()
-                .frame(height: expanded ? nil : 0, alignment: .top)
-                .clipped()
+            if expanded {
+                content()
+                    .frame(height: expanded ? nil : 0, alignment: .top)
+                    .clipped()
+            }
             
             Divider()
                 .padding(.top, expanded ? nil : 0)
         }
         .background(Color.neutralColor)
+        .animation(.spring(), value: expanded)
     }
 }

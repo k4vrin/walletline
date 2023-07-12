@@ -27,6 +27,8 @@
 		4C20103C29A7D1AB007BDF7D /* LoginSubHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20103B29A7D1AB007BDF7D /* LoginSubHeader.swift */; };
 		4C20103F29A7D263007BDF7D /* AuthBodyText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20103E29A7D263007BDF7D /* AuthBodyText.swift */; };
 		4C20C4662A509715009BD6D5 /* WalletLineItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C20C4652A509715009BD6D5 /* WalletLineItem.swift */; };
+		4C2D44102A5451AD00693979 /* MoreDetailsSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D440F2A5451AD00693979 /* MoreDetailsSection.swift */; };
+		4C2D44122A54557400693979 /* WLToggleSwitch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C2D44112A54557400693979 /* WLToggleSwitch.swift */; };
 		4C363A852A2F670300F968A7 /* DashedBorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C363A842A2F670300F968A7 /* DashedBorderButton.swift */; };
 		4C363A872A2F69CD00F968A7 /* AccountPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C363A862A2F69CD00F968A7 /* AccountPicker.swift */; };
 		4C46BF472A018ED9000A7E01 /* SkipButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C46BF462A018ED9000A7E01 /* SkipButton.swift */; };
@@ -46,6 +48,9 @@
 		4C6785E829E2FF66001E423D /* PlusJakartaSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6785E329E2FF66001E423D /* PlusJakartaSans-SemiBold.ttf */; };
 		4C6785E929E2FF66001E423D /* PlusJakartaSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6785E429E2FF66001E423D /* PlusJakartaSans-Medium.ttf */; };
 		4C6785EA29E2FF66001E423D /* PlusJakartaSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C6785E529E2FF66001E423D /* PlusJakartaSans-Regular.ttf */; };
+		4C682BC92A59D66C00D8BD1A /* PeriodicalWithdrawSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C682BC82A59D66C00D8BD1A /* PeriodicalWithdrawSection.swift */; };
+		4C682BCB2A59D86A00D8BD1A /* WLRadioButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C682BCA2A59D86A00D8BD1A /* WLRadioButton.swift */; };
+		4C6D0BA52A5C557900998654 /* DurationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6D0BA42A5C557900998654 /* DurationSection.swift */; };
 		4C6E6B0C2A33579800B3D03A /* PartnersSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E6B0B2A33579800B3D03A /* PartnersSection.swift */; };
 		4C6E6B0E2A33654300B3D03A /* PartnerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C6E6B0D2A33654300B3D03A /* PartnerScreen.swift */; };
 		4C772B732A226DCA006CD404 /* MakePatternViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C772B722A226DCA006CD404 /* MakePatternViewModel.swift */; };
@@ -54,6 +59,9 @@
 		4C88C3842A3F7445004EC47B /* WalletViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C3832A3F7445004EC47B /* WalletViewModel.swift */; };
 		4C88C3862A3F7743004EC47B /* WalletUiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C3852A3F7743004EC47B /* WalletUiItem.swift */; };
 		4C88C3882A3F776B004EC47B /* WalletLineUiItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C88C3872A3F776B004EC47B /* WalletLineUiItem.swift */; };
+		4C894D052A5B132A00CFFDBA /* FrequencySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C894D042A5B132A00CFFDBA /* FrequencySection.swift */; };
+		4C894D072A5B1EEB00CFFDBA /* StartingAtSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C894D062A5B1EEB00CFFDBA /* StartingAtSection.swift */; };
+		4C894D092A5B220E00CFFDBA /* WLDatePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C894D082A5B220E00CFFDBA /* WLDatePicker.swift */; };
 		4C8BA6FD2A0BA55800CAA3A1 /* VerifyEmailTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA6FC2A0BA55800CAA3A1 /* VerifyEmailTimer.swift */; };
 		4C8BA6FF2A0BA9C700CAA3A1 /* TermsAndConditionSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA6FE2A0BA9C700CAA3A1 /* TermsAndConditionSection.swift */; };
 		4C8BA7012A0BBDBF00CAA3A1 /* WalletLineButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C8BA7002A0BBDBF00CAA3A1 /* WalletLineButton.swift */; };
@@ -139,6 +147,8 @@
 		4C20103B29A7D1AB007BDF7D /* LoginSubHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSubHeader.swift; sourceTree = "<group>"; };
 		4C20103E29A7D263007BDF7D /* AuthBodyText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthBodyText.swift; sourceTree = "<group>"; };
 		4C20C4652A509715009BD6D5 /* WalletLineItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLineItem.swift; sourceTree = "<group>"; };
+		4C2D440F2A5451AD00693979 /* MoreDetailsSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoreDetailsSection.swift; sourceTree = "<group>"; };
+		4C2D44112A54557400693979 /* WLToggleSwitch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLToggleSwitch.swift; sourceTree = "<group>"; };
 		4C363A842A2F670300F968A7 /* DashedBorderButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashedBorderButton.swift; sourceTree = "<group>"; };
 		4C363A862A2F69CD00F968A7 /* AccountPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPicker.swift; sourceTree = "<group>"; };
 		4C46BF462A018ED9000A7E01 /* SkipButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkipButton.swift; sourceTree = "<group>"; };
@@ -158,6 +168,9 @@
 		4C6785E329E2FF66001E423D /* PlusJakartaSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-SemiBold.ttf"; sourceTree = "<group>"; };
 		4C6785E429E2FF66001E423D /* PlusJakartaSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Medium.ttf"; sourceTree = "<group>"; };
 		4C6785E529E2FF66001E423D /* PlusJakartaSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PlusJakartaSans-Regular.ttf"; sourceTree = "<group>"; };
+		4C682BC82A59D66C00D8BD1A /* PeriodicalWithdrawSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriodicalWithdrawSection.swift; sourceTree = "<group>"; };
+		4C682BCA2A59D86A00D8BD1A /* WLRadioButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLRadioButton.swift; sourceTree = "<group>"; };
+		4C6D0BA42A5C557900998654 /* DurationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DurationSection.swift; sourceTree = "<group>"; };
 		4C6E6B0B2A33579800B3D03A /* PartnersSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersSection.swift; sourceTree = "<group>"; };
 		4C6E6B0D2A33654300B3D03A /* PartnerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerScreen.swift; sourceTree = "<group>"; };
 		4C772B722A226DCA006CD404 /* MakePatternViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MakePatternViewModel.swift; sourceTree = "<group>"; };
@@ -166,6 +179,9 @@
 		4C88C3832A3F7445004EC47B /* WalletViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletViewModel.swift; sourceTree = "<group>"; };
 		4C88C3852A3F7743004EC47B /* WalletUiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletUiItem.swift; sourceTree = "<group>"; };
 		4C88C3872A3F776B004EC47B /* WalletLineUiItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLineUiItem.swift; sourceTree = "<group>"; };
+		4C894D042A5B132A00CFFDBA /* FrequencySection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrequencySection.swift; sourceTree = "<group>"; };
+		4C894D062A5B1EEB00CFFDBA /* StartingAtSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingAtSection.swift; sourceTree = "<group>"; };
+		4C894D082A5B220E00CFFDBA /* WLDatePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WLDatePicker.swift; sourceTree = "<group>"; };
 		4C8BA6FC2A0BA55800CAA3A1 /* VerifyEmailTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerifyEmailTimer.swift; sourceTree = "<group>"; };
 		4C8BA6FE2A0BA9C700CAA3A1 /* TermsAndConditionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsAndConditionSection.swift; sourceTree = "<group>"; };
 		4C8BA7002A0BBDBF00CAA3A1 /* WalletLineButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletLineButton.swift; sourceTree = "<group>"; };
@@ -280,6 +296,8 @@
 				4C62594F2A190D0900F9A6C5 /* RememberPatternText.swift */,
 				4CE29F5A2A2B9710007BECBF /* BottomNavBar.swift */,
 				4CA676E42A31FB4F0096F9AC /* WalletLineMaterialTextField.swift */,
+				4C682BCA2A59D86A00D8BD1A /* WLRadioButton.swift */,
+				4C894D082A5B220E00CFFDBA /* WLDatePicker.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -323,6 +341,12 @@
 				4CA218EA2A51AD3400409000 /* BottomSheet.swift */,
 				4CEEA50A2A5319A9005A905B /* SelectLineSection.swift */,
 				4CEEA50C2A53270C005A905B /* SelectCategorySection.swift */,
+				4C2D440F2A5451AD00693979 /* MoreDetailsSection.swift */,
+				4C2D44112A54557400693979 /* WLToggleSwitch.swift */,
+				4C682BC82A59D66C00D8BD1A /* PeriodicalWithdrawSection.swift */,
+				4C894D042A5B132A00CFFDBA /* FrequencySection.swift */,
+				4C894D062A5B1EEB00CFFDBA /* StartingAtSection.swift */,
+				4C6D0BA42A5C557900998654 /* DurationSection.swift */,
 			);
 			path = components;
 			sourceTree = "<group>";
@@ -854,6 +878,8 @@
 				4CF2141D2A1417F100DB3F49 /* FacebookSignInClient.swift in Sources */,
 				4CBA1F0C29A3F77E00649304 /* PhoneTextField.swift in Sources */,
 				4C4E166929AB534600017A39 /* LockScreen.swift in Sources */,
+				4C894D052A5B132A00CFFDBA /* FrequencySection.swift in Sources */,
+				4C6D0BA52A5C557900998654 /* DurationSection.swift in Sources */,
 				4CCEE8F12A4B458000611D48 /* WalletTabSection.swift in Sources */,
 				4C88C3862A3F7743004EC47B /* WalletUiItem.swift in Sources */,
 				4CE9075B2A001463000B4146 /* OnBoardingPage.swift in Sources */,
@@ -875,6 +901,7 @@
 				4C111D4F2A488CDE004A995F /* TransactionUiItem.swift in Sources */,
 				4C98AD7129A1595800B6D814 /* TextStylesGuide.swift in Sources */,
 				4C6E6B0C2A33579800B3D03A /* PartnersSection.swift in Sources */,
+				4C682BC92A59D66C00D8BD1A /* PeriodicalWithdrawSection.swift in Sources */,
 				4CD1BFA029A93C5500A71A39 /* CreatePatternScreen.swift in Sources */,
 				4C8BA6FF2A0BA9C700CAA3A1 /* TermsAndConditionSection.swift in Sources */,
 				4CFBF60629A65A3D00D0F806 /* ColorizedText.swift in Sources */,
@@ -905,17 +932,22 @@
 				4CD874EE29A2A4A2004D9B6A /* EmailLoginScreen.swift in Sources */,
 				4CD5F8472A2C9CD900F09FF0 /* PositionObservingView.swift in Sources */,
 				4CE29F572A2B6DC7007BECBF /* NavigationController.swift in Sources */,
+				4C682BCB2A59D86A00D8BD1A /* WLRadioButton.swift in Sources */,
 				4C0FF1292A2CE67E005A9CD9 /* CurrencyText.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				4C111D4B2A48820D004A995F /* DepositWithdrawSummary.swift in Sources */,
+				4C2D44122A54557400693979 /* WLToggleSwitch.swift in Sources */,
 				4C0C236D2A30B4EB00BE9DAB /* WalletEmptyView.swift in Sources */,
+				4C894D072A5B1EEB00CFFDBA /* StartingAtSection.swift in Sources */,
 				4CB5F8F52A12A39200E9A6A7 /* GoogleSignInClient.swift in Sources */,
 				4C4E166729AB531400017A39 /* Components.swift in Sources */,
 				4CEEA50B2A5319A9005A905B /* SelectLineSection.swift in Sources */,
 				4CDF0DC52A40A1CD00488AC0 /* WalletSetupViewModel.swift in Sources */,
 				4C363A872A2F69CD00F968A7 /* AccountPicker.swift in Sources */,
 				4C5FFABA2A24ED3400783A8B /* IntroViewModel.swift in Sources */,
+				4C2D44102A5451AD00693979 /* MoreDetailsSection.swift in Sources */,
 				4C09932529A5262E004772A3 /* OrDivider.swift in Sources */,
+				4C894D092A5B220E00CFFDBA /* WLDatePicker.swift in Sources */,
 				4C0A4E1A2A08266A00F073C4 /* VerifyEmailViewModel.swift in Sources */,
 				4C772B752A227AB2006CD404 /* ConfirmPatternScreen.swift in Sources */,
 				4C8C53AB29A69D780026F684 /* OtpTextField.swift in Sources */,
