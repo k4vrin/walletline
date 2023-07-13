@@ -10,66 +10,27 @@ import Combine
 import SwiftUI
 
 struct AddEditTransactionScreen: View {
+    let walletId: String
+    let transactionId: String?
+    
     @State private var isScrolling: Bool = false
     @State private var dest: AnyView? = nil
     @State private var isNavActive = false
     @State private var cancellables = Set<AnyCancellable>()
-    @State private var isDepositSelected: Bool = false
-    @State private var amount: String = ""
-    @State private var currencyCode: String = "USD"
-    @State private var showSomeDetail: Bool = false
-    @State private var showMoreDetail: Bool = false
-    @State private var transactionTitle: String = ""
-    @State private var line: WalletLineUiItem? = nil
-    @State private var walletLines: [WalletLineUiItem] = [
-        WalletLineUiItem(
-            id: "1",
-            title: "Savings",
-            percentage: 20,
-            balance: 560.00,
-            description: nil,
-            categories: []
-        ),
-        WalletLineUiItem(
-            id: "2",
-            title: "Savings",
-            percentage: 20,
-            balance: 560.00,
-            description: nil,
-            categories: []
-        ),
-        WalletLineUiItem(
-            id: "3",
-            title: "Savings",
-            percentage: 20,
-            balance: 560.00,
-            description: nil,
-            categories: []
-        )
-    ]
-    @State private var showLineSheet: Bool = false
-    @State private var showCategorySheet: Bool = false
-    @State private var showPeriodicalSheet: Bool = false
     @State private var showPeriodicalConfirmation: Bool = false
-    @State private var showDateSheet: Bool = false
-    @State private var selectedFirstDate: Date?
-    @State private var categories = ["Gym", "Gym2", "Gym4", "Gymsda", "Gym5", "Gym6", "Gym7"]
-    @State private var selectedCategories: Set<String> = []
-    @State private var isTaxIncluded: Bool = false
-    @State private var isPeriodical: Bool = false
-    @State private var desc: String = ""
-    
-    @State var selectedFrequency: Frequency?
-    @State var selectedCustomFrequency: [DayFrequency] = []
-    @State var selectedStartDate: Date?
-    @State var selectedEndDate: Date?
-    @State var selectedDuration: Duration?
-    @State var selectedDurationTimes: Int = 1
     
     @FocusState private var focusField: Bool
     
     @Environment(\.presentationMode) var presentation
     
+    @ObservedObject var viewModel: TransactionViewModel
+    
+    init(walletId: String, transactionId: String? = nil) {
+        self.walletId = walletId
+        self.transactionId = transactionId
+        self.viewModel = TransactionViewModel(transactionId: transactionId)
+    }
+
     private let locale = Locale.current as NSLocale
     
     var body: some View {
@@ -77,9 +38,12 @@ struct AddEditTransactionScreen: View {
             WalletLineScaffold(isScrolling: $isScrolling, backgroundColor: .neutralColor) { _ in
                 
                 WalletLineTabRow(
-                    isFirstTabSelected: $isDepositSelected,
-                    firstTabName: "Deposit",
-                    secondTabName: "Withdraw"
+                    isFirstTabSelected: Binding(
+                        get: { viewModel.state.isDepositSelected },
+                        set: { viewModel.onEvent(.ChangeIsDeposit(isDeposit: $0)) }
+                    ),
+                    firstTabName: NSLocalizedString("Deposit", comment: ""),
+                    secondTabName: NSLocalizedString("Withdraw", comment: "")
                 )
                 .padding(.vertical)
                 .padding(.horizontal, Padding.medium)
@@ -92,60 +56,100 @@ struct AddEditTransactionScreen: View {
                     .foregroundColor(.neutralColorDark)
                         
                     WalletLineNormalTextField(
-                        text: $amount,
+                        text: Binding(
+                            get: { viewModel.state.amount },
+                            set: { viewModel.onEvent(.ChangeAmount(amount: $0)) }
+                        ),
                         placeHolder: "0.00",
                         leadingIcon: { _ in
-                            Text(locale.displayName(forKey: .currencySymbol, value: currencyCode) ?? "$")
-                                .headlineLargeStyle()
-                                .foregroundColor(.neutralColorDark)
-                                .frame(width: 24, height: 24)
+                            Text(
+                                locale.displayName(
+                                    forKey: .currencySymbol,
+                                    value: viewModel.state.currencyCode
+                                ) ?? "$"
+                            )
+                            .headlineLargeStyle()
+                            .foregroundColor(.neutralColorDark)
+                            .frame(width: 24, height: 24)
                         }
                     )
                     .keyboardType(.numbersAndPunctuation)
                     .focused($focusField)
                     .onReceive(
-                        Just(amount)
+                        Just(viewModel.state.amount)
                     ) { newValue in
                         let filtered = newValue.filter {
                             "0123456789.".contains($0) &&
                                 newValue.first != "."
                         }
                         if filtered != newValue {
-                            amount = filtered
+                            viewModel.onEvent(.ChangeAmount(amount: filtered))
                         }
                     }
                 }
                 .padding(.horizontal, Padding.medium)
                     
-                ExpandableVStack(expanded: $showSomeDetail, title: "Some Details") {
+                // some
+                ExpandableVStack(
+                    expanded: Binding(
+                        get: { viewModel.state.showSomeDetail },
+                        set: { viewModel.onEvent(.ShowSomeDetial(show: $0)) }
+                    ),
+                    title: NSLocalizedString("Some Details", comment: "")
+                ) {
                     SomeDetailsSection(
-                        title: $transactionTitle,
-                        line: $line,
-                        showLineSheet: $showLineSheet,
-                        showCategorySheet: $showCategorySheet,
+                        title: Binding(
+                            get: { viewModel.state.title },
+                            set: { viewModel.onEvent(.ChangeTitle(title: $0)) }
+                        ),
+                        line: viewModel.state.selectedLine,
+                        categories: viewModel.state.selectedCategories,
+                        showLineSheet: Binding(
+                            get: { viewModel.state.showLineSheet },
+                            set: { viewModel.onEvent(.ShowLineSheet(show: $0)) }
+                        ),
+                        showCategorySheet: Binding(
+                            get: { viewModel.state.showCategorySheet },
+                            set: { viewModel.onEvent(.ShowCategorySheet(show: $0)) }
+                        ),
                         focus: $focusField
                     )
                 }
                 .padding(.horizontal, Padding.medium)
                 .padding(.top, Padding.extraMedium)
                     
-                ExpandableVStack(expanded: $showMoreDetail, title: "More Details") {
+                // More
+                ExpandableVStack(
+                    expanded: Binding(
+                        get: { viewModel.state.showMoreDetail },
+                        set: { viewModel.onEvent(.ShowMoreDetial(show: $0)) }
+                    ),
+                    title: NSLocalizedString("More Details", comment: "")
+                ) {
                     MoreDetailsSection(
-                        date: selectedFirstDate,
-                        desc: $desc,
-                        isTaxIncluded: $isTaxIncluded,
-                        isPeriodical: $isPeriodical,
+                        date: viewModel.state.selectedInitialDate,
+                        desc: Binding(
+                            get: { viewModel.state.desc },
+                            set: { viewModel.onEvent(.ChangeDescription(desc: $0)) }
+                        ),
+                        isTaxIncluded: Binding(
+                            get: { viewModel.state.isTaxIncluded },
+                            set: { viewModel.onEvent(.ChangeIsTax(isTax: $0)) }
+                        ),
+                        isPeriodical: Binding(
+                            get: { viewModel.state.isPeriodical },
+                            set: { viewModel.onEvent(.ChangeIsPeriodical(isPeriodical: $0)) }
+                        ),
                         focus: $focusField,
                         onDateClick: {
-                            showDateSheet = true
+                            viewModel.onEvent(.ShowDateSheet(show: true))
                         },
-                        onPeriodicalClick: {
-                            let wasPeriodical = isPeriodical
+                        onPeriodicalClick: { wasPeriodical in
                             
                             if wasPeriodical {
                                 showPeriodicalConfirmation = true
                             } else {
-                                showPeriodicalSheet = true
+                                viewModel.onEvent(.ShowPeriodicalSheet(show: true))
                             }
                         }
                     )
@@ -154,7 +158,7 @@ struct AddEditTransactionScreen: View {
                     
             } topBar: {
                 DefaultTopBar(
-                    title: "New Transaction",
+                    title: NSLocalizedString("New Transaction", comment: ""),
                     isMoreEnable: false,
                     isScrolling: $isScrolling,
                     menu: { EmptyView() },
@@ -180,81 +184,117 @@ struct AddEditTransactionScreen: View {
             
             // Line
             BottomSheet(
-                title: "Select Line to Borrow from",
-                buttonTitle: "Done",
-                showSheet: $showLineSheet
+                title: NSLocalizedString("Select Line to Borrow from", comment: ""),
+                buttonTitle: NSLocalizedString("Done", comment: ""),
+                showSheet: Binding(
+                    get: { viewModel.state.showLineSheet },
+                    set: { viewModel.onEvent(.ShowLineSheet(show: $0)) }
+                )
             ) {
                 SelectLineSection(
-                    selectedLine: $line,
-                    lines: walletLines,
+                    selectedLine: Binding(
+                        get: { viewModel.state.selectedLine },
+                        set: { viewModel.onEvent(.ChangeLine(line: $0)) }
+                    ),
+                    lines: viewModel.state.walletLines,
                     onAddClick: {}
                 )
                 .padding(.horizontal, Padding.medium)
                 .padding(.vertical)
             } onDoneClick: {
-                showLineSheet.toggle()
+                viewModel.onEvent(.ShowLineSheet(show: false))
             } onCancelClick: {
-                line = nil
-                showLineSheet.toggle()
+                viewModel.onEvent(.CancelLineSelection)
             }
             
             // Category
             BottomSheet(
-                title: "Select Category",
-                buttonTitle: "Done",
-                showSheet: $showCategorySheet
+                title: NSLocalizedString("Select Category", comment: ""),
+                buttonTitle: NSLocalizedString("Done", comment: ""),
+                showSheet: Binding(
+                    get: { viewModel.state.showCategorySheet },
+                    set: { viewModel.onEvent(.ShowCategorySheet(show: $0)) }
+                )
             ) {
                 SelectCategorySection(
-                    selectedCategories: $selectedCategories,
-                    catagories: categories,
+                    selectedCategories: Binding(
+                        get: { viewModel.state.selectedCategories },
+                        set: { viewModel.onEvent(.ChangeCategories(categories: $0)) }
+                    ),
+                    catagories: viewModel.state.categories,
                     onAddClick: {}
                 )
                 .padding(.horizontal, Padding.medium)
                 .padding(.vertical)
             } onDoneClick: {
-                showCategorySheet.toggle()
+                viewModel.onEvent(.ShowCategorySheet(show: false))
             } onCancelClick: {
-                showCategorySheet.toggle()
-                selectedCategories = []
+                viewModel.onEvent(.CancelCategories)
             }
             
             // Periodical
             BottomSheet(
-                title: "Periodical Withdraw",
-                buttonTitle: "Done",
-                showSheet: $showPeriodicalSheet
+                title: NSLocalizedString("Periodical Withdraw", comment: ""),
+                buttonTitle: NSLocalizedString("Done", comment: ""),
+                showSheet: Binding(
+                    get: { viewModel.state.showPeriodicalSheet },
+                    set: { viewModel.onEvent(.ShowPeriodicalSheet(show: $0)) }
+                )
             ) {
                 PeriodicalWithdrawSection(
-                    selectedFrequency: $selectedFrequency,
-                    selectedCustomFrequency: $selectedCustomFrequency,
-                    selectedStartDate: $selectedStartDate,
-                    selectedEndDate: $selectedEndDate,
-                    selectedDuration: $selectedDuration,
-                    selectedDurationTimes: $selectedDurationTimes
+                    selectedFrequency: Binding(
+                        get: { viewModel.state.selectedFrequency },
+                        set: { viewModel.onEvent(.ChangeFrequency(frequency: $0)) }
+                    ),
+                    selectedCustomFrequency: Binding(
+                        get: { viewModel.state.selectedCustomFrequency },
+                        set: { viewModel.onEvent(.ChangeDayFreq(frequencies: $0)) }
+                    ),
+                    selectedStartDate: Binding(
+                        get: { viewModel.state.selectedStartDate },
+                        set: { viewModel.onEvent(.ChangePeriodicalStartDate(date: $0)) }
+                    ),
+                    selectedEndDate: Binding(
+                        get: { viewModel.state.selectedEndDate },
+                        set: { viewModel.onEvent(.ChangePeriodicalEndDate(date: $0)) }
+                    ),
+                    selectedDuration: Binding(
+                        get: { viewModel.state.selectedDuration },
+                        set: { viewModel.onEvent(.ChangeDuration(duration: $0)) }
+                    ),
+                    selectedDurationTimes: Binding(
+                        get: { viewModel.state.selectedDurationTimes },
+                        set: { viewModel.onEvent(.ChangeDurationTimes(times: $0)) }
+                    )
                 )
                 .padding(.vertical)
             } onDoneClick: {
-                showPeriodicalSheet.toggle()
+                viewModel.onEvent(.ShowPeriodicalSheet(show: false))
             } onCancelClick: {
-                cancelPeriodical()
+                viewModel.onEvent(.CancelPeriodical)
             }
             
             // Date
             BottomSheet(
-                title: "Select a date",
-                buttonTitle: "Done",
-                showSheet: $showDateSheet
+                title: NSLocalizedString("Select a date", comment: ""),
+                buttonTitle: NSLocalizedString("Done", comment: ""),
+                showSheet: Binding(
+                    get: { viewModel.state.showDateSheet },
+                    set: { viewModel.onEvent(.ShowDateSheet(show: $0)) }
+                )
             ) {
-                WLDatePicker(selectedDate: $selectedFirstDate)
-                .padding(.vertical)
+                WLDatePicker(
+                    selectedDate: Binding(
+                        get: { viewModel.state.selectedInitialDate },
+                        set: { viewModel.onEvent(.ChangeInitDate(date: $0)) }
+                    )
+                )
+                    .padding(.vertical)
             } onDoneClick: {
-                showDateSheet = false
+                viewModel.onEvent(.ShowDateSheet(show: false))
             } onCancelClick: {
-                selectedFirstDate = nil
-                showDateSheet = false
+                viewModel.onEvent(.CancelDate)
             }
-            
-            
         }
         .toolbar {
             ToolbarItem(placement: .keyboard) {
@@ -266,44 +306,36 @@ struct AddEditTransactionScreen: View {
                 .frame(maxWidth: .infinity, alignment: .trailing)
             }
         }
-        .onChange(of: showLineSheet, perform: { _ in
+        .onChange(of: viewModel.state.showLineSheet, perform: { _ in
             focusField = false
         })
-        .onChange(of: showCategorySheet, perform: { _ in
+        .onChange(of: viewModel.state.showCategorySheet, perform: { _ in
             focusField = false
         })
-        .onChange(of: showPeriodicalSheet, perform: { show in
+        .onChange(of: viewModel.state.showPeriodicalSheet, perform: { _ in
             focusField = false
             
         })
-        .confirmationDialog("Delete Periodical Withdraw?", isPresented: $showPeriodicalConfirmation, actions: {
-            Button("Yes", role: .destructive) {
-                cancelPeriodical()
+        .confirmationDialog(NSLocalizedString("Delete Periodical Withdraw?", comment: ""), isPresented: $showPeriodicalConfirmation, actions: {
+            Button(NSLocalizedString("Yes", comment: ""), role: .destructive) {
+                viewModel.onEvent(.CancelPeriodical)
             }
-            Button("Cancel", role: .cancel) {
-                isPeriodical = true
+            Button(NSLocalizedString("Cancel", comment: ""), role: .cancel) {
+                viewModel.onEvent(.ChangeIsPeriodical(isPeriodical: true))
             }
         }, message: {
-            Text("Are you sure? all of your periodical settings will be lost")
+            Text(NSLocalizedString("periodical settings", comment: ""))
                 .bodyMediumStyle()
         })
         .navigationBarBackButtonHidden(true)
     }
     
-    func cancelPeriodical() {
-        isPeriodical = false
-        selectedFrequency = nil
-        selectedCustomFrequency = []
-        selectedStartDate = nil
-        selectedEndDate = nil
-        selectedDuration = nil
-        selectedDurationTimes = 1
-    }
+
 }
 
 struct AddEditTransactionScreen_Previews: PreviewProvider {
     static var previews: some View {
-        AddEditTransactionScreen()
+        AddEditTransactionScreen(walletId: "123")
     }
 }
 

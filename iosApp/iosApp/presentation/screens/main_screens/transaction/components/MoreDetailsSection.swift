@@ -17,7 +17,7 @@ struct MoreDetailsSection: View {
     var focus: FocusState<Bool>.Binding
     
     var onDateClick: () -> Void
-    var onPeriodicalClick: (() -> Void)? = nil
+    var onPeriodicalClick: ((Bool) -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading, spacing: Padding.defaultPadding) {
@@ -40,22 +40,21 @@ struct MoreDetailsSection: View {
                     .renderingMode(.template)
                     .foregroundColor(.neutralColorDark)
             }
-            .onTapGesture(perform: onDateClick)
             .disabled(true)
             .focused(focus)
             .padding(.top, Padding.small)
-            
+            .onTapGesture(perform: onDateClick)
             
             WLToggleSwitch(
                 title: NSLocalizedString("Tax included", comment: ""),
-                desc: "It shows the involvement of  this category’s transactions in taxation",
+                desc: NSLocalizedString("It shows the involvement", comment: ""),
                 isOn: $isTaxIncluded
             )
             .padding(.top, Padding.extraMedium)
             
             WLToggleSwitch(
                 title: NSLocalizedString("Periodical Withdrawal", comment: ""),
-                desc: "By activating this option, it becomes possible to record the periodic withdrawal of this fee.",
+                desc: NSLocalizedString("By activating this option", comment: ""),
                 isOn: $isPeriodical,
                 onSwitchClick: onPeriodicalClick
             )

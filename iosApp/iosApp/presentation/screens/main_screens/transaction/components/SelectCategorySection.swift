@@ -50,7 +50,9 @@ struct SelectCategorySection: View {
             Button {
                 onAddClick()
             } label: {
-                Text("+ Add new category")
+                Text(
+                    NSLocalizedString("+ Add new category", comment: "")
+                )
                     .buttonStyle()
                     .foregroundColor(.infoColorShade4)
             }

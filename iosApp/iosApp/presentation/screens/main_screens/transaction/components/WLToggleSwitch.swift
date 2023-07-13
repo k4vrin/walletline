@@ -15,7 +15,7 @@ struct WLToggleSwitch: View {
     
     @Binding var isOn: Bool
     
-    var onSwitchClick: (() -> Void)? = nil
+    var onSwitchClick: ((Bool) -> Void)? = nil
     
     var body: some View {
         VStack(alignment: .leading ,spacing: Padding.defaultPadding) {
@@ -33,7 +33,7 @@ struct WLToggleSwitch: View {
                     .tint(.mainColor)
                     .padding(.trailing, Padding.extraSmall)
                     .onTapGesture {
-                        onSwitchClick?()
+                        onSwitchClick?(isOn)
                     }
             }
 

@@ -19,7 +19,9 @@ struct FrequencySection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Padding.defaultPadding) {
             HStack(spacing: Padding.defaultPadding) {
-                Text("Frequency")
+                Text(
+                    NSLocalizedString("Frequency", comment: "")
+                )
                     .bodySmallStyle()
                     .foregroundColor(.neutralColorDark)
 
@@ -32,7 +34,9 @@ struct FrequencySection: View {
                         tag: .Daily,
                         selection: $selected,
                         label: {
-                            Text("Daily")
+                            Text(
+                                NSLocalizedString("Daily", comment: "")
+                            )
                                 .titleLargeStyle()
                                 .foregroundColor(.neutralColorDark)
                         }
@@ -42,7 +46,9 @@ struct FrequencySection: View {
                         tag: .Monthly,
                         selection: $selected,
                         label: {
-                            Text("Monthly")
+                            Text(
+                                NSLocalizedString("Monthly", comment: "")
+                            )
                                 .titleLargeStyle()
                                 .foregroundColor(.neutralColorDark)
                         }
@@ -52,7 +58,7 @@ struct FrequencySection: View {
                         tag: .Custom,
                         selection: $selected,
                         label: {
-                            Text("Custom")
+                            Text(NSLocalizedString("Custom", comment: ""))
                                 .titleLargeStyle()
                                 .foregroundColor(.neutralColorDark)
                         }
@@ -64,7 +70,7 @@ struct FrequencySection: View {
                         tag: .Weekly,
                         selection: $selected,
                         label: {
-                            Text("Weekly")
+                            Text(NSLocalizedString("Weekly", comment: ""))
                                 .titleLargeStyle()
                                 .foregroundColor(.neutralColorDark)
                         }
@@ -74,7 +80,7 @@ struct FrequencySection: View {
                         tag: .Yearly,
                         selection: $selected,
                         label: {
-                            Text("Yearly")
+                            Text(NSLocalizedString("Yearly", comment: ""))
                                 .titleLargeStyle()
                                 .foregroundColor(.neutralColorDark)
                         }
@@ -97,48 +103,48 @@ struct FrequencyCustom: View {
     
     var body: some View {
         HStack(spacing: Padding.smallMedium) {
-            Text("On")
+            Text(NSLocalizedString("On", comment: "e.g. On Saturday"))
                 .titleLargeStyle()
                 .foregroundColor(.neutralColorDark)
             
             FrequencyCustomButton(
-                text: "S",
+                text: NSLocalizedString("S", comment: "Sunday"),
                 tag: .Sunday,
                 selections: $selections
             )
             
             FrequencyCustomButton(
-                text: "M",
+                text: NSLocalizedString("M", comment: "Monday"),
                 tag: .Monday,
                 selections: $selections
             )
             
             FrequencyCustomButton(
-                text: "T",
+                text: NSLocalizedString("T", comment: "Tuesday"),
                 tag: .Tuesday,
                 selections: $selections
             )
             
             FrequencyCustomButton(
-                text: "W",
+                text: NSLocalizedString("W", comment: "Wednesday"),
                 tag: .Wednesday,
                 selections: $selections
             )
             
             FrequencyCustomButton(
-                text: "T",
+                text: NSLocalizedString("T", comment: "Thursday"),
                 tag: .Thursday,
                 selections: $selections
             )
             
             FrequencyCustomButton(
-                text: "F",
+                text: NSLocalizedString("F", comment: "Friday"),
                 tag: .Friday,
                 selections: $selections
             )
             
             FrequencyCustomButton(
-                text: "S",
+                text: NSLocalizedString("S", comment: "Saturday"),
                 tag: .Saturday,
                 selections: $selections
             )

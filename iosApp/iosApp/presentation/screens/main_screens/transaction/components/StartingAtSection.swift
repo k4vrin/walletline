@@ -15,7 +15,9 @@ struct StartingAtSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Padding.defaultPadding) {
             HStack(spacing: Padding.defaultPadding) {
-                Text("Starting At")
+                Text(
+                NSLocalizedString("Starting At", comment: "")
+                )
                     .bodySmallStyle()
                     .foregroundColor(.neutralColorDark)
                 

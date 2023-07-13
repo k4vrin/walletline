@@ -41,7 +41,9 @@ struct BottomSheet<Content: View>: View {
                     Button {
                         onCancelClick()
                     } label: {
-                        Text("Cancel")
+                        Text(
+                            NSLocalizedString("Cancel", comment: "")
+                        )
                             .buttonStyle()
                             .foregroundColor(.infoColorShade4)
                     }

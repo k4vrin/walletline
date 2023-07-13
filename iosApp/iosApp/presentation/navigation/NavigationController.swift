@@ -11,6 +11,7 @@ import Foundation
 class NavigationController: ObservableObject {
     @Published var currentGraph: Page = .home
     @Published var detailIsShown: Bool = false
+    @Published var currentWalletId: String?
 }
 
 enum Page {

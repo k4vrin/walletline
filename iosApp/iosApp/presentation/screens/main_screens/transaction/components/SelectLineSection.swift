@@ -12,6 +12,7 @@ struct SelectLineSection: View {
     @Binding var selectedLine: WalletLineUiItem?
     
     var lines: [WalletLineUiItem]
+    var currencyCode: String = "USD"
     
     var onAddClick: () -> Void
     
@@ -25,7 +26,7 @@ struct SelectLineSection: View {
                         percentage: line.percentage,
                         balance: line.balance,
                         buttonEnable: false,
-                        currencyCode: "USD",
+                        currencyCode: currencyCode,
                         isSelected: line == selectedLine
                     )
                     .onTapGesture {
@@ -36,7 +37,9 @@ struct SelectLineSection: View {
                 Button {
                     onAddClick()
                 } label: {
-                    Text("+ Add new line")
+                    Text(
+                    NSLocalizedString("+ Add new line", comment: "")
+                    )
                         .buttonStyle()
                         .foregroundColor(.infoColorShade4)
                 }

@@ -24,7 +24,7 @@ struct DurationSection: View {
     var body: some View {
         VStack(alignment: .leading, spacing: Padding.defaultPadding) {
             HStack(spacing: Padding.defaultPadding) {
-                Text("Duration")
+                Text(NSLocalizedString("Duration", comment: ""))
                     .bodySmallStyle()
                     .foregroundColor(.neutralColorDark)
                 
@@ -37,7 +37,7 @@ struct DurationSection: View {
                     tag: .Forever,
                     selection: $selected,
                     label: {
-                        Text("Forever")
+                        Text(NSLocalizedString("Forever", comment: ""))
                             .titleLargeStyle()
                             .foregroundColor(.neutralColorDark)
                     }
@@ -59,7 +59,7 @@ struct DurationSection: View {
                         
                         
                         
-                        Text(isTimesSelected ? "time(s) total" : "Specific number of times")
+                        Text(isTimesSelected ? NSLocalizedString("time(s) total", comment: "") : NSLocalizedString("Specific number of times", comment: ""))
                             .titleLargeStyle()
                             .foregroundColor(.neutralColorDark)
                     }
@@ -69,7 +69,7 @@ struct DurationSection: View {
                     tag: .Until,
                     selection: $selected,
                     label: {
-                        Text("Until")
+                        Text(NSLocalizedString("Until", comment: ""))
                             .titleLargeStyle()
                             .foregroundColor(.neutralColorDark)
                     }
