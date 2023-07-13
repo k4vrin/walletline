@@ -3,6 +3,8 @@ buildscript {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven  { url = uri("https://jitpack.io") }
+
     }
     dependencies {
         classpath(Build.kotlinGradlePlugin)

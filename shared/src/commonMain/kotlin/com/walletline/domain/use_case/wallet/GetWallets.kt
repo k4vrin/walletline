@@ -14,5 +14,4 @@ class GetWallets(
     @NativeCoroutines
     fun execute(): Flow<List<Wallet>> =
         walletRepository.getAllWallets().flowOn(dispatchers.database)
-
 }
