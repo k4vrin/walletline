@@ -107,3 +107,59 @@
 "Current Lines" = "Current Lines";
 "Lines" = "Lines";
 "Transactions" = "Transactions";
+
+
+// Transactions
+"Transaction's title"="Transaction's title";
+"Add Line"="Add Line";
+"Category"="Category";
+"Add Category"="Add Category";
+"Cancel"="Cancel";
+"+ Add new line"="+ Add new line";
+"+ Add new category"="+ Add new category";
+"Date"="Date";
+"Tax included"="Tax included";
+"It shows the involvement"="It shows the involvement of  this category’s transactions in taxation";
+"Periodical Withdrawal"="Periodical Withdrawal";
+"By activating this option"="By activating this option, it becomes possible to record the periodic withdrawal of this fee.";
+"Description"="Description";
+"Describe your category"="Describe your category";
+"Frequency"="Frequency";
+"Daily"="Daily";
+"Monthly"="Monthly";
+"Custom"="Custom";
+"Weekly"="Weekly";
+"Yearly"="Yearly";
+/* e.g. On Saturday */
+"On"="On";
+// Day initial
+/* Sunday */
+"S"="S";
+/* Monday */
+"M"="M";
+/* Tuesday */
+"T"="T";
+/* Wednesday */
+"W"="W";
+/* Thursday */
+"T"="T";
+/* Friday */
+"F"="F";
+/* Saturday */
+"S"="S";
+"Starting At"="Starting At";
+"Duration"="Duration";
+"Forever"="Forever";
+"time(s) total"="time(s) total";
+"Specific number of times"="Specific number of times";
+"Until"="Until";
+"Deposit"="Deposit";
+"Withdraw"="Withdraw";
+"Amount"="Amount";
+"Some Details"="Some Details";
+"New Transaction"="New Transaction";
+"Select Line to Borrow from"="Select Line to Borrow from";
+"Select Category"="Select Category";
+"Select a date"="Select a date";
+"Delete Periodical Withdraw?"="Delete Periodical Withdraw?";
+"periodical settings"="Are you sure? all of your periodical settings will be lost";

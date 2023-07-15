@@ -11,8 +11,16 @@ import SwiftUI
 struct BottomNavBar: View {
     @ObservedObject var navController: NavigationController
 
+
+    @State private var isNavActive = false
+
     var body: some View {
         ZStack {
+            NavigationLink(isActive: $isNavActive) {
+                AddEditTransactionScreen(walletId: navController.currentWalletId ?? "")
+            } label: {
+                EmptyView()
+            }.hidden()
             BottomBarShape(clipHeight: 15)
                 .fill(
                     LinearGradient(
@@ -24,7 +32,11 @@ struct BottomNavBar: View {
                 .background(Material.ultraThinMaterial)
                 .clipShape(BottomBarShape(clipHeight: 15))
 
-            NavigationLink(destination: AddEditTransactionScreen(), label: {
+            Button {
+                if let id = navController.currentWalletId, !id.isEmpty {
+                    isNavActive = true
+                }
+            } label: {
                 ZStack {
                     Circle()
                         .fill(Color.mainColor)
@@ -36,7 +48,7 @@ struct BottomNavBar: View {
                         .foregroundColor(.white)
                         .frame(width: 16, height: 16)
                 }
-            })
+            }
 
             HStack(spacing: Padding.defaultPadding) {
                 Button {

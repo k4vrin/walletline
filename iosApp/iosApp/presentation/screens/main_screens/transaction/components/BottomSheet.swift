@@ -9,6 +9,7 @@
 import SwiftUI
 
 struct BottomSheet<Content: View>: View {
+    var title: String
     var buttonTitle: String = "Add"
     
     @State var offset: CGFloat = 0
@@ -25,11 +26,30 @@ struct BottomSheet<Content: View>: View {
         VStack(spacing: Padding.defaultPadding) {
             Spacer()
                 
-            
             VStack(spacing: Padding.defaultPadding) {
                 Capsule()
                     .fill(Color.neutralColorDark)
                     .frame(width: 40, height: 5)
+                
+                HStack(spacing: Padding.defaultPadding) {
+                    Text(title)
+                        .headlineLargeStyle()
+                        .foregroundColor(.neutralColorDark)
+                    
+                    Spacer()
+                    
+                    Button {
+                        onCancelClick()
+                    } label: {
+                        Text(
+                            NSLocalizedString("Cancel", comment: "")
+                        )
+                            .buttonStyle()
+                            .foregroundColor(.infoColorShade4)
+                    }
+                }
+                .padding(.horizontal, Padding.medium)
+                .padding(.vertical)
                 
                 VStack(spacing: Padding.defaultPadding) {
                     content()
@@ -66,9 +86,7 @@ struct BottomSheet<Content: View>: View {
                     .onChanged(onChanged)
                     .onEnded(onEnded)
             )
-            .onTapGesture {
-                
-            }
+            .onTapGesture {}
         }
         .ignoresSafeArea()
         .padding(.top, geo?.safeAreaInsets.top)
@@ -103,7 +121,9 @@ struct BottomSheet<Content: View>: View {
 
 struct BottomSheet_Previews: PreviewProvider {
     static var previews: some View {
-        BottomSheet(showSheet: .constant(true), content: {
+        BottomSheet(
+            title: "Date",
+            showSheet: .constant(true), content: {
             ScrollView {
                 HStack {
                     Text("Select line to borrow from")

@@ -12,27 +12,12 @@ struct SelectLineSection: View {
     @Binding var selectedLine: WalletLineUiItem?
     
     var lines: [WalletLineUiItem]
+    var currencyCode: String = "USD"
     
     var onAddClick: () -> Void
-    var onCancelClick: () -> Void
     
     var body: some View {
         VStack(spacing: Padding.defaultPadding) {
-            HStack(spacing: Padding.defaultPadding) {
-                Text("Select Line to Borrow from")
-                    .headlineLargeStyle()
-                
-                Spacer()
-                
-                Button {
-                    selectedLine = nil
-                    onCancelClick()
-                } label: {
-                    Text("Cancel")
-                        .buttonStyle()
-                        .foregroundColor(.infoColorShade4)
-                }
-            }
             
             VStack(spacing: Padding.small) {
                 ForEach(lines) { line in
@@ -41,7 +26,7 @@ struct SelectLineSection: View {
                         percentage: line.percentage,
                         balance: line.balance,
                         buttonEnable: false,
-                        currencyCode: "USD",
+                        currencyCode: currencyCode,
                         isSelected: line == selectedLine
                     )
                     .onTapGesture {
@@ -52,7 +37,9 @@ struct SelectLineSection: View {
                 Button {
                     onAddClick()
                 } label: {
-                    Text("+ Add new line")
+                    Text(
+                    NSLocalizedString("+ Add new line", comment: "")
+                    )
                         .buttonStyle()
                         .foregroundColor(.infoColorShade4)
                 }
@@ -93,8 +80,7 @@ struct SelectLineSection_Previews: PreviewProvider {
                     categories: []
                 )
             ],
-            onAddClick: {},
-            onCancelClick: {}
+            onAddClick: {}
         )
     }
 }
