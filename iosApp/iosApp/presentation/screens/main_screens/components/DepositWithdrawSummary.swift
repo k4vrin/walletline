@@ -25,6 +25,7 @@ struct DepositWithdrawSummary: View {
                 onClick: onDepositClick
             )
             
+            
             Spacer(minLength: Padding.smallMedium)
             
             SummaryCard(
@@ -47,6 +48,7 @@ struct SummaryCard: View {
         ZStack {
             RoundedRectangle(cornerRadius: 20)
                 .fill(Color.neutralColor)
+                .shadow(color: .neutralColorDark.opacity(0.2), radius: 20)
                 
             VStack(spacing: Padding.defaultPadding) {
                 HStack(spacing: Padding.defaultPadding) {

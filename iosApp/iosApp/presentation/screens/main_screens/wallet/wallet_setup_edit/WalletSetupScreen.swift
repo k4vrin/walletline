@@ -89,7 +89,7 @@ struct WalletSetupScreen: View {
                             .foregroundColor(.neutralColorDark)
                             .frame(width: 24, height: 24)
                     }
-                    .keyboardType(.numbersAndPunctuation)
+                    .keyboardType(.decimalPad)
                     .focused($focusField)
                     .padding(.top, Padding.small)
                     .onReceive(

@@ -83,6 +83,7 @@ struct TransactionsList: View {
                     currencyCode: currencyCode,
                     onEditClick: onEditClick
                 )
+                
             }
         }
     }
@@ -161,6 +162,7 @@ struct TransactionItem: View {
             ZStack {
                 RoundedRectangle(cornerRadius: 16)
                     .fill(Color.neutralColor)
+                    .shadow(color: .neutralColorDark.opacity(0.2), radius: 20)
                 
                 HStack(spacing: Padding.defaultPadding) {
                     ZStack {

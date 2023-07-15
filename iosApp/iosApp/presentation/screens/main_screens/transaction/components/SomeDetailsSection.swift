@@ -7,11 +7,14 @@
 //
 
 import SwiftUI
+import WrappingHStack
 
 struct SomeDetailsSection: View {
     
     @Binding var title: String
-    @Binding var line: WalletLineUiItem?
+    var line: WalletLineUiItem?
+    var categories: Set<String>
+    
     @Binding var showLineSheet: Bool
     @Binding var showCategorySheet: Bool
     
@@ -56,7 +59,7 @@ struct SomeDetailsSection: View {
                 }
                 .padding(.top, Padding.small)
             } else {
-                DashedBorderButton(title: "Add Line") {
+                DashedBorderButton(title: NSLocalizedString("Add Line", comment: "")) {
                     showLineSheet.toggle()
                 }
                 .padding(.top, Padding.small)
@@ -69,13 +72,38 @@ struct SomeDetailsSection: View {
             .foregroundColor(.neutralColorDark)
             .padding(.top, Padding.extraMedium)
             
-            DashedBorderButton(title: "Add Category") {
-                showCategorySheet.toggle()
+            if !categories.isEmpty {
+                ZStack {
+                    
+                    HStack {
+                        WrappingHStack(Array(categories), id: \.self) { cat in
+                            CategoryChip(name: cat)
+                                .padding(.horizontal, Padding.extraSmall)
+                                .padding(.vertical, Padding.small)
+                        }
+                    }
+                    .padding()
+                }
+                .background(
+                    RoundedRectangle(cornerRadius: 18)
+                        .fill(Color.neutralColor)
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 18)
+                                .stroke(
+                                    Color.neutralColorShade6,
+                                    lineWidth: 2
+                                )
+                        )
+                )
+                .padding(.top, Padding.small)
+            } else {
+                DashedBorderButton(title: NSLocalizedString("Add Category", comment: "")) {
+                    showCategorySheet.toggle()
+                }
+                .padding(.top, Padding.small)
             }
-            .padding(.top, Padding.small)
         }
         .padding(.top, Padding.small)
-        .padding(.horizontal, Padding.medium)
     }
 }
 
@@ -83,16 +111,18 @@ struct SomeDetailsSection_Previews: PreviewProvider {
     static var previews: some View {
         SomeDetailsSection(
             title: .constant(""),
-            line: .constant(
-                WalletLineUiItem(
-                    id: "",
-                    title: "Savings",
-                    percentage: 20,
-                    balance: 333.33,
-                    description: nil,
-                    categories: []
-                )
-            ), showLineSheet: .constant(false), showCategorySheet: .constant(false), focus: FocusState().projectedValue
+            line: WalletLineUiItem(
+                id: "",
+                title: "Savings",
+                percentage: 20,
+                balance: 333.33,
+                description: nil,
+                categories: []
+            ),
+            categories: ["Gym", "Gym", "Gym", "Gym"],
+            showLineSheet: .constant(false),
+            showCategorySheet: .constant(false),
+            focus: FocusState().projectedValue
         )
     }
 }

@@ -21,6 +21,7 @@ struct WalletScreen: View {
             viewModel.onEvent(.ChangeFilter(order: filterOrder))
         }
     }
+
     @ObservedObject var navController: NavigationController
     
     @State private var accounts: [WalletUiItem] = []
@@ -75,7 +76,18 @@ struct WalletScreen: View {
                         title: NSLocalizedString("There is no wallet yet!", comment: ""),
                         desc: NSLocalizedString("Plan ahead and manage", comment: "")
                     ).frame(height: geo.size.height / 2, alignment: .bottom)
+                    
+                    DashedBorderButton(title: NSLocalizedString("Create your 1st wallet", comment: "")) {
+                        if accounts.isEmpty {
+                            viewModel.onEvent(.CreateWalletClicked)
+                        } else {
+                            viewModel.onEvent(.CreateLineClicked)
+                        }
+                    }
+                    .padding([.horizontal, .top], Padding.medium)
                 }
+                
+                if viewModel.state.isLinesSelected {}
             }
             
         } topBar: {
@@ -105,6 +117,7 @@ struct WalletScreen: View {
             )
         }
         .onAppear {
+            navController.detailIsShown = false
             viewModel.onEvent(.GetWallets)
             let effect = viewModel.effect()
             effect.sink(receiveCompletion: { _ in }, receiveValue: { effect in
@@ -136,7 +149,9 @@ struct WalletScreen: View {
         .onChange(of: viewModel.state.wallets) { wallets in
             self.accounts = wallets
         }
-        
+        .onChange(of: accounts, perform: { accs in
+            navController.currentWalletId = accs.last?.id
+        })
     }
     
     private func doNothing() {}

@@ -14,7 +14,7 @@ struct WalletLineNormalTextField<LeadingIcon: View>: View {
     var placeHolder: String
     @ViewBuilder var leadingIcon: (_ error: String?) -> LeadingIcon
     var body: some View {
-        VStack(alignment: .leading,spacing: Padding.defaultPadding) {
+        VStack(alignment: .leading, spacing: Padding.defaultPadding) {
             ZStack {
                 RoundedRectangle(cornerRadius: Dimen.DefaultButtonCornerRadius)
                     .stroke(error.isNilOrEmpty() ? Color.neutralColorShade6 : .errorColorShade4, lineWidth: 2)
@@ -34,7 +34,7 @@ struct WalletLineNormalTextField<LeadingIcon: View>: View {
                                 .bodyLargeStyle()
                                 .foregroundColor(.neutralColorShade3)
                         }
-                    
+
                     Button {
                         text = ""
                     } label: {
@@ -53,7 +53,6 @@ struct WalletLineNormalTextField<LeadingIcon: View>: View {
             }
         }
         .animation(.default, value: error)
-        
     }
 }
 
