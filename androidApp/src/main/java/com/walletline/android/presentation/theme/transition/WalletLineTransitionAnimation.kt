@@ -1,6 +1,6 @@
 package com.walletline.android.presentation.theme.transition
 
-import androidx.compose.animation.AnimatedContentScope
+import androidx.compose.animation.AnimatedContentTransitionScope
 import androidx.compose.animation.core.tween
 import com.ramcosta.composedestinations.animations.defaults.RootNavGraphDefaultAnimations
 
@@ -8,7 +8,7 @@ object WalletLineTransitionAnimation {
     val default = RootNavGraphDefaultAnimations(
         enterTransition = {
             slideIntoContainer(
-                towards = AnimatedContentScope.SlideDirection.Left,
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
                 animationSpec = tween(
                     durationMillis = TransitionDurations.MEDIUM,
                     delayMillis = TransitionDurations.MEDIUM
@@ -17,7 +17,7 @@ object WalletLineTransitionAnimation {
         },
         exitTransition = {
             slideOutOfContainer(
-                towards = AnimatedContentScope.SlideDirection.Left,
+                towards = AnimatedContentTransitionScope.SlideDirection.Left,
                 animationSpec = tween(
                     durationMillis = TransitionDurations.MEDIUM,
                     delayMillis = TransitionDurations.MEDIUM
@@ -26,7 +26,7 @@ object WalletLineTransitionAnimation {
         },
         popEnterTransition = {
             slideIntoContainer(
-                towards = AnimatedContentScope.SlideDirection.Right,
+                towards = AnimatedContentTransitionScope.SlideDirection.Right,
                 animationSpec = tween(
                     durationMillis = TransitionDurations.MEDIUM,
                     delayMillis = TransitionDurations.MEDIUM
@@ -35,7 +35,7 @@ object WalletLineTransitionAnimation {
         },
         popExitTransition = {
             slideOutOfContainer(
-                towards = AnimatedContentScope.SlideDirection.Right,
+                towards = AnimatedContentTransitionScope.SlideDirection.Right,
                 animationSpec = tween(
                     durationMillis = TransitionDurations.MEDIUM,
                     delayMillis = TransitionDurations.MEDIUM

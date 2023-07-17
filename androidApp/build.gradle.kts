@@ -50,7 +50,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = Compose.CompilerVersion
     }
-    packagingOptions {
+    packaging {
         resources {
             excludes.add("/META-INF/{AL2.0,LGPL2.1}")
             excludes.add("META-INF/INDEX.LIST")

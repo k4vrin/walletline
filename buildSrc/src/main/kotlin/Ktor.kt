@@ -1,5 +1,5 @@
 object Ktor {
-    private const val Version = "2.2.4"
+    private const val Version = "2.3.2"
     val core by lazy {  "io.ktor:ktor-client-core:${Version}"}
     val okhttp by lazy {  "io.ktor:ktor-client-okhttp:${Version}"}
     val ios by lazy {  "io.ktor:ktor-client-ios:${Version}"}
