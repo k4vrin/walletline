@@ -1,5 +1,5 @@
 object SqlDelight {
-    const val Version = "2.0.0-alpha05"
+    const val Version = "2.0.0-rc02"
     const val Plugin = "app.cash.sqldelight"
     val runtime by lazy { "app.cash.sqldelight:runtime:${Version}" }
     val androidDriver by lazy { "app.cash.sqldelight:android-driver:${Version}" }

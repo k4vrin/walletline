@@ -96,11 +96,11 @@ PODS:
     - AppAuth/Core (~> 1.6)
     - GTMSessionFetcher/Core (< 4.0, >= 1.5)
   - GTMSessionFetcher/Core (3.1.1)
-  - KMPNativeCoroutinesAsync (1.0.0-ALPHA-5):
-    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-5)
-  - KMPNativeCoroutinesCombine (1.0.0-ALPHA-5):
-    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-5)
-  - KMPNativeCoroutinesCore (1.0.0-ALPHA-5)
+  - KMPNativeCoroutinesAsync (1.0.0-ALPHA-12):
+    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-12)
+  - KMPNativeCoroutinesCombine (1.0.0-ALPHA-12):
+    - KMPNativeCoroutinesCore (= 1.0.0-ALPHA-12)
+  - KMPNativeCoroutinesCore (1.0.0-ALPHA-12)
   - nanopb (2.30909.0):
     - nanopb/decode (= 2.30909.0)
     - nanopb/encode (= 2.30909.0)
@@ -115,8 +115,8 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseAuth
   - GoogleSignIn
-  - KMPNativeCoroutinesAsync (= 1.0.0-ALPHA-5)
-  - KMPNativeCoroutinesCombine (= 1.0.0-ALPHA-5)
+  - KMPNativeCoroutinesAsync (= 1.0.0-ALPHA-12)
+  - KMPNativeCoroutinesCombine (= 1.0.0-ALPHA-12)
   - shared (from `../shared`)
   - WrappingHStack
 
@@ -166,14 +166,14 @@ SPEC CHECKSUMS:
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   GTMAppAuth: 99fb010047ba3973b7026e45393f51f27ab965ae
   GTMSessionFetcher: e8647203b65cee28c5f73d0f473d096653945e72
-  KMPNativeCoroutinesAsync: 68068b8f4d5841cf136d52b618f981b5c273ef27
-  KMPNativeCoroutinesCombine: 64ad489a46585ef25f7b4d81d27fdb96e669847b
-  KMPNativeCoroutinesCore: ac553bc11d77f385cdf78f32d56501a3d5d3eef8
+  KMPNativeCoroutinesAsync: 5ba4139ba2a1112c372213846235afe92cc8f6ef
+  KMPNativeCoroutinesCombine: 2c226331d4a7d341bb54f66d70b204947a4631ef
+  KMPNativeCoroutinesCore: 3ef919f37de8dff1d1daa3d4af92ca1d8c1a5ffd
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   shared: 52b3c010bcc94262058adba481b9752a0d3560d9
   WrappingHStack: f784737f5707f8fea91b687074530dbefd2dbf05
 
-PODFILE CHECKSUM: 28b8a38a9ba34ea38bb974144c3d65db42cd2d52
+PODFILE CHECKSUM: e493e7f7cc41e81997c3d1df85a53734b6c1d6ea
 
 COCOAPODS: 1.12.1

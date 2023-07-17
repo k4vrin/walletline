@@ -143,7 +143,6 @@ sqldelight {
     databases {
         create("WalletlineDB") {
             packageName.set("com.walletline.database")
-            sourceFolders.add("sqldelight")
         }
     }
 }
