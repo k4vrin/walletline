@@ -2,10 +2,7 @@
 
 A library to use Kotlin Coroutines from Swift code in KMP apps.
 
-> **Warning**: you are viewing the documentation for the 1.0 pre-release version which is still a WIP.   
-> The documentation for the 0.x releases can be found
-> [here](https://github.com/rickclephas/KMP-NativeCoroutines/blob/master/README.md).  
-> Looking to upgrade? Checkout the [migration steps](MIGRATING_TO_V1.md).
+> Looking to upgrade from the 0.x releases? Checkout the [migration steps](MIGRATING_TO_V1.md).
 
 ## Why this library?
 
@@ -27,13 +24,21 @@ This library solves both of these limitations 😄.
 
 ## Compatibility
 
-The latest version of the library uses Kotlin version `1.8.10`.  
-Compatibility versions for older Kotlin versions are also available:
+The latest version of the library uses Kotlin version `1.8.22`.  
+Compatibility versions for older and/or preview Kotlin versions are also available:
 
-| Version       | Version suffix  |   Kotlin   |    KSP    | Coroutines |
-|---------------|-----------------|:----------:|:---------:|:----------:|
-| **_latest_**  | **_no suffix_** | **1.8.10** | **1.0.9** | **1.6.4**  |
-| 1.0.0-ALPHA-4 | _no suffix_     |   1.8.0    |   1.0.8   |   1.6.4    |
+| Version        | Version suffix     |   Kotlin   |    KSP     | Coroutines |
+|----------------|--------------------|:----------:|:----------:|:----------:|
+| _latest_       | -kotlin-1.9.0-RC   |  1.9.0-RC  |   1.0.11   |   1.7.2    |
+| **_latest_**   | **_no suffix_**    | **1.8.22** | **1.0.11** | **1.7.2**  |
+| 1.0.0-ALPHA-11 | _no suffix_        |   1.8.22   |   1.0.11   |   1.7.1    |
+| 1.0.0-ALPHA-10 | -kotlin-1.9.0-Beta | 1.9.0-Beta |   1.0.11   |   1.7.1    |
+| 1.0.0-ALPHA-10 | _no suffix_        |   1.8.21   |   1.0.11   |   1.7.1    |
+| 1.0.0-ALPHA-9  | _no suffix_        |   1.8.21   |   1.0.11   |   1.7.0    |
+| 1.0.0-ALPHA-8  | _no suffix_        |   1.8.21   |   1.0.11   |   1.6.4    |
+| 1.0.0-ALPHA-7  | _no suffix_        |   1.8.20   |   1.0.10   |   1.6.4    |
+| 1.0.0-ALPHA-5  | _no suffix_        |   1.8.10   |   1.0.9    |   1.6.4    |
+| 1.0.0-ALPHA-4  | _no suffix_        |   1.8.0    |   1.0.8    |   1.6.4    |
 
 You can choose from a couple of Swift implementations.  
 Depending on the implementation you can support as low as iOS 9, macOS 10.9, tvOS 9 and watchOS 3:
@@ -52,7 +57,7 @@ or the Swift Package Manager.
 
 Make sure to always use the same versions for all the libraries!
 
-[![latest release](https://img.shields.io/github/v/release/rickclephas/KMP-NativeCoroutines?label=latest%20release&sort=semver)](https://github.com/rickclephas/KMP-NativeCoroutines/releases)
+[![latest release](https://img.shields.io/github/v/release/rickclephas/KMP-NativeCoroutines?label=latest%20release&sort=semver&include_prereleases)](https://github.com/rickclephas/KMP-NativeCoroutines/releases)
 
 ### Kotlin
 
@@ -198,6 +203,22 @@ fun RandomLettersGenerator.getRandomLettersNative() =
 ```
 </p>
 </details>
+
+#### Interface limitations
+
+Unfortunately extension functions/properties aren't 
+[supported](https://kotlinlang.org/docs/native-objc-interop.html#extensions-and-category-members)
+on Objective-C protocols.  
+
+However this limitation can be "overcome" with some Swift magic.  
+Assuming `RandomLettersGenerator` is an `interface` instead of a `class` we can do the following:
+```swift
+extension RandomLettersGenerator {
+    func getRandomLetters() -> NativeSuspend<String, Error, KotlinUnit> {
+        RandomLettersGeneratorNativeKt.getRandomLetters(self)
+    }
+}
+```
 
 ### Swift Concurrency
 
@@ -407,4 +428,29 @@ val ignoredFlowProperty: Flow<Int>
 
 @NativeCoroutinesIgnore
 suspend fun ignoredSuspendFunction() { }
+```
+
+### Refining declarations in Swift
+
+If for some reason you would like to further refine your Kotlin declarations in Swift, you can use the
+`NativeCoroutinesRefined` and `NativeCoroutinesRefinedState` annotations.  
+These will tell the plugin to add the [`ShouldRefineInSwift`](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.native/-should-refine-in-swift/)
+annotation to the generated properties/function.
+
+> **Note**: this currently requires a module-wide opt-in to `kotlin.experimental.ExperimentalObjCRefinement`.
+
+You could for example refine your `Flow` property to an `AnyPublisher` property:
+```kotlin
+class Clock {
+    @NativeCoroutinesRefined
+    val time: StateFlow<Long>
+}
+```
+
+```swift
+extension Clock {
+    var time: AnyPublisher<KotlinLong, Error> {
+        createPublisher(for: __time)
+    }
+}
 ```
