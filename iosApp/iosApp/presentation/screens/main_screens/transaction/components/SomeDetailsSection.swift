@@ -10,14 +10,13 @@ import SwiftUI
 import WrappingHStack
 
 struct SomeDetailsSection: View {
-    
     @Binding var title: String
+    var isDeposite: Bool
     var line: WalletLineUiItem?
     var categories: Set<String>
     
     @Binding var showLineSheet: Bool
     @Binding var showCategorySheet: Bool
-    
     
     var focus: FocusState<Bool>.Binding
     
@@ -39,30 +38,31 @@ struct SomeDetailsSection: View {
             }
             .focused(focus)
             .padding(.top, Padding.small)
-            
-            Text(
-                NSLocalizedString("Line", comment: "")
-            )
-            .titleLargeStyle()
-            .foregroundColor(.neutralColorDark)
-            .padding(.top, Padding.extraMedium)
-            
-            if line != nil {
-                WalletLineItem(
-                    title: line?.title ?? "",
-                    percentage: line?.percentage ?? -1,
-                    balance: line?.balance ?? -1.1,
-                    buttonEnable: false
+            if !isDeposite {
+                Text(
+                    NSLocalizedString("Line", comment: "")
                 )
-                .onTapGesture {
-                    showLineSheet.toggle()
+                .titleLargeStyle()
+                .foregroundColor(.neutralColorDark)
+                .padding(.top, Padding.extraMedium)
+            
+                if let line = line {
+                    WalletLineItem(
+                        title: line.title,
+                        percentage: line.percentage,
+                        balance: line.balance,
+                        buttonEnable: false
+                    )
+                    .onTapGesture {
+                        showLineSheet.toggle()
+                    }
+                    .padding(.top, Padding.small)
+                } else {
+                    DashedBorderButton(title: NSLocalizedString("Add Line", comment: "")) {
+                        showLineSheet.toggle()
+                    }
+                    .padding(.top, Padding.small)
                 }
-                .padding(.top, Padding.small)
-            } else {
-                DashedBorderButton(title: NSLocalizedString("Add Line", comment: "")) {
-                    showLineSheet.toggle()
-                }
-                .padding(.top, Padding.small)
             }
             
             Text(
@@ -74,7 +74,6 @@ struct SomeDetailsSection: View {
             
             if !categories.isEmpty {
                 ZStack {
-                    
                     HStack {
                         WrappingHStack(Array(categories), id: \.self) { cat in
                             CategoryChip(name: cat)
@@ -111,6 +110,7 @@ struct SomeDetailsSection_Previews: PreviewProvider {
     static var previews: some View {
         SomeDetailsSection(
             title: .constant(""),
+            isDeposite: false,
             line: WalletLineUiItem(
                 id: "",
                 title: "Savings",

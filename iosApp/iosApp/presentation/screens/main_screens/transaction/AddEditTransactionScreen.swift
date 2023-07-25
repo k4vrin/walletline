@@ -102,6 +102,7 @@ struct AddEditTransactionScreen: View {
                             get: { viewModel.state.title },
                             set: { viewModel.onEvent(.ChangeTitle(title: $0)) }
                         ),
+                        isDeposite: viewModel.state.isDepositSelected,
                         line: viewModel.state.selectedLine,
                         categories: viewModel.state.selectedCategories,
                         showLineSheet: Binding(
