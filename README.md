@@ -20,7 +20,5 @@ Financial managment app built completely with KMP (Jetpack Compose + SwiftUi).
 
 ## Screenshots
 
-| <img src="https://i.imgur.com/eIRYn0t.png" width="250"> | <img src="https://i.imgur.com/hD06sJC.png" width="250"> | <img src="https://i.imgur.com/7GbrGwX.png" width="250"> |
-| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
 | <img src="https://i.imgur.com/GtOd15D.jpeg" width="250"> | <img src="https://i.imgur.com/US3lwQY.jpeg" width="250"> | <img src="https://i.imgur.com/DeqvaZS.jpeg" width="250"> |
 | <img src="https://i.imgur.com/YwNW3nZ.jpeg" width="250"> | <img src="https://i.imgur.com/w5kmlRQ.jpeg" width="250"> | <img src="https://i.imgur.com/iEQRYjB.jpeg" width="250"> |
